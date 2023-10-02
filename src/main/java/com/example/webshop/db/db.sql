@@ -1,11 +1,11 @@
 -- Drop the database if it exists
-DROP DATABASE IF EXISTS workshop;
+DROP DATABASE IF EXISTS webshop;
 
 -- Create the database
-CREATE DATABASE workshop;
+CREATE DATABASE webshop;
 
 -- Use the database
-USE workshop;
+USE webshop;
 
 -- Create the users table
 CREATE TABLE users (

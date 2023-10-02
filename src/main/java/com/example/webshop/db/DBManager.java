@@ -1,5 +1,7 @@
 package com.example.webshop.db;
 
+import com.example.webshop.Secret;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,9 +15,9 @@ public class DBManager{
         try {
             //Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://localhost:3306/workshop";
+            String url = "jdbc:mysql://localhost:3306/webshop";
 
-            newCon = DriverManager.getConnection(url, "root", "password123"); // <-- Change login here
+            newCon = DriverManager.getConnection(url, "root", Secret.getPassword()); // <-- Change login here
         } catch (SQLException e){
             System.out.println("Could not connect to SQL server");
             e.printStackTrace();
