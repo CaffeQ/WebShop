@@ -29,4 +29,11 @@ public class ItemInfo {
 
     public void setDesc(String desc) {this.description = desc;}
 
+    @Override
+    public String toString() {
+        return "ItemInfo{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

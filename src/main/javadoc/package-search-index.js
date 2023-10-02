@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.webshop"},{"l":"com.example.webshop.bo"},{"l":"com.example.webshop.db"},{"l":"com.example.webshop.ui"}];updateSearchResults();
