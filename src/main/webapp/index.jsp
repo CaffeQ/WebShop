@@ -8,5 +8,7 @@
 <h1><%= "Welcome to the silk road!" %></h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
+<a href="controller-servlet?action=login">Login</a>
+<a href="controller-servlet?action=cart">Cart</a>
 </body>
 </html>
