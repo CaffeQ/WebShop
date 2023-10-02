@@ -12,23 +12,44 @@ import java.util.ResourceBundle;
 
 public class ItemDB extends Item {
 
+    /*
     public Collection getLocalItems(){
+
         ArrayList<ItemDB> items = new ArrayList<>();
 
-        items.add(new ItemDB(1,"Mug","Blue coffe mug"));
-        items.add(new ItemDB(2,"Cup","Red cup"));
+        //items.add(new ItemDB(1,"Mug","Blue coffe mug"));
+        //items.add(new ItemDB(2,"Cup","Red cup"));
 
         return items;
     }
-    public Collection searchItems(){
+
+     */
+    public static Collection searchItems(){
+        ResultSet rs = null;
+        ArrayList<ItemDB> items = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT id, name, description from T_Item");
-        }catch (SQLException e){
+            rs = st.executeQuery("SELECT * from T_Item");
+/*
+Error Code: 1064. You have an error in your SQL syntax;
+check the manual that corresponds to your MySQL server version for the
+right syntax to use near 'T_Item' at line 1
+
+ */
+            while(rs.next()){
+                items.add(new
+                        ItemDB(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"))
+                );
+            }
+
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
-        return null;
+        return items;
     }
     protected ItemDB(int id, String name, String desc) {
         super(id, name, desc);

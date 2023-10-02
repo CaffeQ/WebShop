@@ -1,15 +1,24 @@
 package com.example.webshop.bo;
 
+import com.example.webshop.db.ItemDB;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Item{
 
     private int id;
     private String name;
-    private String desc;
+    private String description;
 
-    protected Item(int id, String name, String desc) {
+    protected Item(int id, String name, String description) {
         this.id = id;
         this.name = name;
-        this.desc = desc;
+        this.description = description;
+    }
+
+    static public Collection searchItems(){ //TODO! <--- Add correct parameter here
+        return ItemDB.searchItems();
     }
 
     public int getId() {
@@ -29,10 +38,10 @@ public class Item{
     }
 
     public String getDesc() {
-        return desc;
+        return description;
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.description = desc;
     }
 }
