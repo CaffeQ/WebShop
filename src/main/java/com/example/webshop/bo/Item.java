@@ -7,8 +7,6 @@ import java.util.Collection;
 
 public class Item{
 
-    //protected enum Status {IN_STOCK, OUT_OF_STOCK};
-
     private int id;
     private String name;
     private String description;
