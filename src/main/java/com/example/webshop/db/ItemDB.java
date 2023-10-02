@@ -39,10 +39,12 @@ right syntax to use near 'T_Item' at line 1
  */
             while(rs.next()){
                 items.add(new
-                        ItemDB(rs.getInt("id"),
+                        ItemDB(rs.getInt("itemID"),
                         rs.getString("name"),
-                        rs.getString("description"))
-                );
+                        rs.getString("description"),
+                        rs.getInt("quantity"),
+                        (String) rs.getObject("status")
+                        ));
             }
 
         }
@@ -51,7 +53,7 @@ right syntax to use near 'T_Item' at line 1
         }
         return items;
     }
-    protected ItemDB(int id, String name, String desc) {
-        super(id, name, desc);
+    protected ItemDB(int id, String name, String description, int quantity, String status) {
+        super(id, name, description, quantity, status);
     }
 }

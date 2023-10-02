@@ -10,5 +10,6 @@
 <a href="hello-servlet">Hello Servlet</a>
 <a href="controller-servlet?action=login">Login</a>
 <a href="controller-servlet?action=cart">Cart</a>
+<a href="controller-servlet?action=product">Product</a>
 </body>
 </html>

@@ -17,10 +17,17 @@ CREATE TABLE T_User (
 
 CREATE TABLE T_Item (
     itemID INT PRIMARY KEY AUTO_INCREMENT,
+    name TEXT NOT NULL,
     description TEXT,
     quantity INT NOT NULL,
-    status ENUM('in stock', 'out of stock') NOT NULL
+    status ENUM('IN_STOCK', 'OUT_OF_STOCK') NOT NULL
 );
+INSERT INTO T_Item (name, description, quantity, status) VALUES
+('Item1', 'Description1', 10, 'IN_STOCK'),
+('Item2', 'Description2', 0, 'OUT_OF_STOCK'),
+('Item3', 'Description3', 5, 'IN_STOCK');
+
+
 
 CREATE TABLE T_Category (
     itemID INT,
@@ -51,10 +58,6 @@ INSERT INTO T_User (password, role, address, status) VALUES
 ('password2', 'customer', 'Address2', 'suspended'),
 ('password3', 'warehouse staff', 'Address3', 'pending');
 
-INSERT INTO T_Item (description, quantity, status) VALUES
-('Item1 Description', 10, 'in stock'),
-('Item2 Description', 0, 'out of stock'),
-('Item3 Description', 5, 'in stock');
 
 INSERT INTO T_Category (itemID, category) VALUES
 (1, 'Electronics'),

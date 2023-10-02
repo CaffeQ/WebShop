@@ -1,6 +1,5 @@
 package com.example.webshop;
 
-
 import com.example.webshop.ui.ItemInfo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,7 +26,7 @@ public class ControllerServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").forward(request,response);
                 break;
             default:
-                request.getRequestDispatcher("login.jsp").forward(request,response);
+                request.getRequestDispatcher("product.jsp").forward(request,response);
         }
 
     }
@@ -35,10 +34,9 @@ public class ControllerServlet extends HttpServlet {
         System.out.println("Request: " + request.toString());
         System.out.println("Session: " + request.getSession().toString() );
         System.out.println("Cookies: " + request.getCookies().toString());
-
         System.out.println("Response: "+ response.toString());
 
-        request.getSession().setAttribute("Item",new ItemInfo("Tim","Thai"));
+        request.getSession().setAttribute("Item",new ItemInfo("Tim","Thai", 5, "IN_STOCK"));
         ItemInfo itemInfo = (ItemInfo) request.getSession().getAttribute("Item");
         System.out.println("Item: "+itemInfo.toString());
     }

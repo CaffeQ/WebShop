@@ -9,31 +9,29 @@ public class ItemInfo {
 
     private String name;
     private String description;
+    private int quantity;
+    private String status;
 
-    public ItemInfo(String name, String description) {
+    public ItemInfo(String name, String description, int quanity, String status) {
         this.name = name;
         this.description = description;
+        this.quantity = quanity;
+        this.status = status;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDesc() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDesc(String desc) {this.description = desc;}
+    public int getQuantity() {
+        return quantity;
+    }
 
-    @Override
-    public String toString() {
-        return "ItemInfo{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+    public String getStatus() {
+        return status;
     }
 }

@@ -31,7 +31,14 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         for(ItemInfo item : itemInfo){
-            out.println("<h1>" + item.getName() + " " + item.getDesc()+ "</h1>");
+            out.println(
+                    "<h1>" +
+                    item.getName() + " " +
+                    item.getDescription()+ " " +
+                    item.getQuantity() + " " +
+                    item.getStatus() +
+                    "</h1>"
+            );
         }
 
         out.println("</body></html>");

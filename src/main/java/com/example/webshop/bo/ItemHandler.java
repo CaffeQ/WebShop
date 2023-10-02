@@ -12,7 +12,12 @@ public class ItemHandler {
         ArrayList<ItemInfo> items = new ArrayList<>();
         for(Iterator it = c.iterator(); it.hasNext();){
             Item item = (Item) it.next();
-            items.add(new ItemInfo(item.getName(),item.getDesc()));
+            items.add(new ItemInfo(
+                    item.getName(),
+                    item.getDesc(),
+                    item.getQuantity(),
+                    item.getStatus()
+            ));
         }
         return items;
     }
