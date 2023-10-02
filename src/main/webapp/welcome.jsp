@@ -1,16 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
-  User: timjohansson
+  User: Test
   Date: 2023-10-02
-  Time: 11:26
+  Time: 12:48
   To change this template use File | Settings | File Templates.
 --%>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Welcome</title>
+    <title>Welcome!</title>
 </head>
+    <h1>Welcome to the shopcart!</h1>
 <body>
-<h1>Welcome to My Web App!</h1>
+
 </body>
 </html>
