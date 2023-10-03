@@ -25,6 +25,7 @@ public class ControllerServlet extends HttpServlet {
         this.request = request;
         this.response = response;
         request.getSession().setMaxInactiveInterval(60*60*8);
+    }
     
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request == null || response == null){
