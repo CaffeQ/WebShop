@@ -1,6 +1,7 @@
 package com.example.webshop.bo;
 
 import com.example.webshop.db.UserDB;
+import com.example.webshop.ui.UserInfo;
 
 public class UserHandler {
 
@@ -12,5 +13,11 @@ public class UserHandler {
         return user.getName().equals(userName) &&
                 user.getPassword().equals(password);
 
+    }
+    public static UserInfo getUser(String name){
+        User user = User.searchUser(name);
+        if(user == null)
+            return null;
+        return new UserInfo(user.getName(),user.getRole());
     }
 }

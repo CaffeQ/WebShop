@@ -1,14 +1,13 @@
 package com.example.webshop;
 
 import com.example.webshop.bo.ItemHandler;
+import com.example.webshop.bo.User;
 import com.example.webshop.bo.UserHandler;
 import com.example.webshop.ui.ItemInfo;
+import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -83,6 +82,8 @@ public class ControllerServlet extends HttpServlet {
                 System.out.println("User name = " + userName );
                 System.out.println("User password = " + password );
                 if(UserHandler.authenticateUser(userName,password)){
+                    UserInfo userInfo = UserHandler.getUser(userName);
+                    request.getSession().setAttribute("user",userInfo);
                     request.getRequestDispatcher("index.jsp").forward(request,response);
                     response.sendRedirect("index.jsp");
                 }else{
