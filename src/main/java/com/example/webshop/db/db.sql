@@ -12,7 +12,7 @@ CREATE TABLE T_User (
     name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'customer', 'warehouse_staff') NOT NULL,
-    address VARCHAR(255)
+    token VARCHAR(255) NOT NULL unique
 );
 
 CREATE TABLE T_Item (
@@ -54,10 +54,10 @@ CREATE TABLE T_PurchaseItems (
     FOREIGN KEY (itemID) REFERENCES T_Item(itemID)
 );
 
-INSERT INTO T_User (name, password, role, address) VALUES
-('Balder','password1', 'admin', 'Address1'),
-('Tim','password2', 'customer', 'Address2'),
-('Alex','password3', 'warehouse_staff', 'Address3');
+INSERT INTO T_User (name, password, role, token) VALUES
+('Balder','password1', 'admin', UUID()),
+('Tim','password2', 'customer', UUID()),
+('Alex','password3', 'warehouse_staff', UUID());
 
 
 INSERT INTO T_Category (itemID, category) VALUES

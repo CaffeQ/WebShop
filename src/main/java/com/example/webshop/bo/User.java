@@ -2,20 +2,22 @@ package com.example.webshop.bo;
 
 import com.example.webshop.db.UserDB;
 
+import java.util.UUID;
+
 public class User {
     private final int id;
     private String name;
     private String password;
     private String role;
-    private String address;
+    private String token;
 
     public User(int id, String name,
-                String password, String role, String address) {
+                String password, String role, String token) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.role = role;
-        this.address = address;
+        this.token = token;
     }
 
     public static User searchUser(String userName){
@@ -45,12 +47,12 @@ public class User {
         this.role = role;
     }
 
-    public String getAddress() {
-        return address;
+    public String getToken() {
+        return token;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override
@@ -60,7 +62,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", address='" + address + '\'' +
+                ", address='" + token + '\'' +
                 '}';
     }
 }

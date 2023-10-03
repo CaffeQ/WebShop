@@ -18,6 +18,6 @@ public class UserHandler {
         User user = User.searchUser(name);
         if(user == null)
             return null;
-        return new UserInfo(user.getName(),user.getRole());
+        return new UserInfo(user.getName(),user.getRole(),user.getToken());
     }
 }

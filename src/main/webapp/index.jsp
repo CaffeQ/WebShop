@@ -9,11 +9,18 @@
 <h1>
   <%  UserInfo userInfo = (UserInfo) session.getAttribute("user");
       String name = "";
-      if(userInfo!=null)
-        name = userInfo.getName();
+      String role = " Customer";
+      if(userInfo!=null) {
+          name = userInfo.getName();
+          if(userInfo.getRole().equals( "warehouse_staff" ))
+              role = " Warehouse staff";
+          else if(userInfo.getRole().equals( "admin" ))
+              role = "n Admin";
+      }
   %>
 </h1>
 <h1><%= "Welcome "+ name + " to the silk road!" %></h1>
+<h1><%= "You are a"+ role + "!" %></h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
 <a href="controller-servlet?action=login">Login</a>

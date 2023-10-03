@@ -27,7 +27,7 @@ public class UserDB extends User {
                         rs.getString("name"),
                         rs.getString("password"),
                         rs.getString("role"),
-                        rs.getString("address"));
+                        rs.getString("token"));
             }
         }catch (SQLException e){
             e.printStackTrace();
