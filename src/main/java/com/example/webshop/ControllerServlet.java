@@ -1,7 +1,6 @@
 package com.example.webshop;
 
-import com.example.webshop.bo.Interface.IShoppingCart;
-import com.example.webshop.bo.ShoppingCart;
+import com.example.webshop.bo.ItemHandler;
 import com.example.webshop.ui.ItemInfo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,8 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Collection;
 
 @WebServlet(name = "controllerServlet", value = "/controller-servlet")
 public class ControllerServlet extends HttpServlet {
@@ -43,24 +41,29 @@ public class ControllerServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").forward(request,response);
                 break;
             default:
+
                 // First step of adding cookies
                 // Setting the cookie
-                Cookie cookie = new Cookie("shoppingCart", "Timmmie");
-                response.addCookie(cookie);
-                System.out.println("Setting Cookie: " + cookie.getName());
 
+                request.getSession().setMaxInactiveInterval(1000);
+                request.getSession().setAttribute("shoppingCart", "Timmmie");
+
+
+                // Place itemInfo inside request attribute & forward to JSP.
+                Collection<ItemInfo> itemInfo = ItemHandler.getItems();
+                request.setAttribute("itemInfo",itemInfo);
                 request.getRequestDispatcher("product.jsp").forward(request,response);
-        }
 
+                request.getSession().getAttribute("cartItemName");
+        }
     }
+
     public void testGet(HttpServletRequest request, HttpServletResponse response){
         /*
         System.out.println("Request: " + request.toString());
         System.out.println("Session: " + request.getSession().toString() );
         System.out.println("Cookies: " + request.getCookies().toString());
         System.out.println("Response: "+ response.toString());
-
-
 
         ArrayList<IShoppingCart<ItemInfo,Integer>> shoppingCart = new ArrayList<>();
         ItemInfo tim = new ItemInfo("Tim","Thai", 5, "IN_STOCK");

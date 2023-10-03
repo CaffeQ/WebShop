@@ -14,6 +14,7 @@ public class ItemHandler {
             Item item = (Item) it.next();
             items.add(new ItemInfo(
                     item.getName(),
+                    item.getPrice(),
                     item.getDesc(),
                     item.getQuantity(),
                     item.getStatus()

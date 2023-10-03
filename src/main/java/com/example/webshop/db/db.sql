@@ -18,14 +18,15 @@ CREATE TABLE T_User (
 CREATE TABLE T_Item (
     itemID INT PRIMARY KEY AUTO_INCREMENT,
     name TEXT NOT NULL,
+    price INT NOT NULL,
     description TEXT,
     quantity INT NOT NULL,
     status ENUM('IN_STOCK', 'OUT_OF_STOCK') NOT NULL
 );
-INSERT INTO T_Item (name, description, quantity, status) VALUES
-('Item1', 'Description1', 10, 'IN_STOCK'),
-('Item2', 'Description2', 0, 'OUT_OF_STOCK'),
-('Item3', 'Description3', 5, 'IN_STOCK');
+INSERT INTO T_Item (name, price, description, quantity, status) VALUES
+('Item1', 10, 'Description1', 10, 'IN_STOCK'),
+('Item2', 20, 'Description2', 0, 'OUT_OF_STOCK'),
+('Item3', 30, 'Description3', 5, 'IN_STOCK');
 
 
 

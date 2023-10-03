@@ -9,15 +9,17 @@ public class Item{
 
     private int id;
     private String name;
+    private int price;
     private String description;
     private int quantity;
     private String status;
 
 
 
-    protected Item(int id, String name, String description, int quantity, String status) {
+    protected Item(int id, String name, int price, String description, int quantity, String status) {
         this.id = id;
         this.name = name;
+        this.price = price;
         this.description = description;
         this.quantity = quantity;
         this.status = status;
@@ -73,5 +75,9 @@ public class Item{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

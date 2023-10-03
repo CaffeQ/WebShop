@@ -19,29 +19,6 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-
-        response.getStatus();
-
-        Collection<ItemInfo> itemInfo = ItemHandler.getItems();
-
-
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        for(ItemInfo item : itemInfo){
-            out.println(
-                    "<h1>" +
-                    item.getName() + " " +
-                    item.getDescription()+ " " +
-                    item.getQuantity() + " " +
-                    item.getStatus() +
-                    "</h1>"
-            );
-        }
-
-        out.println("</body></html>");
     }
 
     public void destroy() {
