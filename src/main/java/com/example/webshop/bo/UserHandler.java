@@ -14,10 +14,21 @@ public class UserHandler {
                 user.getPassword().equals(password);
 
     }
+    /**
+        Kontrollerar anvöndare från vyn i affärssikten genom
+        att använda sig av token och jämför om den stämmer,
+        sedan kan en operation göras om rollen gäller
+     */
+    public static boolean userAddItem(UserInfo userInfo){
+        return false;
+    }
     public static UserInfo getUser(String name){
         User user = User.searchUser(name);
         if(user == null)
             return null;
         return new UserInfo(user.getName(),user.getRole(),user.getToken());
+    }
+    public static void updateUserToken(User user){
+
     }
 }

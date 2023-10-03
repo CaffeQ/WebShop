@@ -43,6 +43,8 @@ public class ControllerServlet extends HttpServlet {
             case "login":
                 request.getRequestDispatcher("login.jsp").forward(request,response);
                 break;
+            case "addItem":
+                request.getRequestDispatcher("addItem.jsp").forward(request,response);
             default:
 
                 // First step of adding cookies

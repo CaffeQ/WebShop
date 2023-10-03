@@ -16,10 +16,18 @@
 <%@ page import="com.example.webshop.ui.ItemInfo" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="com.example.webshop.ui.UserInfo" %>
 
 <h1>Products</h1>
 <h1>Add Items to Cart</h1>
+<%
+    UserInfo userInfo = (UserInfo) session.getAttribute("user");
+    String link = "";
+    if( userInfo != null && userInfo.getRole().equals("admin"))
+        link = "controller-servlet?action=addItem";
 
+%>
+<a href="<%=link%>">Add items</a>
 <%
     Collection<ItemInfo> items = (Collection<ItemInfo>) request.getAttribute("itemInfo");
     for(ItemInfo item : items){
