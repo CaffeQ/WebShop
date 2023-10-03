@@ -9,10 +9,10 @@ USE webshop;
 
 CREATE TABLE T_User (
     userID INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'customer', 'warehouse staff') NOT NULL,
-    address VARCHAR(255),
-    status ENUM('active', 'suspended', 'pending') NOT NULL
+    role ENUM('admin', 'customer', 'warehouse_staff') NOT NULL,
+    address VARCHAR(255)
 );
 
 CREATE TABLE T_Item (
@@ -54,10 +54,10 @@ CREATE TABLE T_PurchaseItems (
     FOREIGN KEY (itemID) REFERENCES T_Item(itemID)
 );
 
-INSERT INTO T_User (password, role, address, status) VALUES
-('password1', 'admin', 'Address1', 'active'),
-('password2', 'customer', 'Address2', 'suspended'),
-('password3', 'warehouse staff', 'Address3', 'pending');
+INSERT INTO T_User (name, password, role, address) VALUES
+('Balder','password1', 'admin', 'Address1'),
+('Tim','password2', 'customer', 'Address2'),
+('Alex','password3', 'warehouse_staff', 'Address3');
 
 
 INSERT INTO T_Category (itemID, category) VALUES
@@ -73,3 +73,6 @@ INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES
 (1, 1, 2),
 (1, 3, 1),
 (2, 2, 1);
+
+
+SELECT * from T_User where name = 'Balder'

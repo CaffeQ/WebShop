@@ -1,6 +1,7 @@
 package com.example.webshop;
 
 import com.example.webshop.bo.ItemHandler;
+import com.example.webshop.bo.UserHandler;
 import com.example.webshop.ui.ItemInfo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,9 +15,12 @@ import java.util.Collection;
 
 @WebServlet(name = "controllerServlet", value = "/controller-servlet")
 public class ControllerServlet extends HttpServlet {
-
-    public void init(){
-
+    private HttpServletRequest request;
+    private HttpServletResponse response;
+    public void init(HttpServletRequest request, HttpServletResponse response){
+        this.request = request;
+        this.response = response;
+        request.getSession().setMaxInactiveInterval(60*60*8);
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
@@ -55,6 +59,41 @@ public class ControllerServlet extends HttpServlet {
                 request.getRequestDispatcher("product.jsp").forward(request,response);
 
                 request.getSession().getAttribute("cartItemName");
+        }
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if (request == null || response == null) {
+            init(request, response);
+        }
+
+        String action = request.getParameter("action");
+        System.out.println("Action : " + action);
+        switch(action){
+            case "addItemToCart" :
+                String cartItemName = request.getParameter("cartItemName");
+                String cartItemQuantity = request.getParameter("cartItemQuantity");
+                System.out.println("cartItemName : " + cartItemName +", cartItemQuantity : " + cartItemQuantity);
+                request.getRequestDispatcher("cart.jsp").forward(request,response);
+                response.sendRedirect("cart.jsp");
+                break;
+            case "processLogin":
+                String userName = request.getParameter("name");
+                String password = request.getParameter("password");
+                System.out.println("User name = " + userName );
+                System.out.println("User password = " + password );
+                if(UserHandler.authenticateUser(userName,password)){
+                    request.getRequestDispatcher("index.jsp").forward(request,response);
+                    response.sendRedirect("index.jsp");
+                }else{
+                    request.setAttribute("errorMessage","Invalid login name or password");
+                    request.getRequestDispatcher("login.jsp").forward(request,response);
+                    response.sendRedirect("login.jsp");
+                }
+
+                break;
+            default:
+                System.out.println("Incorrect");
         }
     }
 
