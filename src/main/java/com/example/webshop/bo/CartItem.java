@@ -16,4 +16,12 @@ public class  CartItem<T>{
     public String getQuantity() {
         return quantity;
     }
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "item=" + item.toString() +
+                ", quantity='" + quantity + '\'' +
+                '}';
+    }
 }

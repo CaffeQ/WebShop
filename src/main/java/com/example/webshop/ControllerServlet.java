@@ -33,20 +33,9 @@ public class ControllerServlet extends HttpServlet {
         }
 
         String action = request.getParameter("action");
-
         switch (action){
             case "cart":
-                request.getSession().setAttribute("cart", Cart.getCart());
-
-                /*
-                ArrayList<CartItem<ItemInfo>> carts = (ArrayList<CartItem<ItemInfo>>) request.getAttribute("cart");
-
-                for(int i=0;i<carts.size();i++){
-                    System.out.println(carts.get(i).getItem().toString() + ", quantity : " + carts.get(i).getQuantity() );
-                }*/
-
-
-                    request.getRequestDispatcher("cart.jsp").forward(request,response);
+                request.getRequestDispatcher("cart.jsp").forward(request,response);
                 break;
             case "login":
                 request.getRequestDispatcher("login.jsp").forward(request,response);
@@ -56,8 +45,6 @@ public class ControllerServlet extends HttpServlet {
                 request.setAttribute("itemInfo",itemInfo);
                 request.getRequestDispatcher("product.jsp").forward(request,response);
             default:
-
-                // Place itemInfo inside request attribute & forward to JSP.
                 Collection<ItemInfo> itemInfo1 = ItemHandler.getItems();
                 request.setAttribute("itemInfo",itemInfo1);
                 request.getRequestDispatcher("product.jsp").forward(request,response);
@@ -71,36 +58,22 @@ public class ControllerServlet extends HttpServlet {
         }
 
         String action = request.getParameter("action");
-        System.out.println("Action : " + action);
         switch(action){
             case "addItemToCart" :
 
-                String cartItemName = request.getParameter("cartItemName");
-                String cartItemQuantity = request.getParameter("cartItemQuantity");
-
-                ArrayList<CartItem<ItemInfo>> cart = (ArrayList<CartItem<ItemInfo>>) request.getSession().getAttribute("cart");
+                Cart cart = (Cart) request.getSession().getAttribute("cart");
                 if(cart == null){
-                    Cart.init();
-                    cart = Cart.getCart();
-                    request.getSession().setAttribute("cart",cart);
-                    cart.add(Cart.add(cartItemName,cartItemQuantity));
-                }
-                else{
-                    cart = (ArrayList<CartItem<ItemInfo>>) request.getSession().getAttribute("cart");
-                    cart.add(Cart.add(cartItemName,cartItemQuantity));
+                    request.getSession().setAttribute("cart",new Cart());
+                    cart = (Cart) request.getSession().getAttribute("cart");
                 }
 
-                for(int i=0;i<cart.size();i++){
-                    System.out.println(cart.get(i).getItem().toString() + ", quantity : " + cart.get(i).getQuantity() );
-                }
-
+                cart.add(request.getParameter("cartItemName"), request.getParameter("cartItemQuantity"));
                 request.getSession().setAttribute("cart",cart);
 
-
-                //System.out.println("cartItemName : " + cartItemName +", cartItemQuantity : " + cartItemQuantity);
                 request.getRequestDispatcher("cart.jsp").forward(request,response);
                 response.sendRedirect("cart.jsp");
                 break;
+
             case "processLogin":
                 String userName = request.getParameter("name");
                 String password = request.getParameter("password");

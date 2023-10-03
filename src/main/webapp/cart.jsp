@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.webshop.bo.CartItem" %>
-<%@ page import="com.example.webshop.ui.ItemInfo" %><%--
+<%@ page import="com.example.webshop.ui.ItemInfo" %>
+<%@ page import="com.example.webshop.bo.Cart" %><%--
   Created by IntelliJ IDEA.
   User: Test
   Date: 2023-10-02
@@ -14,8 +15,8 @@
     <h1>Cart</h1>
 
     <%
-        ArrayList<CartItem<ItemInfo>> items = (ArrayList<CartItem<ItemInfo>>) request.getSession().getAttribute("cart");
-        for(CartItem<ItemInfo> item : items){
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        for(CartItem<ItemInfo> item : cart.getCart()){
     %>
 
         <p>
