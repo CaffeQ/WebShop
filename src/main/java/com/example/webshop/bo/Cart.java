@@ -21,11 +21,28 @@ public class Cart{
         return copy;
     }
 
-    public CartItem<ItemInfo> add(String itemName, String quantity) {
+    public boolean add(String itemName, String quantity) {
+
+        for(int i=0;i<cartList.size();i++){
+            if(cartList.get(i).getItem().getName().compareTo(itemName)==0){
+                int nrOfItemInStock = cartList.get(i).getItem().getQuantity();
+                int nrOfItemInCart = Integer.parseInt(cartList.get(i).getQuantity());
+                int nrOfItemRequested = Integer.parseInt(quantity);
+
+                if(nrOfItemInStock < nrOfItemInCart+nrOfItemRequested){
+                    return false;
+                }
+                cartList.get(i).setQuantity(String.valueOf(nrOfItemInCart+nrOfItemRequested));
+                return true;
+            }
+        }
+
         Item item = Item.getItemIdByName(itemName);
+        if(item.getQuantity()<=0) return false;
+
         cartList.add(new CartItem<Item>(item,quantity));
         CartItem<Item> cartItem = new CartItem<>(item,quantity);
-        return new CartItem<ItemInfo>(ItemHandler.itemToItemInfo(cartItem.getItem()), cartItem.getQuantity());
+        return true;
     }
 
 }

@@ -17,6 +17,10 @@ public class  CartItem<T>{
         return quantity;
     }
 
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "CartItem{" +
