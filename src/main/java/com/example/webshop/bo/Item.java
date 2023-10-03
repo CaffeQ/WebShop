@@ -2,7 +2,6 @@ package com.example.webshop.bo;
 
 import com.example.webshop.db.ItemDB;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class Item{
@@ -14,8 +13,6 @@ public class Item{
     private int quantity;
     private String status;
 
-
-
     protected Item(int id, String name, int price, String description, int quantity, String status) {
         this.id = id;
         this.name = name;
@@ -25,9 +22,10 @@ public class Item{
         this.status = status;
     }
 
-    public static Collection searchItems(){ //TODO! <--- Add correct parameter here
+    public static Collection<ItemDB> searchItems(){ //TODO! <--- Add correct parameter here
         return ItemDB.searchItems();
     }
+    public static ItemDB getItemIdByName(String name){return ItemDB.searchItem(name);}
 
     public int getId() {
         return id;
@@ -77,7 +75,17 @@ public class Item{
         this.status = status;
     }
 
-    public int getPrice() {
-        return price;
+    public int getPrice() {return price;}
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

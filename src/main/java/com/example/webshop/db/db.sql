@@ -17,7 +17,7 @@ CREATE TABLE T_User (
 
 CREATE TABLE T_Item (
     itemID INT PRIMARY KEY AUTO_INCREMENT,
-    name TEXT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
     price INT NOT NULL,
     description TEXT,
     quantity INT NOT NULL,
@@ -73,6 +73,3 @@ INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES
 (1, 1, 2),
 (1, 3, 1),
 (2, 2, 1);
-
-
-SELECT * from T_User where name = 'Balder'
