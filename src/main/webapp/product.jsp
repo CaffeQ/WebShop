@@ -24,13 +24,16 @@
     Collection<ItemInfo> items = (Collection<ItemInfo>) request.getAttribute("itemInfo");
     for(ItemInfo item : items){
 %>
-<p>
+<form action="controller-servlet" method="post">
+    <p>
     <%= item.getName() %> <%= item.getPrice() %> <%= item.getDescription() %> <%= item.getQuantity()%> <%= item.getStatus() %>
     <label for="quantity"> Quantity:</label>
-    <input type="hidden" name="cartItemName" value=<%=item.getName()%>>
-    <input type="number" id="quantity" name="cartItemQuantity" min="1" required>
-    <input type="submit" value="Add to Cart">
-</p>
+        <input type="hidden" name="action" value="addItemToCart">
+        <input type="hidden" name="cartItemName" value=<%=item.getName()%>>
+        <input type="number" id="quantity" name="cartItemQuantity" min="1" required>
+        <input type="submit" value="Add to Cart">
+    </p>
+</form>
 <%
     }
 %>
