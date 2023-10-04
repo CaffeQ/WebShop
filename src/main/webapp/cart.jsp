@@ -14,11 +14,15 @@
     <title>Cart</title>
     <h1>Cart</h1>
 
+    <form action="controller-servlet" method="post">
+        <input type="hidden" name="action" value="placeOrder">
+        <input type="submit" value="Place Order">
+    </form>
+
     <%
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         for(CartItem<ItemInfo> item : cart.getCart()){
     %>
-
         <p>
             <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %> <%= item.getQuantity()%> <%= item.getItem().getStatus() %>
         </p>

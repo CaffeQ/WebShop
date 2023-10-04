@@ -41,7 +41,7 @@ CREATE TABLE T_Order (
     orderID INT PRIMARY KEY AUTO_INCREMENT,
     userID INT,
     date DATE NOT NULL,
-    status ENUM('pack', 'sent', 'cancelled') NOT NULL,
+    status ENUM('active', 'sent', 'cancelled') NOT NULL,
     FOREIGN KEY (userID) REFERENCES T_User(userID)
 );
 
@@ -66,8 +66,11 @@ INSERT INTO T_Category (itemID, category) VALUES
 (3, 'Clothing');
 
 INSERT INTO T_Order (userID, date, status) VALUES
-(1, '2023-10-01', 'pack'),
-(2, '2023-10-02', 'sent');
+(1, '2023-10-01', 'active'),
+(2, '2023-10-02', 'sent'),
+(3, '2023-10-03', 'cancelled');
+#Error Code: 1265. Data truncated for column 'status' at row 2
+
 
 INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES
 (1, 1, 2),

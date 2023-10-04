@@ -2,6 +2,7 @@ package com.example.webshop.bo;
 
 import com.example.webshop.db.ItemDB;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Item{
@@ -25,7 +26,9 @@ public class Item{
     public static Collection<ItemDB> searchItems(){ //TODO! <--- Add correct parameter here
         return ItemDB.searchItems();
     }
-    public static ItemDB getItemIdByName(String name){return ItemDB.searchItem(name);}
+    public static ItemDB getItemIdByName(String name){return ItemDB.getItemByName(name);}
+    public static ArrayList<ItemDB> getItemsIdByOrderID(int orderID){return ItemDB.getItemsIdByOrderID(orderID);}
+
 
     public int getId() {
         return id;

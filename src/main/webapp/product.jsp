@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<%@ page import="com.example.webshop.bo.ItemHandler" %>
+<%@ page import="com.example.webshop.bo.handler.ItemHandler" %>
 <%@ page import="com.example.webshop.ui.ItemInfo" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.io.PrintWriter" %>

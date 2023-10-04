@@ -1,5 +1,6 @@
-package com.example.webshop.bo;
+package com.example.webshop.bo.handler;
 
+import com.example.webshop.bo.Item;
 import com.example.webshop.db.ItemDB;
 import com.example.webshop.ui.ItemInfo;
 
@@ -11,14 +12,13 @@ public class ItemHandler {
     public static Collection<ItemInfo> getItems(){
         Collection<ItemDB> c = Item.searchItems();
         ArrayList<ItemInfo> items = new ArrayList<>();
-        for(Iterator it = c.iterator(); it.hasNext();){
-            Item item = (Item) it.next();
+        for (ItemDB itemDB : c) {
             items.add(new ItemInfo(
-                    item.getName(),
-                    item.getPrice(),
-                    item.getDesc(),
-                    item.getQuantity(),
-                    item.getStatus()
+                    itemDB.getName(),
+                    itemDB.getPrice(),
+                    itemDB.getDesc(),
+                    itemDB.getQuantity(),
+                    itemDB.getStatus()
             ));
         }
         return items;

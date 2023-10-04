@@ -1,10 +1,10 @@
 package com.example.webshop.bo;
 
 public class  CartItem<T>{
-    private T item;
+    private final T item;
     private String quantity;
 
-    protected CartItem(T item, String quantity) {
+    public CartItem(T item, String quantity) {
         this.item = item;
         this.quantity = quantity;
     }
