@@ -24,7 +24,7 @@
     UserInfo userInfo = (UserInfo) session.getAttribute("user");
     String link = "";
     if( userInfo != null && userInfo.getRole().equals("admin"))
-        link = "controller-servlet?action=addItem";
+        link = "controller-servlet?action=item";
 
 %>
 <a href="<%=link%>">Add items</a>

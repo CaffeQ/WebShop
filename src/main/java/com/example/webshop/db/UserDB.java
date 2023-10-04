@@ -30,10 +30,12 @@ public class UserDB extends User {
                         rs.getString("token"));
             }
         }catch (SQLException e){
+            System.out.println("User not found");
             e.printStackTrace();
         }
         return userDB;
     }
+
     public UserDB(int id, String name, String password, String role, String address) {
         super(id, name, password, role, address);
     }

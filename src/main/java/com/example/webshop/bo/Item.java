@@ -1,6 +1,9 @@
 package com.example.webshop.bo;
 
 import com.example.webshop.db.ItemDB;
+import com.example.webshop.db.UserDB;
+import com.example.webshop.ui.ItemInfo;
+import com.example.webshop.ui.UserInfo;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +26,19 @@ public class Item{
         this.description = description;
         this.quantity = quantity;
         this.status = status;
+    }
+
+    public static boolean createItem(Item item){
+        return ItemDB.createItem( item );
+    }
+
+    public static boolean isNotNULL(ItemInfo item){
+        if(item == null)
+            return false;
+        return item.getName() != null || item.getName().isEmpty() ||
+                item.getDescription() != null ||
+                item.getStatus() != null;
+
     }
 
     public static Collection searchItems(){ //TODO! <--- Add correct parameter here
@@ -79,5 +95,17 @@ public class Item{
 
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

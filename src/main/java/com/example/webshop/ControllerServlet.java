@@ -43,8 +43,8 @@ public class ControllerServlet extends HttpServlet {
             case "login":
                 request.getRequestDispatcher("login.jsp").forward(request,response);
                 break;
-            case "addItem":
-                request.getRequestDispatcher("addItem.jsp").forward(request,response);
+            case "item":
+                request.getRequestDispatcher("item.jsp").forward(request,response);
             default:
 
                 // First step of adding cookies
@@ -93,7 +93,19 @@ public class ControllerServlet extends HttpServlet {
                     request.getRequestDispatcher("login.jsp").forward(request,response);
                     response.sendRedirect("login.jsp");
                 }
-
+                break;
+            case "processAdd":
+                String name = request.getParameter("name");
+                String price = request.getParameter("price");
+                String quantity = request.getParameter("quantity");
+                String desc = request.getParameter("description");
+                String status = request.getParameter("status");
+                status = status.toUpperCase();
+                ItemInfo itemInfo = new ItemInfo(name, Integer.parseInt(price),desc,Integer.parseInt(quantity) , status );
+                System.out.println("Adding item: " + itemInfo.toString());
+                UserInfo userInfo = (UserInfo) request.getSession().getAttribute("user");
+                ItemHandler.adminAddItem(userInfo,itemInfo);
+                request.getRequestDispatcher("item.jsp").forward(request,response);
                 break;
             default:
                 System.out.println("Incorrect");

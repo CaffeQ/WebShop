@@ -38,4 +38,15 @@ public class ItemInfo {
     }
 
     public int getPrice() {return price;}
+
+    @Override
+    public String toString() {
+        return "ItemInfo{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

@@ -69,10 +69,12 @@ INSERT INTO T_Order (userID, date, status) VALUES
 (1, '2023-10-01', 'pack'),
 (2, '2023-10-02', 'sent');
 
+
+
 INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES
 (1, 1, 2),
 (1, 3, 1),
 (2, 2, 1);
 
 
-SELECT * from T_User where name = 'Balder'
+SELECT * from T_Item;

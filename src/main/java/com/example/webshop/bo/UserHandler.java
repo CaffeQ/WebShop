@@ -1,9 +1,11 @@
 package com.example.webshop.bo;
 
 import com.example.webshop.db.UserDB;
+import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.UserInfo;
 
 public class UserHandler {
+
 
     public static boolean authenticateUser(String userName,String password){
         User user = User.searchUser(userName);
@@ -18,10 +20,9 @@ public class UserHandler {
         Kontrollerar anvöndare från vyn i affärssikten genom
         att använda sig av token och jämför om den stämmer,
         sedan kan en operation göras om rollen gäller
+
      */
-    public static boolean userAddItem(UserInfo userInfo){
-        return false;
-    }
+
     public static UserInfo getUser(String name){
         User user = User.searchUser(name);
         if(user == null)
