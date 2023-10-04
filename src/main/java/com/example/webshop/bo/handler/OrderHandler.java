@@ -21,7 +21,7 @@ public class OrderHandler {
             ArrayList<CartItem<ItemInfo>> itemInfos = new ArrayList<>();
 
             for(CartItem<ItemDB> cartItem : o.getPurchaseItems()){
-                itemInfos.add(new CartItem<>(ItemHandler.itemToItemInfo(cartItem.getItem()), String.valueOf(cartItem.getQuantity())));
+                itemInfos.add(new CartItem<>(ItemHandler.itemToItemInfo(cartItem.getItem()), cartItem.getQuantity()));
             }
             copy.add(new OrderInfo(o.getOrderID(), o.getUserID(), o.getDate(), o.getStatus(),itemInfos));
         }

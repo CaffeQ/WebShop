@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class PurchaseItemDB {
 
-    public static ArrayList<CartItem<ItemDB>> getCartItemOrderID(int orderID){
+    public static ArrayList<CartItem<ItemDB>> getCartItemByOrderID(int orderID){
         ResultSet rs;
         ArrayList<CartItem<ItemDB>> cartItems = new ArrayList<>();
 
@@ -23,14 +23,14 @@ public class PurchaseItemDB {
             while(rs.next()){
                 cartItems. add(new CartItem<>(
                         new ItemDB(
-                                rs.getInt("itemID"),
-                                rs.getString("name"),
-                                rs.getInt("price"),
-                                rs.getString("description"),
-                                rs.getInt("quantity"),
-                                (String) rs.getObject("status")
+                            rs.getInt("itemID"),
+                            rs.getString("name"),
+                            rs.getInt("price"),
+                            rs.getString("description"),
+                            rs.getInt("quantity"),
+                            (String) rs.getObject("status")
                         ),
-                        String.valueOf(rs.getInt("purchase_quantity"))
+                            rs.getInt("purchase_quantity")
                 ));
             }
 

@@ -5,6 +5,7 @@ import com.example.webshop.db.OrderDB;
 import com.example.webshop.db.PurchaseItemDB;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -22,7 +23,7 @@ public class Order {
         this.userID = userID;
         this.date = date;
         this.status = status;
-        this.items = PurchaseItemDB.getCartItemOrderID(orderID);
+        this.items = PurchaseItemDB.getCartItemByOrderID(orderID);
     }
 
 
@@ -30,8 +31,8 @@ public class Order {
         return OrderDB.getAllOrders();
     }
 
-    public static boolean placeOrder(){
-        return OrderDB.placeOrder();
+    public static boolean placeOrder(ArrayList<CartItem<Item>> cartList) throws SQLException {
+        return OrderDB.placeOrder(cartList);
     }
 
 

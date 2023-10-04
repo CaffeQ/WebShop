@@ -3,11 +3,13 @@ package com.example.webshop.bo;
 import com.example.webshop.bo.handler.ItemHandler;
 import com.example.webshop.ui.ItemInfo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Cart{
 
     private final ArrayList<CartItem<Item>> cartList;
+
 
     public Cart() {
         cartList = new ArrayList<>();
@@ -26,13 +28,13 @@ public class Cart{
         for (CartItem<Item> itemCartItem : cartList) {
             if (itemCartItem.getItem().getName().compareTo(itemName) == 0) {
                 int nrOfItemInStock = itemCartItem.getItem().getQuantity();
-                int nrOfItemInCart = Integer.parseInt(itemCartItem.getQuantity());
+                int nrOfItemInCart = itemCartItem.getQuantity();
                 int nrOfItemRequested = Integer.parseInt(quantity);
 
                 if (nrOfItemInStock < nrOfItemInCart + nrOfItemRequested) {
                     return false;
                 }
-                itemCartItem.setQuantity(String.valueOf(nrOfItemInCart + nrOfItemRequested));
+                itemCartItem.setQuantity(nrOfItemInCart + nrOfItemRequested);
                 return true;
             }
         }
@@ -40,8 +42,15 @@ public class Cart{
         Item item = Item.getItemIdByName(itemName);
         if(item.getQuantity()<=0) return false;
 
-        cartList.add(new CartItem<>(item,quantity));
+        cartList.add(new CartItem<>(item,Integer.parseInt(quantity)));
         return true;
     }
 
-}
+    public boolean placeOrder() throws SQLException {
+        if(cartList == null) return false;
+        if(cartList.size()==0) return false;
+        return Order.placeOrder(cartList);
+    }
+
+
+    }

@@ -21,7 +21,7 @@
 <h1>Add Items to Cart</h1>
 
 <%
-    Collection<ItemInfo> items = (Collection<ItemInfo>) request.getAttribute("itemInfo");
+    Collection<ItemInfo> items = (Collection<ItemInfo>) request.getSession().getAttribute("itemInfo");
     for(ItemInfo item : items){
 %>
 <form action="controller-servlet" method="post">

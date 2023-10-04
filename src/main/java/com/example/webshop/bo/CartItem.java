@@ -2,9 +2,9 @@ package com.example.webshop.bo;
 
 public class  CartItem<T>{
     private final T item;
-    private String quantity;
+    private int quantity;
 
-    public CartItem(T item, String quantity) {
+    public CartItem(T item, int quantity) {
         this.item = item;
         this.quantity = quantity;
     }
@@ -13,11 +13,11 @@ public class  CartItem<T>{
         return item;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

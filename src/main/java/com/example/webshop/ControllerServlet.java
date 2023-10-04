@@ -1,6 +1,7 @@
 package com.example.webshop;
 
 import com.example.webshop.bo.Cart;
+import com.example.webshop.bo.Order;
 import com.example.webshop.bo.handler.ItemHandler;
 import com.example.webshop.bo.handler.OrderHandler;
 import com.example.webshop.bo.handler.UserHandler;
@@ -12,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -27,7 +29,6 @@ public class ControllerServlet extends HttpServlet {
 
         init(request,response);//TODO: When user do first action it should init...
 
-
         String action = request.getParameter("action");
         switch (action){
             case "cart":
@@ -39,10 +40,9 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "product":
                 Collection<ItemInfo> itemInfo = ItemHandler.getItems();
-                request.setAttribute("itemInfo",itemInfo);
+                request.getSession().setAttribute("itemInfo",itemInfo);
                 request.getRequestDispatcher("product.jsp").forward(request,response);
             case "order":
-
                 ArrayList<OrderInfo> orders = OrderHandler.getAll();
                 request.getSession().setAttribute("order", orders);
                 request.getRequestDispatcher("order.jsp").forward(request,response);
@@ -52,7 +52,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
             default:
                 Collection<ItemInfo> itemInfo1 = ItemHandler.getItems();
-                request.setAttribute("itemInfo",itemInfo1);
+                request.getSession().setAttribute("itemInfo",itemInfo1);
                 request.getRequestDispatcher("product.jsp").forward(request,response);
 
         }
@@ -63,7 +63,6 @@ public class ControllerServlet extends HttpServlet {
         init(request, response);//TODO: When user do first action it should init...
 
         String action = request.getParameter("action");
-        System.out.println("Action : " + action);
         switch(action){
             case "addItemToCart" :
                 checkCartEmpty(request);
@@ -91,15 +90,21 @@ public class ControllerServlet extends HttpServlet {
 
                 break;
             case "placeOrder" :
-                System.out.println("Place order");
                 checkCartEmpty(request);
 
-                request.getRequestDispatcher("cart.jsp").forward(request,response);
-                response.sendRedirect("cart.jsp");
-
+                Cart cart = (Cart) request.getSession().getAttribute("cart");
+                try {
+                    cart.placeOrder(); // TODO: <--- Transaction happens here
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                finally{
+                    request.getSession().setAttribute("cart",new Cart());
+                }
 
                 request.getRequestDispatcher("welcome.jsp").forward(request,response);
                 response.sendRedirect("welcome.jsp");
+
                 break;
             default:
                 System.out.println("Incorrect");

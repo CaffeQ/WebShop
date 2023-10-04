@@ -11,7 +11,7 @@ public class User {
     private String role;
     private String token;
 
-    public User(int id, String name,
+    protected User(int id, String name,
                 String password, String role, String token) {
         this.id = id;
         this.name = name;
