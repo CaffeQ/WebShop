@@ -2,8 +2,6 @@ package com.example.webshop.bo;
 
 import com.example.webshop.db.UserDB;
 
-import java.util.UUID;
-
 public class User {
     private final int id;
     private String name;

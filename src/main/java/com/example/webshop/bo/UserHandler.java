@@ -1,4 +1,4 @@
-package com.example.webshop.bo.handler;
+package com.example.webshop.bo;
 
 import com.example.webshop.bo.Roles;
 import com.example.webshop.bo.User;
@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 public class UserHandler {
-
 
     public static boolean authenticateUser(HttpServletRequest request){
         String userName = request.getParameter("name");

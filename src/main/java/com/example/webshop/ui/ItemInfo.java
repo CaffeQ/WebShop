@@ -1,18 +1,13 @@
 package com.example.webshop.ui;
 
-
-import com.example.webshop.db.ItemDB;
-
-import java.util.Collection;
-
 public class ItemInfo {
 
-    private String name;
-    private int price;
-    private String description;
-    private int quantity;
-    private String category;
-    private String status;
+    private final String name;
+    private final int price;
+    private final String description;
+    private final int quantity;
+    private final String category;
+    private final String status;
 
     public ItemInfo(String name, int price, String description, int quantity, String category, String status) {
         this.name = name;
@@ -52,6 +47,7 @@ public class ItemInfo {
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
+                ", category='" + category + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }

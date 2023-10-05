@@ -1,6 +1,5 @@
 package com.example.webshop.bo;
 
-import com.example.webshop.bo.handler.ItemHandler;
 import com.example.webshop.ui.ItemInfo;
 
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ public class Cart{
     private final ArrayList<CartItem<Item>> cartList;
 
 
-    public Cart() {
+    protected Cart() {
         cartList = new ArrayList<>();
     }
 
@@ -22,16 +21,13 @@ public class Cart{
         return copy;
     }
 
-    public boolean add(String itemName, String quantity) {
-
-        System.out.println("itemName: " + itemName + ", quantity: " + quantity);
+    public boolean add(String itemName, String quantity) {//TODO: Adding multiple of same item is strange
         Item item = Item.getItemIdByName(itemName);
         if(item == null) return false;
         if(item.getQuantity()<=0 || item.getQuantity() < Integer.parseInt(quantity)) return false;
 
         for (CartItem<Item> itemCartItem : cartList) {
 
-            // Check if in cart
             if (itemCartItem.getItem().getName().compareTo(itemName) == 0) {
                 int nrOfItemInStock = item.getQuantity();
                 int nrOfItemInCart = itemCartItem.getQuantity();

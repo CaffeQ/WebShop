@@ -4,7 +4,7 @@ public class  CartItem<T>{
     private final T item;
     private int quantity;
 
-    public CartItem(T item, int quantity) {
+    protected CartItem(T item, int quantity) {
         this.item = item;
         this.quantity = quantity;
     }

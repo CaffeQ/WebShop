@@ -1,9 +1,5 @@
-package com.example.webshop.bo.handler;
+package com.example.webshop.bo;
 
-import com.example.webshop.bo.Cart;
-import com.example.webshop.bo.CartItem;
-import com.example.webshop.bo.Order;
-import com.example.webshop.bo.User;
 import com.example.webshop.db.ItemDB;
 import com.example.webshop.db.OrderDB;
 import com.example.webshop.ui.ItemInfo;
@@ -35,6 +31,7 @@ public class OrderHandler {
 
     public static boolean placeOrder(HttpSession session) throws SQLException {
         Cart cart = (Cart) session.getAttribute("cart");
+        if(cart.getCartPresentation().isEmpty()) return false;
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         return Order.placeOrder(cart.getCartApplication(),User.searchUser(userInfo.getName()));
     }
@@ -42,13 +39,8 @@ public class OrderHandler {
     public static boolean sendOrder(HttpServletRequest request) throws SQLException {
         int orderID = Integer.parseInt(request.getParameter("sendOrderID"));
         Order order = Order.getOrderByID(orderID);
-        System.out.println("order.status: " + order.getStatus());
         if(order.getStatus().equals("active")) return Order.sendOrder(orderID);
         return false;
-    }
-
-    public static ArrayList<OrderInfo> getAllActive(){//TODO: Implement method
-        return new ArrayList<>();
     }
 
     public static Cart createNewCart() {

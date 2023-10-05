@@ -1,4 +1,4 @@
-package com.example.webshop.bo.handler;
+package com.example.webshop.bo;
 
 import com.example.webshop.bo.Item;
 import com.example.webshop.bo.Roles;
@@ -62,8 +62,6 @@ public class ItemHandler {
                     itemInfo.getQuantity(),
                     itemInfo.getCategory(),
                     itemInfo.getStatus()));
-
     }
-
 
 }

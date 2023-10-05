@@ -1,11 +1,8 @@
 package com.example.webshop.bo;
 
 import com.example.webshop.db.ItemDB;
-import com.example.webshop.db.UserDB;
 import com.example.webshop.ui.ItemInfo;
-import com.example.webshop.ui.UserInfo;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class Item{
@@ -18,7 +15,7 @@ public class Item{
     private String category;
     private String status;
 
-    public Item(int id, String name, int price, String description, int quantity, String category, String status) {
+    protected Item(int id, String name, int price, String description, int quantity, String category, String status) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -32,7 +29,6 @@ public class Item{
         return ItemDB.searchItems();
     }
     public static ItemDB getItemIdByName(String name){return ItemDB.getItemByName(name);}
-    public static ArrayList<ItemDB> getItemsIdByOrderID(int orderID){return ItemDB.getItemsIdByOrderID(orderID);}
 
     public static boolean createItem(ItemInfo item){
         return ItemDB.createItem( new Item(0, item.getName(), item.getPrice(),

@@ -12,11 +12,8 @@
 </head>
 
 <body>
-<%@ page import="com.example.webshop.bo.handler.ItemHandler" %>
 <%@ page import="com.example.webshop.ui.ItemInfo" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="com.example.webshop.ui.UserInfo" %>
 
 <h1>Products</h1>
 <h1>Add Items to Cart</h1>

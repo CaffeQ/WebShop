@@ -1,19 +1,14 @@
 package com.example.webshop;
 
-import com.example.webshop.bo.handler.ItemHandler;
-import com.example.webshop.bo.handler.OrderHandler;
-import com.example.webshop.bo.handler.UserHandler;
-import com.example.webshop.ui.ItemInfo;
-import com.example.webshop.ui.OrderInfo;
-import com.example.webshop.ui.UserInfo;
+import com.example.webshop.bo.ItemHandler;
+import com.example.webshop.bo.OrderHandler;
+import com.example.webshop.bo.UserHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @WebServlet(name = "controllerServlet", value = "/controller-servlet")
 public class ControllerServlet extends HttpServlet {
@@ -27,9 +22,11 @@ public class ControllerServlet extends HttpServlet {
                 OrderHandler.checkCartEmpty(session);
                 request.getRequestDispatcher("cart.jsp").forward(request,response);
                 break;
+
             case "login":
                 request.getRequestDispatcher("login.jsp").forward(request,response);
                 break;
+
             case "item":
                 if(UserHandler.isUserAdmin(session))
                     request.getRequestDispatcher("item.jsp").forward(request,response);
@@ -38,15 +35,16 @@ public class ControllerServlet extends HttpServlet {
                     request.getRequestDispatcher("error.jsp").forward(request,response);
                     response.sendRedirect("error.jsp");
                 }
+                break;
 
             case "product":
-                Collection<ItemInfo> itemInfo = ItemHandler.getItems();//TODO: ItemHandler.getItems(session) - everything happens inside handler
-                request.getSession().setAttribute("itemInfo",itemInfo);
+                request.getSession().setAttribute("itemInfo",ItemHandler.getItems());
                 request.getRequestDispatcher("product.jsp").forward(request,response);
+                break;
+
             case "order":
                 if(UserHandler.isUserAdmin(session) || UserHandler.isUserW_Staff(session)){
-                    ArrayList<OrderInfo> orders = OrderHandler.getAll();
-                    request.getSession().setAttribute("order", orders); //TODO: ItemHandler.getItems(session) - everything happens inside handler
+                    request.getSession().setAttribute("order", OrderHandler.getAll());
                     request.getRequestDispatcher("order.jsp").forward(request,response);
                 }else {
                     request.setAttribute("errorMessage","Invalid privilege");
@@ -54,13 +52,16 @@ public class ControllerServlet extends HttpServlet {
                     response.sendRedirect("error.jsp");
                 }
                 break;
+
             case "welcome":
                 request.getRequestDispatcher("welcome.jsp").forward(request,response);
+                response.sendRedirect("welcome.jsp");
                 break;
+
             default:
-                Collection<ItemInfo> itemInfo1 = ItemHandler.getItems();
-                request.getSession().setAttribute("itemInfo",itemInfo1); //TODO: ItemHandler.getItems(session) - everything happens inside handler
-                request.getRequestDispatcher("product.jsp").forward(request,response);
+                request.getRequestDispatcher("error.jsp").forward(request,response);
+                response.sendRedirect("error.jsp");
+                break;
 
         }
     }
@@ -69,7 +70,6 @@ public class ControllerServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-
         switch(action){
             case "addItemToCart" :
                 OrderHandler.addToCart(request);
@@ -87,13 +87,12 @@ public class ControllerServlet extends HttpServlet {
                     request.getRequestDispatcher("login.jsp").forward(request,response);
                     response.sendRedirect("login.jsp");
                 }
-
                 break;
+
             case "placeOrder" :
                 OrderHandler.checkCartEmpty(session);
-                //TODO: can't send empty order
                 try {
-                    if(UserHandler.isVerified(session)){// TODO: <--- Transaction happens here
+                    if(UserHandler.isVerified(session)){
                         OrderHandler.placeOrder(session);
                         request.getRequestDispatcher("welcome.jsp").forward(request,response);
                         response.sendRedirect("welcome.jsp");
@@ -109,6 +108,7 @@ public class ControllerServlet extends HttpServlet {
                     session.setAttribute("cart",OrderHandler.createNewCart());
                 }
                 break;
+
             case "processAdd":
                 if(UserHandler.isUserAdmin(request.getSession())){
                     ItemHandler.adminAddItem(request);
@@ -122,17 +122,25 @@ public class ControllerServlet extends HttpServlet {
                 break;
 
             case "sendOrder":
-                System.out.println("sendOrder");
-                try {
-                    OrderHandler.sendOrder(request);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                if(UserHandler.isUserAdmin(session) || UserHandler.isUserW_Staff(session)) {
+                    try {
+                        OrderHandler.sendOrder(request);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    response.sendRedirect("controller-servlet?action=order");
                 }
-                response.sendRedirect("controller-servlet?action=order");
+                else {
+                    request.setAttribute("errorMessage", "Invalid verification");
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                    response.sendRedirect("error.jsp");
+                }
                 break;
 
             default:
-                System.out.println("Incorrect");
+                request.getRequestDispatcher("error.jsp").forward(request,response);
+                response.sendRedirect("error.jsp");
+                break;
         }
     }
 
