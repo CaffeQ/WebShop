@@ -20,14 +20,13 @@ public class User {
         this.token = token;
     }
 
-    public static boolean createUser(User user){
-        UserDB.createUser( (UserDB) user);
-        return true;
-    }
 
     public static User searchUser(String userName){
         return UserDB.searchUser(userName);
     }
+
+    public int getId() {return id;}
+
     public String getName() {
         return name;
     }

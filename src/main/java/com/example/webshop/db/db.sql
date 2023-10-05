@@ -79,3 +79,5 @@ INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES
 
 
 SELECT * from T_Item;
+SELECT * from T_Order;
+SELECT * from T_PurchaseItems;

@@ -83,6 +83,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "placeOrder" :
                 OrderHandler.checkCartEmpty(session);
+                //TODO: User need to authenticate and logged in.
                 try {
                     OrderHandler.placeOrder(session); // TODO: <--- Transaction happens here
                 } catch (SQLException e) {

@@ -3,6 +3,7 @@ package com.example.webshop.bo.handler;
 import com.example.webshop.bo.Cart;
 import com.example.webshop.bo.CartItem;
 import com.example.webshop.bo.Order;
+import com.example.webshop.bo.User;
 import com.example.webshop.db.ItemDB;
 import com.example.webshop.db.OrderDB;
 import com.example.webshop.ui.ItemInfo;
@@ -36,7 +37,7 @@ public class OrderHandler {
     public static boolean placeOrder(HttpSession session) throws SQLException {
         Cart cart = (Cart) session.getAttribute("cart");
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
-        return Order.placeOrder(cart.getCartApplication(),userInfo);
+        return Order.placeOrder(cart.getCartApplication(),User.searchUser(userInfo.getName()));
     }
 
     public static ArrayList<OrderInfo> getAllActive(){//TODO: Implement method
