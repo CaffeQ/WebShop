@@ -28,7 +28,8 @@ public class PurchaseItemDB {
                             rs.getInt("price"),
                             rs.getString("description"),
                             rs.getInt("quantity"),
-                            (String) rs.getObject("status")
+                            rs.getString("category"),
+                            rs.getString("status")
                         ),
                             rs.getInt("purchase_quantity")
                 ));

@@ -28,7 +28,7 @@
 %>
 <form action="controller-servlet" method="post">
     <p>
-    <%= item.getName() %> <%= item.getPrice() %> <%= item.getDescription() %> <%= item.getQuantity()%> <%= item.getStatus() %>
+    <%= item.getName() %> <%= item.getPrice() %> <%= item.getDescription() %> <%= item.getQuantity()%> <%= item.getCategory() %> <%= item.getStatus() %>
     <label for="quantity"> Quantity:</label>
         <input type="hidden" name="action" value="addItemToCart">
         <input type="hidden" name="cartItemName" value=<%=item.getName()%>>

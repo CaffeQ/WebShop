@@ -15,14 +15,16 @@ public class Item{
     private int price;
     private String description;
     private int quantity;
+    private String category;
     private String status;
 
-    public Item(int id, String name, int price, String description, int quantity, String status) {
+    public Item(int id, String name, int price, String description, int quantity, String category, String status) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
         this.quantity = quantity;
+        this.category = category;
         this.status = status;
     }
 
@@ -34,7 +36,7 @@ public class Item{
 
     public static boolean createItem(ItemInfo item){
         return ItemDB.createItem( new Item(0, item.getName(), item.getPrice(),
-                item.getDescription(), item.getQuantity(), item.getStatus()) );
+                item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus()) );
     }
 
     public static boolean isNotNULL(ItemInfo item){
@@ -44,6 +46,18 @@ public class Item{
                 item.getDescription() != null ||
                 item.getStatus() != null;
 
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getId() {

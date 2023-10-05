@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 public class ItemHandler {
     public static Collection<ItemInfo> getItems(){
@@ -23,6 +22,7 @@ public class ItemHandler {
                     itemDB.getPrice(),
                     itemDB.getDesc(),
                     itemDB.getQuantity(),
+                    itemDB.getCategory(),
                     itemDB.getStatus()
             ));
         }
@@ -31,13 +31,12 @@ public class ItemHandler {
 
     public static ItemInfo getItemByName(String itemName){
         ItemDB itemDB = Item.getItemIdByName(itemName);
-        return new ItemInfo(itemDB.getName(), itemDB.getPrice(),itemDB.getDescription(), itemDB.getQuantity(), itemDB.getStatus());
+        return new ItemInfo(itemDB.getName(), itemDB.getPrice(),itemDB.getDescription(), itemDB.getQuantity(), itemDB.getCategory(), itemDB.getStatus());
     }
 
     public static ItemInfo itemToItemInfo(Item item){
-        return new ItemInfo(item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getStatus());
+        return new ItemInfo(item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(), item.getStatus());
     }
-
 
     public static boolean adminAddItem(HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -46,9 +45,10 @@ public class ItemHandler {
         String price = request.getParameter("price");
         String quantity = request.getParameter("quantity");
         String desc = request.getParameter("description");
+        String category = request.getParameter("status");
         String status = request.getParameter("status");
         status = status.toUpperCase();
-        ItemInfo itemInfo = new ItemInfo(name, Integer.parseInt(price),desc,Integer.parseInt(quantity) , status );
+        ItemInfo itemInfo = new ItemInfo(name, Integer.parseInt(price),desc,Integer.parseInt(quantity),category, status );
         System.out.println("Adding item: " + itemInfo.toString());
         User user = User.searchUser(userInfo.getName());
         if(!Item.isNotNULL(itemInfo))
@@ -60,6 +60,7 @@ public class ItemHandler {
                     itemInfo.getPrice(),
                     itemInfo.getDescription(),
                     itemInfo.getQuantity(),
+                    itemInfo.getCategory(),
                     itemInfo.getStatus()));
 
     }

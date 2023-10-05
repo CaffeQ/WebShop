@@ -59,6 +59,7 @@ public class Cart{
                                     cartItem.getItem().getPrice(),
                                     cartItem.getItem().getDescription(),
                                     cartItem.getItem().getQuantity(),
+                                    cartItem.getItem().getCategory(),
                                     cartItem.getItem().getStatus()
                                     ),
                             cartItem.getQuantity()

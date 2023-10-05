@@ -28,7 +28,7 @@
     </form>
     <% for (CartItem<ItemInfo> item : order.getItems()){%>
         <p>
-        <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %> <%= item.getQuantity()%>
+        <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %><%= item.getItem().getCategory() %>  <%= item.getQuantity()%>
         </p>
     <%
     }

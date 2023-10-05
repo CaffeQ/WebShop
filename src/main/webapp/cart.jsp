@@ -24,7 +24,7 @@
         for(CartItem<ItemInfo> item : cart.getCartPresentation()){
     %>
         <p>
-            <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %> <%= item.getQuantity()%> <%= item.getItem().getStatus() %>
+            <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %> <%= item.getQuantity()%> <%= item.getItem().getCategory()%><%= item.getItem().getStatus() %>
         </p>
     <%
         }

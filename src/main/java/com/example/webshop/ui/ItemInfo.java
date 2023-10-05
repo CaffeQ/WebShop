@@ -11,13 +11,15 @@ public class ItemInfo {
     private int price;
     private String description;
     private int quantity;
+    private String category;
     private String status;
 
-    public ItemInfo(String name, int price, String description, int quantity, String status) {
+    public ItemInfo(String name, int price, String description, int quantity, String category, String status) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.quantity = quantity;
+        this.category = category;
         this.status = status;
     }
 
@@ -38,6 +40,10 @@ public class ItemInfo {
     }
 
     public int getPrice() {return price;}
+
+    public String getCategory() {
+        return category;
+    }
 
     @Override
     public String toString() {

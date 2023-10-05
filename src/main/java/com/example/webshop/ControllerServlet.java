@@ -91,7 +91,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "placeOrder" :
                 OrderHandler.checkCartEmpty(session);
-                //TODO: User need to authenticate and logged in.
+                //TODO: can't send empty order
                 try {
                     if(UserHandler.isVerified(session)){// TODO: <--- Transaction happens here
                         OrderHandler.placeOrder(session);

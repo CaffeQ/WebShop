@@ -22,7 +22,8 @@ public class ItemDB extends Item {
                         rs.getInt("price"),
                         rs.getString("description"),
                         rs.getInt("quantity"),
-                        (String) rs.getObject("status")
+                        rs.getString("category"),
+                        rs.getString("status")
                         ));
             }
 
@@ -35,19 +36,20 @@ public class ItemDB extends Item {
 
     public static boolean createItem(Item item){
         ItemDB itemDB = new ItemDB(item.getId(), item.getName(), item.getPrice(),
-                item.getDescription(), item.getQuantity(), item.getStatus());
+                item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus());
         try{
             System.out.println("DB item: "+ itemDB.toString());
             Connection con = DBManager.getConnection();
             con.setAutoCommit(false);
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO T_Item (name, price, description, quantity, status) VALUES " +
-                            "(?,?,?,?,?)");
+                    "INSERT INTO T_Item (name, price, description, quantity, category,status) VALUES " +
+                            "(?,?,?,?,?,?)");
             ps.setString(1,itemDB.getName());
             ps.setInt(2,itemDB.getPrice());
             ps.setString(3,itemDB.getDescription());
-            ps.setInt(4,itemDB.getQuantity());;
-            ps.setString(5,itemDB.getStatus());
+            ps.setInt(4,itemDB.getQuantity());
+            ps.setString(5,itemDB.getCategory());
+            ps.setString(6,itemDB.getStatus());
             int rowsAffected = ps.executeUpdate();
             System.out.println("Rows affected "+rowsAffected);
             if (rowsAffected > 0) {
@@ -80,6 +82,7 @@ public class ItemDB extends Item {
                         rs.getInt("price"),
                         rs.getString("description"),
                         rs.getInt("quantity"),
+                        rs.getString("category"),
                         (String) rs.getObject("status"));
             }
         }
@@ -106,6 +109,7 @@ public class ItemDB extends Item {
                         rs.getInt("price"),
                         rs.getString("description"),
                         rs.getInt("quantity"),
+                        rs.getString("category"),
                         (String) rs.getObject("status")
                 ));
             }
@@ -117,7 +121,7 @@ public class ItemDB extends Item {
         return items;
     }
 
-    protected ItemDB(int id, String name, int price, String description, int quantity, String status) {
-        super(id, name, price, description, quantity, status);
+    protected ItemDB(int id, String name, int price, String description, int quantity, String category, String status) {
+        super(id, name, price, description, quantity, category, status);
     }
 }
