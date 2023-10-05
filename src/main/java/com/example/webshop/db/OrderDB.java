@@ -55,7 +55,7 @@ public class OrderDB extends Order {
                 int difference = item.getQuantity() - cartItem.getQuantity();
                 if(difference < 0) throw new SQLException("NOT ENOUGH ITEM IN STOCK");
                 if(difference==0) cartItem.getItem().setStatus("OUT_OF_STOCK");
-                item.setQuantity(difference);
+                cartItem.getItem().setQuantity(difference);
             }
 
             PreparedStatement psT_Order = con.prepareStatement("INSERT INTO T_Order (userID, date, status) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
@@ -73,7 +73,7 @@ public class OrderDB extends Order {
 
             PreparedStatement psItem = con.prepareStatement("UPDATE T_Item SET quantity = ?, status  = ? WHERE itemID = ?");
             for(CartItem<Item> i : cartList){
-                psItem.setInt(1,i.getQuantity());
+                psItem.setInt(1,i.getItem().getQuantity());
                 psItem.setString(2,i.getItem().getStatus());
                 psItem.setInt(3, i.getItem().getId());
                 psItem.addBatch();
