@@ -5,7 +5,6 @@ import com.example.webshop.bo.handler.OrderHandler;
 import com.example.webshop.bo.handler.UserHandler;
 import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.OrderInfo;
-import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -38,7 +37,22 @@ public class ControllerServlet extends HttpServlet {
                     request.getRequestDispatcher("error.jsp").forward(request,response);
                     response.sendRedirect("error.jsp");
                 }
-
+                break;
+            case "edit":
+                if(UserHandler.isUserAdmin(session)){
+                    String name = request.getParameter("editName");
+                    ItemInfo item = ItemHandler.getItemByName(name);
+                    System.out.println("Item " + item);
+                    session.setAttribute("item",item);
+                    request.getRequestDispatcher("edit.jsp").forward(request,response);
+                    response.sendRedirect("edit.jsp");
+                }
+                else{
+                    request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
+                break;
             case "product":
                 Collection<ItemInfo> itemInfo = ItemHandler.getItems();//TODO: ItemHandler.getItems(session) - everything happens inside handler
                 request.getSession().setAttribute("itemInfo",itemInfo);
@@ -89,6 +103,16 @@ public class ControllerServlet extends HttpServlet {
                 }
 
                 break;
+            case "processEdit":
+                if(UserHandler.isUserAdmin(request.getSession())){
+                    request.getRequestDispatcher("edit.jsp").forward(request,response);
+                    response.sendRedirect("edit.jsp");
+                }else{
+                    request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
+                break;
             case "placeOrder" :
                 OrderHandler.checkCartEmpty(session);
                 //TODO: User need to authenticate and logged in.
@@ -111,7 +135,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "processAdd":
                 if(UserHandler.isUserAdmin(request.getSession())){
-                    ItemHandler.adminAddItem(request);
+                    ItemHandler.addItem(request);
                     request.getRequestDispatcher("item.jsp").forward(request,response);
                     response.sendRedirect("item.jsp");
                 }else{
@@ -120,7 +144,6 @@ public class ControllerServlet extends HttpServlet {
                     response.sendRedirect("error.jsp");
                 }
                 break;
-
             case "sendOrder":
                 System.out.println("sendOrder");
                 try {

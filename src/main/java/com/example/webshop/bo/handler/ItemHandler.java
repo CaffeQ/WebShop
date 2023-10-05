@@ -1,7 +1,6 @@
 package com.example.webshop.bo.handler;
 
 import com.example.webshop.bo.Item;
-import com.example.webshop.bo.Roles;
 import com.example.webshop.bo.User;
 import com.example.webshop.db.ItemDB;
 import com.example.webshop.ui.ItemInfo;
@@ -11,7 +10,6 @@ import jakarta.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 public class ItemHandler {
     public static Collection<ItemInfo> getItems(){
@@ -38,8 +36,13 @@ public class ItemHandler {
         return new ItemInfo(item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getStatus());
     }
 
-
-    public static boolean adminAddItem(HttpServletRequest request){
+    public static boolean editItem(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String editName = request.getParameter("editName");
+        System.out.println("Item to edit: "+ editName);
+        return true;
+    }
+    public static boolean addItem(HttpServletRequest request){
         HttpSession session = request.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         String name = request.getParameter("name");
