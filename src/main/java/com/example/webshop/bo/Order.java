@@ -35,6 +35,13 @@ public class Order {
         return OrderDB.placeOrder(cartList, user);
     }
 
+    public static boolean sendOrder(int orderID){
+        return OrderDB.sendOrder(orderID);
+    }
+
+    public static Order getOrderByID(int orderID){
+        return OrderDB.getOrderByID(orderID);
+    }
 
     public int getOrderID() {
         return orderID;

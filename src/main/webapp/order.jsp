@@ -20,16 +20,20 @@
     for(OrderInfo order : orders){
 %>
 <p>
-    <%= order.getOrderID() %> <%= order.getUserID() %> <%= order.getDate() %> <%= order.getStatus()%>
+    <form action="controller-servlet" method="post">
+        <%= order.getOrderID() %> <%= order.getUserID() %> <%= order.getDate() %> <%= order.getStatus()%>
+        <input type="hidden" name="action" value="sendOrder">
+        <input type="hidden" name="sendOrderID" value=<%=order.getOrderID()%>>
+        <input type="submit" value="Send">
+    </form>
     <% for (CartItem<ItemInfo> item : order.getItems()){%>
         <p>
-    <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %> <%= item.getQuantity()%>
-
-</p>
+        <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %> <%= item.getQuantity()%>
+        </p>
     <%
     }
     %>
-</p>
+    </p>
 <%
     }
 %>

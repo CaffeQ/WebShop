@@ -15,6 +15,49 @@ public class OrderDB extends Order {
     public OrderDB(int orderID, int userID, Date date, String status) {
         super(orderID, userID, date, status);
     }
+    
+    public static OrderDB getOrderByID(int orderID){
+        Connection con;
+        ResultSet rs;
+        OrderDB orderDB = null;
+        try{
+            con = DBManager.getConnection();
+            PreparedStatement psT_Order = con.prepareStatement("SELECT * FROM T_Order  WHERE orderID = " + orderID);
+            rs = psT_Order.executeQuery();
+            
+            while(rs.next()){
+                orderDB = new OrderDB(
+                        rs.getInt("orderID"),
+                        rs.getInt("userID"),
+                        rs.getDate("date"),
+                        rs.getString("status")
+                );
+            }
+            
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        finally{
+            return orderDB;
+        }
+    }
+
+    public static boolean sendOrder(int orderID){
+        Connection con;
+        try{
+            con = DBManager.getConnection();
+            PreparedStatement psT_Order = con.prepareStatement("UPDATE T_Order SET status = ? WHERE orderID = " + orderID);
+            psT_Order.setString(1, "sent");
+            psT_Order.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        finally{
+            return true;
+        }
+    }
 
 
     public static Collection<OrderDB> getAllOrders(){
@@ -22,6 +65,9 @@ public class OrderDB extends Order {
         ArrayList<OrderDB> orders = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
+            if(con == null) {
+                throw new SQLException("Failed to establish connection.");
+            }
             Statement st = con.createStatement();
             rs = st.executeQuery("SELECT * from T_Order");
 

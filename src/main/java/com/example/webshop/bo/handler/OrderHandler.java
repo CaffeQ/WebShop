@@ -40,6 +40,14 @@ public class OrderHandler {
         return Order.placeOrder(cart.getCartApplication(),User.searchUser(userInfo.getName()));
     }
 
+    public static boolean sendOrder(HttpServletRequest request) throws SQLException {
+        int orderID = Integer.parseInt(request.getParameter("sendOrderID"));
+        Order order = Order.getOrderByID(orderID);
+        System.out.println("order.status: " + order.getStatus());
+        if(order.getStatus().equals("active")) return Order.sendOrder(orderID);
+        return false;
+    }
+
     public static ArrayList<OrderInfo> getAllActive(){//TODO: Implement method
         return new ArrayList<>();
     }

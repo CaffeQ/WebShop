@@ -101,6 +101,17 @@ public class ControllerServlet extends HttpServlet {
                 ItemHandler.adminAddItem(request);
                 request.getRequestDispatcher("item.jsp").forward(request,response);
                 break;
+
+            case "sendOrder":
+                System.out.println("sendOrder");
+                try {
+                    OrderHandler.sendOrder(request);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                response.sendRedirect("controller-servlet?action=order");
+                break;
+
             default:
                 System.out.println("Incorrect");
         }
