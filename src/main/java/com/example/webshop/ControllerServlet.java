@@ -70,6 +70,7 @@ public class ControllerServlet extends HttpServlet {
                 System.out.println("User name = " + userName );
                 System.out.println("User password = " + password );
                 if(UserHandler.authenticateUser(userName,password)){
+                    request.removeAttribute("password");
                     UserInfo userInfo = UserHandler.getUser(userName);
                     request.getSession().setAttribute("user",userInfo);
                     request.getRequestDispatcher("welcome.jsp").forward(request,response);
@@ -84,17 +85,20 @@ public class ControllerServlet extends HttpServlet {
             case "placeOrder" :
                 OrderHandler.checkCartEmpty(session);
                 try {
-                    OrderHandler.placeOrder(session); // TODO: <--- Transaction happens here
+                    if(OrderHandler.placeOrder(session)){// TODO: <--- Transaction happens here
+                        request.getRequestDispatcher("welcome.jsp").forward(request,response);
+                        response.sendRedirect("welcome.jsp");
+                    }else{
+                        request.setAttribute("errorMessage","Invalid verification");
+                        request.getRequestDispatcher("error.jsp").forward(request,response);
+                        response.sendRedirect("error.jsp");
+                    }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
                 finally{
                     session.setAttribute("cart",OrderHandler.createNewCart());
                 }
-
-                request.getRequestDispatcher("welcome.jsp").forward(request,response);
-                response.sendRedirect("welcome.jsp");
-
                 break;
             case "processAdd":
                 ItemHandler.adminAddItem(request);

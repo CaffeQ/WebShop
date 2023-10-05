@@ -1,9 +1,8 @@
 package com.example.webshop.bo.handler;
 
 import com.example.webshop.bo.User;
-import com.example.webshop.db.UserDB;
-import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.UserInfo;
+import jakarta.servlet.http.HttpSession;
 
 public class UserHandler {
 
@@ -15,7 +14,6 @@ public class UserHandler {
         System.out.println("Authenticating user: "+user.toString());
         return user.getName().equals(userName) &&
                 user.getPassword().equals(password);
-
     }
     /**
         Kontrollerar anvöndare från vyn i affärssikten genom
@@ -30,7 +28,12 @@ public class UserHandler {
             return null;
         return new UserInfo(user.getName(),user.getRole(),user.getToken());
     }
-    public static void updateUserToken(User user){
-
+    public static boolean isVerified(HttpSession session){
+        UserInfo userInfo = (UserInfo) session.getAttribute("user");
+        if(userInfo == null)
+            return false;
+        User user = User.searchUser(userInfo.getName());
+        return user.getRole().equals(userInfo.getRole()) &&
+                user.getToken().equals(userInfo.getToken());
     }
 }

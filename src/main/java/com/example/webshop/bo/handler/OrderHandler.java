@@ -11,7 +11,6 @@ import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-import java.net.http.HttpRequest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,6 +33,8 @@ public class OrderHandler {
     }
 
     public static boolean placeOrder(HttpSession session) throws SQLException {
+        if (!UserHandler.isVerified(session))
+            return false;
         Cart cart = (Cart) session.getAttribute("cart");
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         return Order.placeOrder(cart.getCartApplication(),userInfo);
