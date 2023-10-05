@@ -65,14 +65,8 @@ public class ControllerServlet extends HttpServlet {
                 break;
 
             case "processLogin":
-                String userName = request.getParameter("name");
-                String password = request.getParameter("password");
-                System.out.println("User name = " + userName );
-                System.out.println("User password = " + password );
-                if(UserHandler.authenticateUser(userName,password)){
+                if(UserHandler.authenticateUser(request)){
                     request.removeAttribute("password");
-                    UserInfo userInfo = UserHandler.getUser(userName);
-                    request.getSession().setAttribute("user",userInfo);
                     request.getRequestDispatcher("welcome.jsp").forward(request,response);
                     response.sendRedirect("welcome.jsp");
                 }else{

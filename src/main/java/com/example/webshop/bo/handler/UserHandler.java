@@ -2,18 +2,27 @@ package com.example.webshop.bo.handler;
 
 import com.example.webshop.bo.User;
 import com.example.webshop.ui.UserInfo;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 public class UserHandler {
 
 
-    public static boolean authenticateUser(String userName,String password){
+    public static boolean authenticateUser(HttpServletRequest request){
+        String userName = request.getParameter("name");
+        String password = request.getParameter("password");
+        System.out.println("User name = " + userName );
+        System.out.println("User password = " + password );
         User user = User.searchUser(userName);
         if(user==null)
             return false;
         System.out.println("Authenticating user: "+user.toString());
-        return user.getName().equals(userName) &&
-                user.getPassword().equals(password);
+        if( user.getName().equals(userName) && user.getPassword().equals(password)) {
+            UserInfo userInfo = new UserInfo(user.getName(),user.getRole(),user.getToken());
+            request.getSession().setAttribute("user",userInfo);
+            return true;
+        }
+        return false;
     }
     /**
         Kontrollerar anvöndare från vyn i affärssikten genom
