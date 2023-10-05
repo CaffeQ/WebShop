@@ -44,8 +44,6 @@ public class ItemHandler {
         return true;
     }
     public static boolean addItem(HttpServletRequest request){
-
-    public static boolean adminAddItem(HttpServletRequest request){
         HttpSession session = request.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         String name = request.getParameter("name");
