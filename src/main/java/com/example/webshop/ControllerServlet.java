@@ -49,7 +49,6 @@ public class ControllerServlet extends HttpServlet {
                     response.sendRedirect("error.jsp");
                 }
                 break;
-                break;
 
             case "product":
                 request.getSession().setAttribute("itemInfo",ItemHandler.getItems());
@@ -84,6 +83,7 @@ public class ControllerServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
+        System.out.println("action: " + action);
         switch(action){
             case "addItemToCart" :
                 OrderHandler.addToCart(request);
@@ -105,6 +105,8 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "processEdit":
                 if(UserHandler.isUserAdmin(request.getSession())){
+                    System.out.println("Inside");
+                    ItemHandler.editItem(request);
                     request.getRequestDispatcher("edit.jsp").forward(request,response);
                     response.sendRedirect("edit.jsp");
                 }else{

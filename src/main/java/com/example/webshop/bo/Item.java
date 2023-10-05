@@ -34,6 +34,11 @@ public class Item{
         return ItemDB.createItem( new Item(0, item.getName(), item.getPrice(),
                 item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus()) );
     }
+    public static boolean editItem(ItemInfo item, String previousName){
+        int itemID = Item.getItemIdByName(previousName).getId();
+        return ItemDB.editItem( new Item(itemID, item.getName(), item.getPrice(),
+                item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus()) );
+    }
 
     public static boolean isNotNULL(ItemInfo item){
         if(item == null)

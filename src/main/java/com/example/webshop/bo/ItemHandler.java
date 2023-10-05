@@ -38,9 +38,17 @@ public class ItemHandler {
     }
 
     public static boolean editItem(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        String editName = request.getParameter("editName");
-        System.out.println("Item to edit: "+ editName);
+        String previousName = request.getParameter("previousName");
+        String name = request.getParameter("name");
+        int price = Integer.parseInt(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String desc = request.getParameter("description");
+        String category = request.getParameter("category");
+        String status = request.getParameter("status");
+        Item.editItem(new ItemInfo(name,price,desc, quantity,category,status), previousName);
+
+
+
         return true;
     }
     public static boolean addItem(HttpServletRequest request){

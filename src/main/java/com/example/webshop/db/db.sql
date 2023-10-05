@@ -15,6 +15,7 @@ CREATE TABLE T_User (
     token VARCHAR(255) NOT NULL unique
 );
 
+
 CREATE TABLE T_Item (
     itemID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL UNIQUE,
@@ -70,7 +71,6 @@ INSERT INTO T_Order (userID, date, status) VALUES
 (1, '2023-10-01', 'active'),
 (2, '2023-10-02', 'sent'),
 (3, '2023-10-03', 'cancelled');
-
 
 
 INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES

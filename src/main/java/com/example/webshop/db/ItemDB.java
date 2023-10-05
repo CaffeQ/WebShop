@@ -34,6 +34,30 @@ public class ItemDB extends Item {
         return items;
     }
 
+    public static boolean editItem(Item item){
+        ItemDB itemDB = new ItemDB(item.getId(), item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus());
+        System.out.println("item.getId()"+item.getId()+", item.getName()"+item.getName()+", item.getPrice()"+item.getPrice()+", item.getDescription()"+item.getDescription()+", item.getQuantity()"+item.getQuantity()+", item.getCategory()"+item.getCategory()+",item.getStatus()"+item.getStatus());
+        try{
+            Connection con = DBManager.getConnection();
+
+            PreparedStatement ps = con.prepareStatement("UPDATE T_Item SET name = ?, price = ?, description = ?, quantity = ?, category = ?,status = ? WHERE itemID = ?");
+            ps.setString(1,itemDB.getName());
+            ps.setInt(2,itemDB.getPrice());
+            ps.setString(3,itemDB.getDescription());
+            ps.setInt(4,itemDB.getQuantity());
+            ps.setString(5,itemDB.getCategory());
+            ps.setString(6,itemDB.getStatus());
+            ps.setInt(7,item.getId());
+            ps.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
     public static boolean createItem(Item item){
         ItemDB itemDB = new ItemDB(item.getId(), item.getName(), item.getPrice(),
                 item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus());

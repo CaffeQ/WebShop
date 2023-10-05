@@ -11,6 +11,9 @@
 %>
 <form action="controller-servlet" method="post">
     <div>
+        <input type="hidden" name="previousName" value="<%=item.getName()%>">
+    </div>
+    <div>
         <label for="name">Edit Item Name</label>
         <input type="text" id="name" name="name" value="<%=item.getName()%>">
     </div>
@@ -25,6 +28,10 @@
     <div>
         <label for="quantity">Edit Quantity#</label>
         <input type="text" id="quantity" name="quantity" value="<%=item.getQuantity()%>">
+    </div>
+    <div>
+        <label for="category">Edit Quantity#</label>
+        <input type="text" id="category" name="category" value="<%=item.getCategory()%>">
     </div>
     <div>
         <label>Edit Status:</label><br>

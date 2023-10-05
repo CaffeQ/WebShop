@@ -1,5 +1,5 @@
 package com.example.webshop;
 
 public class Secret {
-    public static String getPassword() { return "12345";}
+    public static String getPassword() { return "password123";}
 }

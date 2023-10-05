@@ -9,13 +9,13 @@ public class UserDB extends User {
 
 
     public static UserDB searchUser(String userName){
-        ResultSet rs = null;
+        ResultSet rs;
         UserDB userDB = null;
         try{
             Connection con = DBManager.getConnection();
             System.out.println("UserDB name = "+userName);
             PreparedStatement ps = con.prepareStatement("SELECT * from T_User where T_User.name = "+ "'"+ userName +"'");
-            ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()){
                 userDB = new UserDB(
