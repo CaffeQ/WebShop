@@ -6,6 +6,8 @@ import com.example.webshop.bo.User;
 import com.example.webshop.db.ItemDB;
 import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.UserInfo;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,15 +39,24 @@ public class ItemHandler {
     }
 
 
-    public static boolean adminAddItem(UserInfo userInfo, ItemInfo itemInfo){
+    public static boolean adminAddItem(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserInfo userInfo = (UserInfo) session.getAttribute("user");
+        String name = request.getParameter("name");
+        String price = request.getParameter("price");
+        String quantity = request.getParameter("quantity");
+        String desc = request.getParameter("description");
+        String status = request.getParameter("status");
+        status = status.toUpperCase();
+        ItemInfo itemInfo = new ItemInfo(name, Integer.parseInt(price),desc,Integer.parseInt(quantity) , status );
+        System.out.println("Adding item: " + itemInfo.toString());
         User user = User.searchUser(userInfo.getName());
         if(!Item.isNotNULL(itemInfo))
             return false;
         if(user == null)
             return false;
         if(user.getRole().equals( Roles.ADMIN ) && user.getToken().equals(userInfo.getToken())) {
-            return Item.createItem(new Item(//TODO: Call DB constructor here instead
-                    0,
+            return Item.createItem(new ItemInfo(
                     itemInfo.getName(),
                     itemInfo.getPrice(),
                     itemInfo.getDescription(),

@@ -32,8 +32,9 @@ public class Item{
     public static ItemDB getItemIdByName(String name){return ItemDB.getItemByName(name);}
     public static ArrayList<ItemDB> getItemsIdByOrderID(int orderID){return ItemDB.getItemsIdByOrderID(orderID);}
 
-    public static boolean createItem(Item item){
-        return ItemDB.createItem( item );
+    public static boolean createItem(ItemInfo item){
+        return ItemDB.createItem( new Item(0, item.getName(), item.getPrice(),
+                item.getDescription(), item.getQuantity(), item.getStatus()) );
     }
 
     public static boolean isNotNULL(ItemInfo item){
