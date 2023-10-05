@@ -1,16 +1,31 @@
 package com.example.webshop.bo;
 
-import com.example.webshop.bo.Interface.ICartItem;
-import com.example.webshop.ui.ItemInfo;
-
-import java.io.Serializable;
-
-public class CartItem implements ICartItem<Item, Integer> {
-    private Item itemInfo;
+public class  CartItem<T>{
+    private final T item;
     private int quantity;
 
-    public CartItem(Item itemInfo, int quantity) {
-        this.itemInfo = itemInfo;
+    public CartItem(T item, int quantity) {
+        this.item = item;
         this.quantity = quantity;
+    }
+
+    public T getItem() {
+        return item;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "item=" + item.toString() +
+                ", quantity='" + quantity + '\'' +
+                '}';
     }
 }

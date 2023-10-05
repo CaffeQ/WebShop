@@ -13,11 +13,11 @@ public class ItemInfo {
     private int quantity;
     private String status;
 
-    public ItemInfo(String name, int price, String description, int quanity, String status) {
+    public ItemInfo(String name, int price, String description, int quantity, String status) {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.quantity = quanity;
+        this.quantity = quantity;
         this.status = status;
     }
 

@@ -17,9 +17,7 @@ public class Item{
     private int quantity;
     private String status;
 
-
-
-    protected Item(int id, String name, int price, String description, int quantity, String status) {
+    public Item(int id, String name, int price, String description, int quantity, String status) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -27,6 +25,12 @@ public class Item{
         this.quantity = quantity;
         this.status = status;
     }
+
+    public static Collection<ItemDB> searchItems(){ //TODO! <--- Add correct parameter here
+        return ItemDB.searchItems();
+    }
+    public static ItemDB getItemIdByName(String name){return ItemDB.getItemByName(name);}
+    public static ArrayList<ItemDB> getItemsIdByOrderID(int orderID){return ItemDB.getItemsIdByOrderID(orderID);}
 
     public static boolean createItem(Item item){
         return ItemDB.createItem( item );
@@ -39,10 +43,6 @@ public class Item{
                 item.getDescription() != null ||
                 item.getStatus() != null;
 
-    }
-
-    public static Collection searchItems(){ //TODO! <--- Add correct parameter here
-        return ItemDB.searchItems();
     }
 
     public int getId() {
@@ -93,9 +93,7 @@ public class Item{
         this.status = status;
     }
 
-    public int getPrice() {
-        return price;
-    }
+    public int getPrice() {return price;}
 
     @Override
     public String toString() {

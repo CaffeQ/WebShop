@@ -1,5 +1,6 @@
-package com.example.webshop.bo;
+package com.example.webshop.bo.handler;
 
+import com.example.webshop.bo.User;
 import com.example.webshop.db.UserDB;
 import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.UserInfo;
