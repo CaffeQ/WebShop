@@ -41,5 +41,6 @@
         <input type="hidden" name="action" value="processAdd">
     </div>
 </form>
+<a href="controller-servlet?action=welcome">Welcome</a>
 </body>
 </html>

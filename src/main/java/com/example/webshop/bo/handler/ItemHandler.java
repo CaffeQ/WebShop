@@ -40,6 +40,8 @@ public class ItemHandler {
 
 
     public static boolean adminAddItem(HttpServletRequest request){
+        if(!UserHandler.isUserAdmin(request.getSession()))
+            return false;
         HttpSession session = request.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         String name = request.getParameter("name");
@@ -55,15 +57,13 @@ public class ItemHandler {
             return false;
         if(user == null)
             return false;
-        if(user.getRole().equals( Roles.ADMIN ) && user.getToken().equals(userInfo.getToken())) {
-            return Item.createItem(new ItemInfo(
+        return Item.createItem(new ItemInfo(
                     itemInfo.getName(),
                     itemInfo.getPrice(),
                     itemInfo.getDescription(),
                     itemInfo.getQuantity(),
                     itemInfo.getStatus()));
-        }else
-            return false;
+
     }
 
 
