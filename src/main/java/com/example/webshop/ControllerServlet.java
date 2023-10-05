@@ -98,16 +98,7 @@ public class ControllerServlet extends HttpServlet {
 
                 break;
             case "processAdd":
-                String name = request.getParameter("name");
-                String price = request.getParameter("price");
-                String quantity = request.getParameter("quantity");
-                String desc = request.getParameter("description");
-                String status = request.getParameter("status");
-                status = status.toUpperCase();
-                ItemInfo itemInfo = new ItemInfo(name, Integer.parseInt(price),desc,Integer.parseInt(quantity) , status );
-                System.out.println("Adding item: " + itemInfo.toString());
-                UserInfo userInfo = (UserInfo) request.getSession().getAttribute("user");
-                ItemHandler.adminAddItem(userInfo,itemInfo);
+                ItemHandler.adminAddItem(request);
                 request.getRequestDispatcher("item.jsp").forward(request,response);
                 break;
             default:
