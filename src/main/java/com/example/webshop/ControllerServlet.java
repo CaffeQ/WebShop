@@ -31,15 +31,28 @@ public class ControllerServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").forward(request,response);
                 break;
             case "item":
-                request.getRequestDispatcher("item.jsp").forward(request,response);
+                if(UserHandler.isUserAdmin(session))
+                    request.getRequestDispatcher("item.jsp").forward(request,response);
+                else{
+                    request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
+
             case "product":
                 Collection<ItemInfo> itemInfo = ItemHandler.getItems();//TODO: ItemHandler.getItems(session) - everything happens inside handler
                 request.getSession().setAttribute("itemInfo",itemInfo);
                 request.getRequestDispatcher("product.jsp").forward(request,response);
             case "order":
-                ArrayList<OrderInfo> orders = OrderHandler.getAll();
-                request.getSession().setAttribute("order", orders); //TODO: ItemHandler.getItems(session) - everything happens inside handler
-                request.getRequestDispatcher("order.jsp").forward(request,response);
+                if(UserHandler.isUserAdmin(session) || UserHandler.isUserW_Staff(session)){
+                    ArrayList<OrderInfo> orders = OrderHandler.getAll();
+                    request.getSession().setAttribute("order", orders); //TODO: ItemHandler.getItems(session) - everything happens inside handler
+                    request.getRequestDispatcher("order.jsp").forward(request,response);
+                }else {
+                    request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
                 break;
             case "welcome":
                 request.getRequestDispatcher("welcome.jsp").forward(request,response);
@@ -65,13 +78,8 @@ public class ControllerServlet extends HttpServlet {
                 break;
 
             case "processLogin":
-                String userName = request.getParameter("name");
-                String password = request.getParameter("password");
-                System.out.println("User name = " + userName );
-                System.out.println("User password = " + password );
-                if(UserHandler.authenticateUser(userName,password)){
-                    UserInfo userInfo = UserHandler.getUser(userName);
-                    request.getSession().setAttribute("user",userInfo);
+                if(UserHandler.authenticateUser(request)){
+                    request.removeAttribute("password");
                     request.getRequestDispatcher("welcome.jsp").forward(request,response);
                     response.sendRedirect("welcome.jsp");
                 }else{
@@ -85,21 +93,32 @@ public class ControllerServlet extends HttpServlet {
                 OrderHandler.checkCartEmpty(session);
                 //TODO: User need to authenticate and logged in.
                 try {
-                    OrderHandler.placeOrder(session); // TODO: <--- Transaction happens here
+                    if(UserHandler.isVerified(session)){// TODO: <--- Transaction happens here
+                        OrderHandler.placeOrder(session);
+                        request.getRequestDispatcher("welcome.jsp").forward(request,response);
+                        response.sendRedirect("welcome.jsp");
+                    }else{
+                        request.setAttribute("errorMessage","Invalid verification");
+                        request.getRequestDispatcher("error.jsp").forward(request,response);
+                        response.sendRedirect("error.jsp");
+                    }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
                 finally{
                     session.setAttribute("cart",OrderHandler.createNewCart());
                 }
-
-                request.getRequestDispatcher("welcome.jsp").forward(request,response);
-                response.sendRedirect("welcome.jsp");
-
                 break;
             case "processAdd":
-                ItemHandler.adminAddItem(request);
-                request.getRequestDispatcher("item.jsp").forward(request,response);
+                if(UserHandler.isUserAdmin(request.getSession())){
+                    ItemHandler.adminAddItem(request);
+                    request.getRequestDispatcher("item.jsp").forward(request,response);
+                    response.sendRedirect("item.jsp");
+                }else{
+                    request.setAttribute("errorMessage","Invalid verification");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
                 break;
 
             case "sendOrder":

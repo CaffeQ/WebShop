@@ -1,21 +1,29 @@
 package com.example.webshop.bo.handler;
 
+import com.example.webshop.bo.Roles;
 import com.example.webshop.bo.User;
-import com.example.webshop.db.UserDB;
-import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.UserInfo;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 public class UserHandler {
 
 
-    public static boolean authenticateUser(String userName,String password){
+    public static boolean authenticateUser(HttpServletRequest request){
+        String userName = request.getParameter("name");
+        String password = request.getParameter("password");
+        System.out.println("User name = " + userName );
+        System.out.println("User password = " + password );
         User user = User.searchUser(userName);
         if(user==null)
             return false;
         System.out.println("Authenticating user: "+user.toString());
-        return user.getName().equals(userName) &&
-                user.getPassword().equals(password);
-
+        if( user.getName().equals(userName) && user.getPassword().equals(password)) {
+            UserInfo userInfo = new UserInfo(user.getName(),user.getRole(),user.getToken());
+            request.getSession().setAttribute("user",userInfo);
+            return true;
+        }
+        return false;
     }
     /**
         Kontrollerar anvöndare från vyn i affärssikten genom
@@ -30,7 +38,31 @@ public class UserHandler {
             return null;
         return new UserInfo(user.getName(),user.getRole(),user.getToken());
     }
-    public static void updateUserToken(User user){
-
+    public static boolean isVerified(HttpSession session){
+        UserInfo userInfo = (UserInfo) session.getAttribute("user");
+        if(userInfo == null)
+            return false;
+        User user = User.searchUser(userInfo.getName());
+        return user.getRole().equals(userInfo.getRole()) &&
+                user.getToken().equals(userInfo.getToken());
     }
+    public static boolean isUserAdmin(HttpSession session){
+        UserInfo userInfo = (UserInfo) session.getAttribute("user");
+        if(userInfo == null)
+            return false;
+        User user = User.searchUser(userInfo.getName());
+        if(user == null)
+            return false;
+        return user.getRole().equals(Roles.ADMIN) && user.getToken().equals(userInfo.getToken());
+    }
+    public static boolean isUserW_Staff(HttpSession session){
+        UserInfo userInfo = (UserInfo) session.getAttribute("user");
+        if(userInfo == null)
+            return false;
+        User user = User.searchUser(userInfo.getName());
+        if(user == null)
+            return false;
+        return user.getRole().equals(Roles.W_STAFF) && user.getToken().equals(userInfo.getToken());
+    }
+
 }

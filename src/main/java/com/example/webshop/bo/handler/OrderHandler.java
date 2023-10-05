@@ -12,7 +12,6 @@ import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-import java.net.http.HttpRequest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
