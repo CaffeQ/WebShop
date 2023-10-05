@@ -1,5 +1,6 @@
 package com.example.webshop.bo.handler;
 
+import com.example.webshop.bo.Roles;
 import com.example.webshop.bo.User;
 import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,4 +46,23 @@ public class UserHandler {
         return user.getRole().equals(userInfo.getRole()) &&
                 user.getToken().equals(userInfo.getToken());
     }
+    public static boolean isUserAdmin(HttpSession session){
+        UserInfo userInfo = (UserInfo) session.getAttribute("user");
+        if(userInfo == null)
+            return false;
+        User user = User.searchUser(userInfo.getName());
+        if(user == null)
+            return false;
+        return user.getRole().equals(Roles.ADMIN) && user.getToken().equals(userInfo.getToken());
+    }
+    public static boolean isUserW_Staff(HttpSession session){
+        UserInfo userInfo = (UserInfo) session.getAttribute("user");
+        if(userInfo == null)
+            return false;
+        User user = User.searchUser(userInfo.getName());
+        if(user == null)
+            return false;
+        return user.getRole().equals(Roles.W_STAFF) && user.getToken().equals(userInfo.getToken());
+    }
+
 }

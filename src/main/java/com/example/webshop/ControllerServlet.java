@@ -37,9 +37,15 @@ public class ControllerServlet extends HttpServlet {
                 request.getSession().setAttribute("itemInfo",itemInfo);
                 request.getRequestDispatcher("product.jsp").forward(request,response);
             case "order":
-                ArrayList<OrderInfo> orders = OrderHandler.getAll();
-                request.getSession().setAttribute("order", orders); //TODO: ItemHandler.getItems(session) - everything happens inside handler
-                request.getRequestDispatcher("order.jsp").forward(request,response);
+                if(UserHandler.isUserAdmin(session) || UserHandler.isUserW_Staff(session)){
+                    ArrayList<OrderInfo> orders = OrderHandler.getAll();
+                    request.getSession().setAttribute("order", orders); //TODO: ItemHandler.getItems(session) - everything happens inside handler
+                    request.getRequestDispatcher("order.jsp").forward(request,response);
+                }else {
+                    request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
                 break;
             case "welcome":
                 request.getRequestDispatcher("welcome.jsp").forward(request,response);
