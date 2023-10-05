@@ -3,7 +3,6 @@ package com.example.webshop.bo;
 import com.example.webshop.bo.handler.ItemHandler;
 import com.example.webshop.ui.ItemInfo;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Cart{
@@ -15,7 +14,7 @@ public class Cart{
         cartList = new ArrayList<>();
     }
 
-    public ArrayList<CartItem<ItemInfo>> getCart() {
+    public ArrayList<CartItem<ItemInfo>> getCartPresentation() {
         ArrayList<CartItem<ItemInfo>> copy = new ArrayList<>();
         for (CartItem<Item> cartItem : cartList) {
             copy.add(new CartItem<>(ItemHandler.itemToItemInfo(cartItem.getItem()), cartItem.getQuantity()));
@@ -25,9 +24,16 @@ public class Cart{
 
     public boolean add(String itemName, String quantity) {
 
+        System.out.println("itemName: " + itemName + ", quantity: " + quantity);
+        Item item = Item.getItemIdByName(itemName);
+        if(item == null) return false;
+        if(item.getQuantity()<=0 || item.getQuantity() < Integer.parseInt(quantity)) return false;
+
         for (CartItem<Item> itemCartItem : cartList) {
+
+            // Check if in cart
             if (itemCartItem.getItem().getName().compareTo(itemName) == 0) {
-                int nrOfItemInStock = itemCartItem.getItem().getQuantity();
+                int nrOfItemInStock = item.getQuantity();
                 int nrOfItemInCart = itemCartItem.getQuantity();
                 int nrOfItemRequested = Integer.parseInt(quantity);
 
@@ -35,22 +41,30 @@ public class Cart{
                     return false;
                 }
                 itemCartItem.setQuantity(nrOfItemInCart + nrOfItemRequested);
-                return true;
+                break;
             }
         }
-
-        Item item = Item.getItemIdByName(itemName);
-        if(item.getQuantity()<=0) return false;
-
         cartList.add(new CartItem<>(item,Integer.parseInt(quantity)));
         return true;
     }
 
-    public boolean placeOrder() throws SQLException {
-        if(cartList == null) return false;
-        if(cartList.size()==0) return false;
-        return Order.placeOrder(cartList);
+    public ArrayList<CartItem<Item>> getCartApplication(){
+        ArrayList<CartItem<Item>> deepCopy = new ArrayList<>();
+        for(CartItem<Item> cartItem : cartList){
+            deepCopy.add(
+                    new CartItem<>(
+                            new Item(
+                                    cartItem.getItem().getId(),
+                                    cartItem.getItem().getName(),
+                                    cartItem.getItem().getPrice(),
+                                    cartItem.getItem().getDescription(),
+                                    cartItem.getItem().getQuantity(),
+                                    cartItem.getItem().getStatus()
+                                    ),
+                            cartItem.getQuantity()
+                            ));
+        }
+        return deepCopy;
     }
-
 
     }

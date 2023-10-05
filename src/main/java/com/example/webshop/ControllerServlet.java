@@ -20,31 +20,25 @@ import java.util.Collection;
 @WebServlet(name = "controllerServlet", value = "/controller-servlet")
 public class ControllerServlet extends HttpServlet {
 
-
-    public void init(HttpServletRequest request, HttpServletResponse response){
-        request.getSession().setMaxInactiveInterval(60*60*8);
-    }
-    
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        init(request,response);//TODO: When user do first action it should init...
-
+        HttpSession session = request.getSession();
         String action = request.getParameter("action");
         switch (action){
             case "cart":
-                checkCartEmpty(request);
+                OrderHandler.checkCartEmpty(session);
                 request.getRequestDispatcher("cart.jsp").forward(request,response);
                 break;
             case "login":
                 request.getRequestDispatcher("login.jsp").forward(request,response);
                 break;
             case "product":
-                Collection<ItemInfo> itemInfo = ItemHandler.getItems();
+                Collection<ItemInfo> itemInfo = ItemHandler.getItems();//TODO: ItemHandler.getItems(session) - everything happens inside handler
                 request.getSession().setAttribute("itemInfo",itemInfo);
                 request.getRequestDispatcher("product.jsp").forward(request,response);
             case "order":
                 ArrayList<OrderInfo> orders = OrderHandler.getAll();
-                request.getSession().setAttribute("order", orders);
+                request.getSession().setAttribute("order", orders); //TODO: ItemHandler.getItems(session) - everything happens inside handler
                 request.getRequestDispatcher("order.jsp").forward(request,response);
                 break;
             case "welcome":
@@ -52,7 +46,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
             default:
                 Collection<ItemInfo> itemInfo1 = ItemHandler.getItems();
-                request.getSession().setAttribute("itemInfo",itemInfo1);
+                request.getSession().setAttribute("itemInfo",itemInfo1); //TODO: ItemHandler.getItems(session) - everything happens inside handler
                 request.getRequestDispatcher("product.jsp").forward(request,response);
 
         }
@@ -60,14 +54,12 @@ public class ControllerServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        init(request, response);//TODO: When user do first action it should init...
-
+        HttpSession session = request.getSession();
         String action = request.getParameter("action");
+
         switch(action){
             case "addItemToCart" :
-                checkCartEmpty(request);
-                addToCart(request);
-
+                OrderHandler.addToCart(request);
                 request.getRequestDispatcher("cart.jsp").forward(request,response);
                 response.sendRedirect("cart.jsp");
                 break;
@@ -90,16 +82,14 @@ public class ControllerServlet extends HttpServlet {
 
                 break;
             case "placeOrder" :
-                checkCartEmpty(request);
-
-                Cart cart = (Cart) request.getSession().getAttribute("cart");
+                OrderHandler.checkCartEmpty(session);
                 try {
-                    cart.placeOrder(); // TODO: <--- Transaction happens here
+                    OrderHandler.placeOrder(session); // TODO: <--- Transaction happens here
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
                 finally{
-                    request.getSession().setAttribute("cart",new Cart());
+                    session.setAttribute("cart",OrderHandler.createNewCart());
                 }
 
                 request.getRequestDispatcher("welcome.jsp").forward(request,response);
@@ -111,18 +101,4 @@ public class ControllerServlet extends HttpServlet {
         }
     }
 
-    private void checkCartEmpty(HttpServletRequest request){
-        Cart cart = (Cart) request.getSession().getAttribute("cart");
-        if(cart != null){
-            return;
-        }
-        request.getSession().setAttribute("cart",new Cart());
-    }
-
-    private void addToCart(HttpServletRequest request){
-        checkCartEmpty(request);
-        Cart cart = (Cart) request.getSession().getAttribute("cart");
-        cart.add(request.getParameter("cartItemName"), request.getParameter("cartItemQuantity"));
-        request.getSession().setAttribute("cart",cart);
-    }
 }

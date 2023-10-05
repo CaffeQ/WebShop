@@ -21,7 +21,7 @@
 
     <%
         Cart cart = (Cart) request.getSession().getAttribute("cart");
-        for(CartItem<ItemInfo> item : cart.getCart()){
+        for(CartItem<ItemInfo> item : cart.getCartPresentation()){
     %>
         <p>
             <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %> <%= item.getQuantity()%> <%= item.getItem().getStatus() %>

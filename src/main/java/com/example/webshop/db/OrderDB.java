@@ -3,6 +3,8 @@ package com.example.webshop.db;
 import com.example.webshop.bo.CartItem;
 import com.example.webshop.bo.Item;
 import com.example.webshop.bo.Order;
+import com.example.webshop.bo.User;
+import com.example.webshop.ui.UserInfo;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class OrderDB extends Order {
         return orders;
     }
 
-    public static boolean placeOrder(ArrayList<CartItem<Item>> cartList) throws SQLException {
+    public static boolean placeOrder(ArrayList<CartItem<Item>> cartList, UserInfo user) throws SQLException {
         if(cartList == null) return false;
         Connection con = null;
 
