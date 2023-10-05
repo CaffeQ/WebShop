@@ -33,6 +33,11 @@
         <input type="submit" value="Add to Cart">
     </p>
 </form>
+<form action="controller-servlet" method="get">
+    <input type="hidden" name="action" value="edit">
+    <input type="hidden" name="editName" value=<%=item.getName()%>>
+    <input type="submit" value="Edit">
+</form>
 <%
     }
 %>

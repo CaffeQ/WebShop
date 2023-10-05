@@ -36,6 +36,20 @@ public class ControllerServlet extends HttpServlet {
                     response.sendRedirect("error.jsp");
                 }
                 break;
+            case "edit":
+                if(UserHandler.isUserAdmin(session)){
+                    String name = request.getParameter("editName");
+                    session.setAttribute("item",ItemHandler.getItemByName(name));
+                    request.getRequestDispatcher("edit.jsp").forward(request,response);
+                    response.sendRedirect("edit.jsp");
+                }
+                else{
+                    request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
+                break;
+                break;
 
             case "product":
                 request.getSession().setAttribute("itemInfo",ItemHandler.getItems());
@@ -87,6 +101,17 @@ public class ControllerServlet extends HttpServlet {
                     request.getRequestDispatcher("login.jsp").forward(request,response);
                     response.sendRedirect("login.jsp");
                 }
+
+                break;
+            case "processEdit":
+                if(UserHandler.isUserAdmin(request.getSession())){
+                    request.getRequestDispatcher("edit.jsp").forward(request,response);
+                    response.sendRedirect("edit.jsp");
+                }else{
+                    request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
                 break;
 
             case "placeOrder" :
@@ -111,7 +136,7 @@ public class ControllerServlet extends HttpServlet {
 
             case "processAdd":
                 if(UserHandler.isUserAdmin(request.getSession())){
-                    ItemHandler.adminAddItem(request);
+                    ItemHandler.addItem(request);
                     request.getRequestDispatcher("item.jsp").forward(request,response);
                     response.sendRedirect("item.jsp");
                 }else{
@@ -120,7 +145,6 @@ public class ControllerServlet extends HttpServlet {
                     response.sendRedirect("error.jsp");
                 }
                 break;
-
             case "sendOrder":
                 if(UserHandler.isUserAdmin(session) || UserHandler.isUserW_Staff(session)) {
                     try {

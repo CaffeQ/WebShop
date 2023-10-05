@@ -1,7 +1,6 @@
 package com.example.webshop.bo;
 
 import com.example.webshop.bo.Item;
-import com.example.webshop.bo.Roles;
 import com.example.webshop.bo.User;
 import com.example.webshop.db.ItemDB;
 import com.example.webshop.ui.ItemInfo;
@@ -37,6 +36,14 @@ public class ItemHandler {
     public static ItemInfo itemToItemInfo(Item item){
         return new ItemInfo(item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(), item.getStatus());
     }
+
+    public static boolean editItem(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String editName = request.getParameter("editName");
+        System.out.println("Item to edit: "+ editName);
+        return true;
+    }
+    public static boolean addItem(HttpServletRequest request){
 
     public static boolean adminAddItem(HttpServletRequest request){
         HttpSession session = request.getSession();
