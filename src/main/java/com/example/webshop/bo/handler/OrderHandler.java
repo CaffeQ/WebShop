@@ -33,8 +33,6 @@ public class OrderHandler {
     }
 
     public static boolean placeOrder(HttpSession session) throws SQLException {
-        if (!UserHandler.isVerified(session))
-            return false;
         Cart cart = (Cart) session.getAttribute("cart");
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         return Order.placeOrder(cart.getCartApplication(),userInfo);

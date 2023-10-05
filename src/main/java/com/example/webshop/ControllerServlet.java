@@ -31,7 +31,14 @@ public class ControllerServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").forward(request,response);
                 break;
             case "item":
-                request.getRequestDispatcher("item.jsp").forward(request,response);
+                if(UserHandler.isUserAdmin(session))
+                    request.getRequestDispatcher("item.jsp").forward(request,response);
+                else{
+                    request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
+
             case "product":
                 Collection<ItemInfo> itemInfo = ItemHandler.getItems();//TODO: ItemHandler.getItems(session) - everything happens inside handler
                 request.getSession().setAttribute("itemInfo",itemInfo);
@@ -85,7 +92,8 @@ public class ControllerServlet extends HttpServlet {
             case "placeOrder" :
                 OrderHandler.checkCartEmpty(session);
                 try {
-                    if(OrderHandler.placeOrder(session)){// TODO: <--- Transaction happens here
+                    if(UserHandler.isVerified(session)){// TODO: <--- Transaction happens here
+                        OrderHandler.placeOrder(session);
                         request.getRequestDispatcher("welcome.jsp").forward(request,response);
                         response.sendRedirect("welcome.jsp");
                     }else{
@@ -101,8 +109,15 @@ public class ControllerServlet extends HttpServlet {
                 }
                 break;
             case "processAdd":
-                ItemHandler.adminAddItem(request);
-                request.getRequestDispatcher("item.jsp").forward(request,response);
+                if(UserHandler.isUserAdmin(request.getSession())){
+                    ItemHandler.adminAddItem(request);
+                    request.getRequestDispatcher("item.jsp").forward(request,response);
+                    response.sendRedirect("item.jsp");
+                }else{
+                    request.setAttribute("errorMessage","Invalid verification");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
                 break;
             default:
                 System.out.println("Incorrect");

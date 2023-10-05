@@ -20,14 +20,8 @@
 
 <h1>Products</h1>
 <h1>Add Items to Cart</h1>
-<%
-    UserInfo userInfo = (UserInfo) session.getAttribute("user");
-    String link = "";
-    if( userInfo != null && userInfo.getRole().equals("admin"))
-        link = "controller-servlet?action=item";
 
-%>
-<a href="<%=link%>">Add items</a>
+<a href="controller-servlet?action=item">Add items</a>
 <%
     Collection<ItemInfo> items = (Collection<ItemInfo>) request.getSession().getAttribute("itemInfo");
     for(ItemInfo item : items){
