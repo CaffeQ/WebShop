@@ -118,6 +118,7 @@ public class Item{
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
+                ", category='" + category + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }

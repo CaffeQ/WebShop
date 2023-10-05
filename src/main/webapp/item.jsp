@@ -30,6 +30,10 @@
         <input type="text" id="quantity" name="quantity">
     </div>
     <div>
+        <label for="category">Category</label>
+        <input type="text" id="category" name="category">
+    </div>
+    <div>
         <label>Status:</label><br>
         <input type="radio" id="in_stock" name="status" value="in_stock">
         <label for="in_stock">In stock</label><br>

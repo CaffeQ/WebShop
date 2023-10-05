@@ -45,7 +45,7 @@ public class ItemHandler {
         String price = request.getParameter("price");
         String quantity = request.getParameter("quantity");
         String desc = request.getParameter("description");
-        String category = request.getParameter("status");
+        String category = request.getParameter("category");
         String status = request.getParameter("status");
         status = status.toUpperCase();
         ItemInfo itemInfo = new ItemInfo(name, Integer.parseInt(price),desc,Integer.parseInt(quantity),category, status );
