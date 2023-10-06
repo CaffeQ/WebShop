@@ -39,8 +39,6 @@ public class ItemHandler {
     public static boolean editItem(HttpServletRequest request){
         String previousName = request.getParameter("previousName");
         String name = request.getParameter("name");
-        if(name.isEmpty() || name.equals(" "))
-            return false;
         String quantity = request.getParameter("quantity");
         String desc = request.getParameter("description");
         String category = request.getParameter("category");
@@ -90,11 +88,12 @@ public class ItemHandler {
     protected static boolean isNotNULL(ItemInfo item){
         if(item == null)
             return false;
-        return item.getName() != null && item.getName().isEmpty() &&
+        return item.getName() != null && !item.getName().isEmpty() &&
                 item.getDescription() != null &&
                 item.getStatus() != null &&
                 item.getQuantity() >= 0 &&
-                item.getCategory() != null;
+                item.getCategory() != null &&
+                item.getPrice() > 0;
     }
 
 }

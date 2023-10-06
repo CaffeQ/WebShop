@@ -153,7 +153,7 @@ public class ControllerServlet extends HttpServlet {
                     catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
-                    request.setAttribute("errorMessage","Successful");
+                    request.setAttribute("errorMessage","");
                     request.getRequestDispatcher("item.jsp").forward(request,response);
                     response.sendRedirect("item.jsp");
                 }else{
