@@ -9,43 +9,101 @@
 <html>
 <head>
     <title>Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .heading {
+            color: #333;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-info {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .product-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .product-actions button {
+            margin-left: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #62bd52;
+            color: white;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #75b06b;
+        }
+    </style>
 </head>
 
 <body>
 <%@ page import="com.example.webshop.ui.ItemInfo" %>
 <%@ page import="java.util.Collection" %>
 
-<h1>Products</h1>
-<h1>Add Items to Cart</h1>
+<div class="container">
+    <h1 class="heading">Products</h1>
+    <h2 class="heading">Add Items to Cart</h2>
 
-<a href="controller-servlet?action=item">Add items</a>
-<%
-    Collection<ItemInfo> items = (Collection<ItemInfo>) request.getSession().getAttribute("itemInfo");
-    for(ItemInfo item : items){
-%>
-<form action="controller-servlet" method="post">
-    <p>
-    <%= item.getName() %> <%= item.getPrice() %> <%= item.getDescription() %> <%= item.getQuantity()%> <%= item.getCategory() %> <%= item.getStatus() %>
-    <label for="quantity"> Quantity:</label>
-        <input type="hidden" name="action" value="addItemToCart">
-        <input type="hidden" name="cartItemName" value=<%=item.getName()%>>
-        <input type="number" id="quantity" name="cartItemQuantity" min="1" required>
-        <input type="submit" value="Add to Cart">
-    </p>
-</form>
-<form action="controller-servlet" method="get">
-    <input type="hidden" name="action" value="edit">
-    <input type="hidden" name="editName" value=<%=item.getName()%>>
-    <input type="submit" value="Edit">
-</form>
-<form action="controller-servlet" method="post">
-    <input type="hidden" name="action" value="removeItem">
-    <input type="hidden" name="removeItem" value=<%=item.getName()%>>
-    <input type="submit" value="Remove">
-</form>
-<%
-    }
-%>
+    <%
+        Collection<ItemInfo> items = (Collection<ItemInfo>) request.getSession().getAttribute("itemInfo");
+        for (ItemInfo item : items) {
+    %>
+    <div class="product">
+        <div class="product-info">
+            <%= item.getName() %> - <%= item.getDescription() %> - Price: <%= item.getPrice() %> - Quantity: <%= item.getQuantity() %> - Category: <%= item.getCategory() %> - Status: <%= item.getStatus() %>
+        </div>
+        <div class="product-actions">
+            <form action="controller-servlet" method="post">
+                <label for="quantity">Quantity:</label>
+                <input type="hidden" name="action" value="addItemToCart">
+                <input type="hidden" name="cartItemName" value="<%= item.getName() %>">
+                <input type="number" id="quantity" name="cartItemQuantity" min="1" required>
+                <button type="submit" class="btn">Add to Cart</button>
+            </form>
 
+            <form action="controller-servlet" method="get">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="editName" value="<%= item.getName() %>">
+                <a href="controller-servlet?action=edit&editName=<%= item.getName() %>" class="btn">Edit</a>
+            </form>
+
+            <form action="controller-servlet" method="post">
+                <input type="hidden" name="action" value="removeItem">
+                <input type="hidden" name="removeItem" value="<%= item.getName() %>">
+                <button type="submit" class="btn">Remove</button>
+            </form>
+        </div>
+    </div>
+    <%
+        }
+    %>
+</div>
 </body>
 </html>
