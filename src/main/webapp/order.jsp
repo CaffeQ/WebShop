@@ -26,7 +26,7 @@
         <input type="hidden" name="sendOrderID" value=<%=order.getOrderID()%>>
         <input type="submit" value="Send">
     </form>
-    <% for (CartItem<ItemInfo> item : order.getItems()){%>
+    <% for (CartItem item : order.getItems()){%>
         <p>
         <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %><%= item.getItem().getCategory() %>  <%= item.getQuantity()%>
         </p>

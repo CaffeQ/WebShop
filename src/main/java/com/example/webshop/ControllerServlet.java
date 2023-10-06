@@ -127,6 +127,8 @@ public class ControllerServlet extends HttpServlet {
                 try {
                     if(UserHandler.isVerified(session)){
                         OrderHandler.placeOrder(session);
+                        session.setAttribute("cart", CartHandler.createNewCart());
+                        session.setAttribute("cartList", CartHandler.createNewCartList());
                         request.getRequestDispatcher("welcome.jsp").forward(request,response);
                         response.sendRedirect("welcome.jsp");
                     }else{
@@ -137,9 +139,7 @@ public class ControllerServlet extends HttpServlet {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                finally{
-                    session.setAttribute("cart", CartHandler.createNewCart());
-                }
+
                 break;
 
             case "processAdd":
