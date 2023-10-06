@@ -1,7 +1,4 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.webshop.bo.CartItem" %>
-<%@ page import="com.example.webshop.ui.ItemInfo" %>
-<%@ page import="com.example.webshop.bo.Cart" %>
 <%@ page import="com.example.webshop.ui.CartItemInfo" %><%--
   Created by IntelliJ IDEA.
   User: Test

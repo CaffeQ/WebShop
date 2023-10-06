@@ -14,8 +14,10 @@ public class Item{
     private int quantity;
     private String category;
     private String status;
+    private boolean active;
 
-    protected Item(int id, String name, int price, String description, int quantity, String category, String status) {
+
+    protected Item(int id, String name, int price, String description, int quantity, String category, String status, boolean active) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -23,6 +25,7 @@ public class Item{
         this.quantity = quantity;
         this.category = category;
         this.status = status;
+        this.active = active;
     }
 
     protected static Collection<Item> searchItems(){
@@ -32,6 +35,9 @@ public class Item{
 
     protected static boolean createItem(Item item) throws SQLException {
         return ItemDB.createItem( item );
+    }
+    protected static boolean removeItem(Item item) {
+        return ItemDB.removeItem(item);
     }
     protected static boolean editItem(Item item){
         return ItemDB.editItem( item );
@@ -44,6 +50,14 @@ public class Item{
                 item.getDescription() != null ||
                 item.getStatus() != null;
 
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void setPrice(int price) {

@@ -34,6 +34,12 @@ public class ItemHandler {
         return new ItemInfo(item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(), item.getStatus());
     }
 
+    public static boolean removeItem(HttpServletRequest request)  {
+        String removeItem = request.getParameter("removeItem");
+        Item item = Item.getItemIdByName(removeItem);
+        return Item.removeItem(item);
+    }
+
     public static boolean editItem(HttpServletRequest request){
         String previousName = request.getParameter("previousName");
         String name = request.getParameter("name");
@@ -43,8 +49,7 @@ public class ItemHandler {
         String category = request.getParameter("category");
         String status = request.getParameter("status");
         int itemID = Item.getItemIdByName(previousName).getId();
-        Item.editItem(new Item(itemID,name,price,desc, quantity,category,status));
-        return true;
+        return Item.editItem(new Item(itemID,name,price,desc, quantity,category,status, true));
     }
     public static boolean addItem(HttpServletRequest request) throws SQLException {
         UserInfo userInfo = (UserInfo) request.getSession().getAttribute("user");
@@ -62,7 +67,7 @@ public class ItemHandler {
             return false;
         status = status.toUpperCase();
 
-        Item item = new Item(0, name, Integer.parseInt(price), desc, Integer.parseInt(quantity), category, status);
+        Item item = new Item(0, name, Integer.parseInt(price), desc, Integer.parseInt(quantity), category, status, true);
 
         return Item.createItem(item);
     }
@@ -73,15 +78,6 @@ public class ItemHandler {
             return false;
         return Integer.parseInt(quantity) >= 0 && Integer.parseInt(price) > 0;
     }
-    protected static boolean isNotNULL(ItemInfo item){
-        if(item == null)
-            return false;
-        return item.getName() != null && !item.getName().isEmpty() &&
-                item.getDescription() != null &&
-                item.getStatus() != null &&
-                item.getQuantity() >= 0 &&
-                item.getCategory() != null &&
-                item.getPrice() > 0;
-    }
+
 
 }

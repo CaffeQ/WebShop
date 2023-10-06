@@ -15,6 +15,11 @@ CREATE TABLE T_User (
     token VARCHAR(255) NOT NULL unique
 );
 
+INSERT INTO T_User (name, password, role, token) VALUES
+('Balder','password1', 'admin', UUID()),
+('Tim','password2', 'customer', UUID()),
+('Alex','password3', 'warehouse_staff', UUID());
+
 
 CREATE TABLE T_Item (
     itemID INT PRIMARY KEY AUTO_INCREMENT,
@@ -23,8 +28,10 @@ CREATE TABLE T_Item (
     description TEXT,
     quantity INT NOT NULL,
     category VARCHAR(255) NOT NULL,
-    status ENUM('IN_STOCK', 'OUT_OF_STOCK') NOT NULL
+    status ENUM('IN_STOCK', 'OUT_OF_STOCK') NOT NULL,
+    active BOOLEAN NOT NULL DEFAULT 1
 );
+
 INSERT INTO T_Item (name, price, description, quantity, category, status) VALUES
 ('Item1', 10, 'Description1', 10, "mug", 'IN_STOCK'),
 ('Item2', 20, 'Description2', 0, "pen", 'OUT_OF_STOCK'),
@@ -39,6 +46,11 @@ CREATE TABLE T_Category (
     FOREIGN KEY (itemID) REFERENCES T_Item(itemID)
 );
 
+INSERT INTO T_Category (itemID, category) VALUES
+(1, 'Electronics'),
+(2, 'Books'),
+(3, 'Clothing');
+
 CREATE TABLE T_Order (
     orderID INT PRIMARY KEY AUTO_INCREMENT,
     userID INT,
@@ -46,6 +58,10 @@ CREATE TABLE T_Order (
     status ENUM('active', 'sent', 'cancelled') NOT NULL,
     FOREIGN KEY (userID) REFERENCES T_User(userID)
 );
+INSERT INTO T_Order (userID, date, status) VALUES
+(1, '2023-10-01', 'active'),
+(2, '2023-10-02', 'sent'),
+(3, '2023-10-03', 'cancelled');
 
 CREATE TABLE T_PurchaseItems (
     orderID INT,
@@ -56,29 +72,21 @@ CREATE TABLE T_PurchaseItems (
     FOREIGN KEY (itemID) REFERENCES T_Item(itemID)
 );
 
-INSERT INTO T_User (name, password, role, token) VALUES
-('Balder','password1', 'admin', UUID()),
-('Tim','password2', 'customer', UUID()),
-('Alex','password3', 'warehouse_staff', UUID());
-
-
-INSERT INTO T_Category (itemID, category) VALUES
-(1, 'Electronics'),
-(2, 'Books'),
-(3, 'Clothing');
-
-INSERT INTO T_Order (userID, date, status) VALUES
-(1, '2023-10-01', 'active'),
-(2, '2023-10-02', 'sent'),
-(3, '2023-10-03', 'cancelled');
-
-
 INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES
 (1, 1, 2),
 (1, 3, 1),
 (2, 2, 1);
 
 
+
+
+
+
+
+
+
+
 SELECT * from T_Item;
 SELECT * from T_Order;
 SELECT * from T_PurchaseItems;
+SELECT * FROM T_Item WHERE active = 1;

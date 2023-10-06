@@ -46,7 +46,9 @@ public class Order {
                             cartItem.getItem().getDescription(),
                             cartItem.getItem().getQuantity(),
                             cartItem.getItem().getCategory(),
-                            cartItem.getItem().getStatus()),
+                            cartItem.getItem().getStatus(),
+                            cartItem.getItem().isActive()
+                    ),
                     cartItem.getQuantity()));
         }
         return deepCopy;

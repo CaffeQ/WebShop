@@ -38,6 +38,11 @@
     <input type="hidden" name="editName" value=<%=item.getName()%>>
     <input type="submit" value="Edit">
 </form>
+<form action="controller-servlet" method="post">
+    <input type="hidden" name="action" value="removeItem">
+    <input type="hidden" name="removeItem" value=<%=item.getName()%>>
+    <input type="submit" value="Remove">
+</form>
 <%
     }
 %>

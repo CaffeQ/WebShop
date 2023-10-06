@@ -34,7 +34,8 @@ public class PurchaseItemDB extends CartItem{
                             rs.getString("description"),
                             rs.getInt("quantity"),
                             rs.getString("category"),
-                            rs.getString("status")
+                            rs.getString("status"),
+                            rs.getBoolean("active")
                         ),
                             rs.getInt("purchase_quantity")
                 ));

@@ -6,13 +6,33 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ItemDB extends Item {
+
+    public static boolean removeItem(Item item) {
+        try{
+            Connection con = DBManager.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE T_Item SET active = 0 WHERE itemID = ?"); {
+            ps.setInt(1, item.getId());
+
+            int rowsAffected = ps.executeUpdate();
+
+            return rowsAffected > 0;
+             }
+
+        } catch (SQLException e) {
+            System.out.println("Error while marking item as inactive: " + e.getMessage());
+            return false;
+        }
+    }
+
+
+
     public static ArrayList<Item> searchItems(){
         ResultSet rs;
         ArrayList<Item> items = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
             Statement st = con.createStatement();
-            rs = st.executeQuery("SELECT * from T_Item");
+            rs = st.executeQuery("SELECT * FROM T_Item WHERE active = 1");
 
             while(rs.next()){
                 items.add(new
@@ -22,7 +42,8 @@ public class ItemDB extends Item {
                         rs.getString("description"),
                         rs.getInt("quantity"),
                         rs.getString("category"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getBoolean("active")
                         ));
             }
 
@@ -34,7 +55,7 @@ public class ItemDB extends Item {
     }
 
     public static boolean editItem(Item item){
-        Item itemDB = new ItemDB(item.getId(), item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus());
+        Item itemDB = new ItemDB(item.getId(), item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus(), item.isActive());
         try{
             Connection con = DBManager.getConnection();
 
@@ -106,7 +127,8 @@ public class ItemDB extends Item {
                         rs.getString("description"),
                         rs.getInt("quantity"),
                         rs.getString("category"),
-                        (String) rs.getObject("status"));
+                        rs.getString("status"),
+                        rs.getBoolean("active"));
             }
         }
         catch (SQLException e){
@@ -133,7 +155,8 @@ public class ItemDB extends Item {
                         rs.getString("description"),
                         rs.getInt("quantity"),
                         rs.getString("category"),
-                        (String) rs.getObject("status")
+                        rs.getString("status"),
+                        rs.getBoolean("active")
                 ));
             }
 
@@ -144,7 +167,7 @@ public class ItemDB extends Item {
         return items;
     }
 
-    protected ItemDB(int id, String name, int price, String description, int quantity, String category, String status) {
-        super(id, name, price, description, quantity, category, status);
+    protected ItemDB(int id, String name, int price, String description, int quantity, String category, String status, boolean active) {
+        super(id, name, price, description, quantity, category, status, active);
     }
 }

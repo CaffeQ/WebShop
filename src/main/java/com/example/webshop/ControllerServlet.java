@@ -105,6 +105,20 @@ public class ControllerServlet extends HttpServlet {
                 }
 
                 break;
+
+
+            case "removeItem":
+                System.out.println("Remove item");
+                if(UserHandler.isUserAdmin(session)){
+                    ItemHandler.removeItem(request);
+                    response.sendRedirect("controller-servlet?action=product");
+                }
+                else{
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                }
+                break;
+
             case "processEdit":
                 if(UserHandler.isUserAdmin(request.getSession())){
                     if(!ItemHandler.editItem(request)){
