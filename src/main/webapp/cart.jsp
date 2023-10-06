@@ -1,7 +1,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.webshop.bo.CartItem" %>
 <%@ page import="com.example.webshop.ui.ItemInfo" %>
-<%@ page import="com.example.webshop.bo.Cart" %><%--
+<%@ page import="com.example.webshop.bo.Cart" %>
+<%@ page import="com.example.webshop.ui.CartItemInfo" %><%--
   Created by IntelliJ IDEA.
   User: Test
   Date: 2023-10-02
@@ -19,9 +20,10 @@
         <input type="submit" value="Place Order">
     </form>
 
+
     <%
-        Cart cart = (Cart) request.getSession().getAttribute("cart");
-        for(CartItem<ItemInfo> item : cart.getCartPresentation()){
+        ArrayList<CartItemInfo> cartList = (ArrayList<CartItemInfo>) request.getSession().getAttribute("cartList");
+        for(CartItemInfo item : cartList){
     %>
         <p>
             <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %> <%= item.getQuantity()%> <%= item.getItem().getCategory()%><%= item.getItem().getStatus() %>

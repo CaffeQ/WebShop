@@ -1,7 +1,6 @@
 package com.example.webshop.bo;
 
 import com.example.webshop.db.ItemDB;
-import com.example.webshop.ui.ItemInfo;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -26,10 +25,10 @@ public class Item{
         this.status = status;
     }
 
-    protected static Collection<ItemDB> searchItems(){ //TODO! <--- Add correct parameter here
+    protected static Collection<Item> searchItems(){
         return ItemDB.searchItems();
     }
-    protected static ItemDB getItemIdByName(String name){return ItemDB.getItemByName(name);}
+    protected static Item getItemIdByName(String name){return ItemDB.getItemByName(name);}
 
     protected static boolean createItem(Item item) throws SQLException {
         return ItemDB.createItem( item );
@@ -38,7 +37,7 @@ public class Item{
         return ItemDB.editItem( item );
     }
 
-    protected static boolean isNotNULL(ItemInfo item){
+    protected static boolean isNotNULL(Item item){
         if(item == null)
             return false;
         return item.getName() != null || item.getName().isEmpty() ||

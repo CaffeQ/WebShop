@@ -1,6 +1,7 @@
 package com.example.webshop.db;
 
 import com.example.webshop.bo.CartItem;
+import com.example.webshop.bo.Item;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,15 +9,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PurchaseItemDB extends CartItem<ItemDB>{
+public class PurchaseItemDB extends CartItem{
 
     protected PurchaseItemDB(ItemDB item, int quantity) {
         super(item, quantity);
     }
 
-    public static ArrayList<CartItem<ItemDB>> getCartItemByOrderID(int orderID){
+    public static ArrayList<CartItem> getCartItemByOrderID(int orderID){
         ResultSet rs;
-        ArrayList<CartItem<ItemDB>> cartItems = new ArrayList<>();
+        ArrayList<CartItem> cartItems = new ArrayList<>();
 
         try {
             Connection con = DBManager.getConnection();
@@ -25,7 +26,7 @@ public class PurchaseItemDB extends CartItem<ItemDB>{
 
             rs = st.executeQuery(query);
             while(rs.next()){
-                cartItems. add(new PurchaseItemDB(
+                cartItems.add(new PurchaseItemDB(
                         new ItemDB(
                             rs.getInt("itemID"),
                             rs.getString("name"),

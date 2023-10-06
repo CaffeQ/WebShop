@@ -1,8 +1,5 @@
 package com.example.webshop.bo;
 
-import com.example.webshop.db.ItemDB;
-import com.example.webshop.db.OrderDB;
-import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.OrderInfo;
 import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,14 +12,14 @@ import java.util.Collection;
 public class OrderHandler {
 
     public static ArrayList<OrderInfo> getAll(){
-        Collection<OrderDB> orders =  Order.getAllOrders();
+        Collection<Order> orders =  Order.getAllOrders();
         ArrayList<OrderInfo> copy = new ArrayList<>();
 
-        for(OrderDB o : orders){
-            ArrayList<CartItem<ItemInfo>> itemInfos = new ArrayList<>();
+        for(Order o : orders){
+            ArrayList<CartItem> itemInfos = new ArrayList<>();
 
-            for(CartItem<ItemDB> cartItem : o.getPurchaseItems()){
-                itemInfos.add(new CartItem<>(ItemHandler.itemToItemInfo(cartItem.getItem()), cartItem.getQuantity()));
+            for(CartItem cartItem : o.getItems()){
+                itemInfos.add(new CartItem(cartItem.getItem(), cartItem.getQuantity()));
             }
             copy.add(new OrderInfo(o.getOrderID(), o.getUserID(), o.getDate(), o.getStatus(),itemInfos));
         }
@@ -31,9 +28,11 @@ public class OrderHandler {
 
     public static boolean placeOrder(HttpSession session) throws SQLException {
         Cart cart = (Cart) session.getAttribute("cart");
-        if(cart.getCartPresentation().isEmpty()) return false;
+        if(cart.getCart().isEmpty()) return false;
+        session.removeAttribute("cartList");
+        session.removeAttribute("cart");
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
-        return Order.placeOrder(cart.getCartApplication(),User.searchUser(userInfo.getName()));
+        return Order.placeOrder(cart,User.searchUser(userInfo.getName()));
     }
 
     public static boolean sendOrder(HttpServletRequest request) throws SQLException {
@@ -43,25 +42,5 @@ public class OrderHandler {
         return false;
     }
 
-    public static Cart createNewCart() {
-        return new Cart();
-    }
-
-    public static boolean addToCart(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        checkCartEmpty(session);
-        Cart cart = (Cart) session.getAttribute("cart");
-        String itemName = request.getParameter("cartItemName");
-        String itemQuantity = request.getParameter("cartItemQuantity");
-        return cart.add(itemName,itemQuantity);
-    }
-
-    public static void checkCartEmpty(HttpSession session){
-        Cart cart = (Cart) session.getAttribute("cart");
-        if(cart != null){
-            return;
-        }
-        session.setAttribute("cart",OrderHandler.createNewCart());
-    }
 
 }

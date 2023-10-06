@@ -4,12 +4,11 @@ import com.example.webshop.bo.Item;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class ItemDB extends Item {
-    public static Collection<ItemDB> searchItems(){
+    public static ArrayList<Item> searchItems(){
         ResultSet rs;
-        ArrayList<ItemDB> items = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
             Statement st = con.createStatement();
@@ -35,8 +34,7 @@ public class ItemDB extends Item {
     }
 
     public static boolean editItem(Item item){
-        ItemDB itemDB = new ItemDB(item.getId(), item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus());
-        System.out.println("item.getId()"+item.getId()+", item.getName()"+item.getName()+", item.getPrice()"+item.getPrice()+", item.getDescription()"+item.getDescription()+", item.getQuantity()"+item.getQuantity()+", item.getCategory()"+item.getCategory()+",item.getStatus()"+item.getStatus());
+        Item itemDB = new ItemDB(item.getId(), item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus());
         try{
             Connection con = DBManager.getConnection();
 
@@ -89,11 +87,11 @@ public class ItemDB extends Item {
         return true;
     }
 
-    public static ItemDB getItemByName(String itemName){
+    public static Item getItemByName(String itemName){
         ResultSet rs;
         Connection con;
         PreparedStatement ps;
-        ItemDB item = null;
+        Item item = null;
         try {
             con = DBManager.getConnection();
             ps = con.prepareStatement("SELECT * from T_Item WHERE T_Item.name = ?");

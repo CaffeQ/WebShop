@@ -1,15 +1,15 @@
 package com.example.webshop.bo;
 
-public class  CartItem<T>{
-    private final T item;
+public class  CartItem{
+    private final Item item;
     private int quantity;
 
-    protected CartItem(T item, int quantity) {
+    protected CartItem(Item item, int quantity) {
         this.item = item;
         this.quantity = quantity;
     }
 
-    public T getItem() {
+    public Item getItem() {
         return item;
     }
 
@@ -21,11 +21,4 @@ public class  CartItem<T>{
         this.quantity = quantity;
     }
 
-    @Override
-    public String toString() {
-        return "CartItem{" +
-                "item=" + item.toString() +
-                ", quantity='" + quantity + '\'' +
-                '}';
-    }
 }

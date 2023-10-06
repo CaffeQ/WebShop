@@ -9,12 +9,9 @@ public class UserHandler {
     public static boolean authenticateUser(HttpServletRequest request){
         String userName = request.getParameter("name");
         String password = request.getParameter("password");
-        System.out.println("User name = " + userName );
-        System.out.println("User password = " + password );
         User user = User.searchUser(userName);
         if(user==null)
             return false;
-        System.out.println("Authenticating user: "+user.toString());
         if( user.getName().equals(userName) && user.getPassword().equals(password)) {
             UserInfo userInfo = new UserInfo(user.getName(),user.getRole(),user.getToken());
             request.getSession().setAttribute("user",userInfo);

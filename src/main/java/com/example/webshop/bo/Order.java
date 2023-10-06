@@ -1,11 +1,11 @@
 package com.example.webshop.bo;
 
-import com.example.webshop.db.ItemDB;
 import com.example.webshop.db.OrderDB;
-import com.example.webshop.db.PurchaseItemDB;
+
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -16,30 +16,47 @@ public class Order {
    private final Date date;
    private String status;
 
-   private final ArrayList<CartItem<ItemDB>> items;
+   private final ArrayList<CartItem> items;
 
-    protected Order(int orderID, int userID, Date date, String status) {
+    protected Order(int orderID, int userID, Date date, String status, ArrayList<CartItem> items) {
         this.orderID = orderID;
         this.userID = userID;
         this.date = date;
         this.status = status;
-        this.items = PurchaseItemDB.getCartItemByOrderID(orderID);
+        this.items = items;
     }
 
-
-    public static Collection<OrderDB> getAllOrders(){
+    protected static Collection<Order> getAllOrders(){
         return OrderDB.getAllOrders();
     }
 
-    public static boolean placeOrder(ArrayList<CartItem<Item>> cartList, User user) throws SQLException {
-        return OrderDB.placeOrder(cartList, user);
+    protected static boolean placeOrder(Cart cart, User user) throws SQLException {
+        Order order = new Order(0,user.getId(),Date.valueOf(LocalDateTime.now().toLocalDate()),"active",cart.getCart());
+        return OrderDB.placeOrder(order, user);
     }
 
-    public static boolean sendOrder(int orderID){
+    public ArrayList<CartItem> getItems() {
+        ArrayList<CartItem> deepCopy = new ArrayList<>();
+        for(CartItem cartItem : items){
+            deepCopy.add(new CartItem(
+                    new Item(
+                            cartItem.getItem().getId(),
+                            cartItem.getItem().getName(),
+                            cartItem.getItem().getPrice(),
+                            cartItem.getItem().getDescription(),
+                            cartItem.getItem().getQuantity(),
+                            cartItem.getItem().getCategory(),
+                            cartItem.getItem().getStatus()),
+                    cartItem.getQuantity()));
+        }
+        return deepCopy;
+    }
+
+    protected static boolean sendOrder(int orderID){
         return OrderDB.sendOrder(orderID);
     }
 
-    public static Order getOrderByID(int orderID){
+    protected static Order getOrderByID(int orderID){
         return OrderDB.getOrderByID(orderID);
     }
 
@@ -61,7 +78,14 @@ public class Order {
 
     public void setStatus(String status) {this.status = status;}
 
-    public ArrayList<CartItem<ItemDB>> getPurchaseItems() {
-        return items;
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderID=" + orderID +
+                ", userID=" + userID +
+                ", date=" + date +
+                ", status='" + status + '\'' +
+                ", items=" + items +
+                '}';
     }
 }

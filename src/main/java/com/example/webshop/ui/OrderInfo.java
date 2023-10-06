@@ -11,9 +11,9 @@ public class OrderInfo {
     private final int userID;
     private final Date date;
     private String status;
-    private final ArrayList<CartItem<ItemInfo>> items;
+    private final ArrayList<CartItem> items;
 
-    public OrderInfo(int orderID, int userID, Date date, String status, ArrayList<CartItem<ItemInfo>> items) {
+    public OrderInfo(int orderID, int userID, Date date, String status, ArrayList<CartItem> items) {
         this.orderID = orderID;
         this.userID = userID;
         this.date = date;
@@ -32,9 +32,7 @@ public class OrderInfo {
         return date;
     }
 
-    public String getStatus() {
-        return status;
-    }
+    public String getStatus() {return status;}
 
-    public ArrayList<CartItem<ItemInfo>> getItems() {return items;}
+    public ArrayList<CartItem> getItems() {return items;}
 }

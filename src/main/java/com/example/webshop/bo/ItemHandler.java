@@ -1,10 +1,8 @@
 package com.example.webshop.bo;
 
-import com.example.webshop.db.ItemDB;
 import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,23 +10,23 @@ import java.util.Collection;
 
 public class ItemHandler {
     public static Collection<ItemInfo> getItems(){
-        Collection<ItemDB> c = Item.searchItems();
+        Collection<Item> c = Item.searchItems();
         ArrayList<ItemInfo> items = new ArrayList<>();
-        for (ItemDB itemDB : c) {
+        for (Item item : c) {
             items.add(new ItemInfo(
-                    itemDB.getName(),
-                    itemDB.getPrice(),
-                    itemDB.getDesc(),
-                    itemDB.getQuantity(),
-                    itemDB.getCategory(),
-                    itemDB.getStatus()
+                    item.getName(),
+                    item.getPrice(),
+                    item.getDesc(),
+                    item.getQuantity(),
+                    item.getCategory(),
+                    item.getStatus()
             ));
         }
         return items;
     }
 
     public static ItemInfo getItemByName(String itemName){
-        ItemDB itemDB = Item.getItemIdByName(itemName);
+        Item itemDB = Item.getItemIdByName(itemName);
         return new ItemInfo(itemDB.getName(), itemDB.getPrice(),itemDB.getDescription(), itemDB.getQuantity(), itemDB.getCategory(), itemDB.getStatus());
     }
 
@@ -46,12 +44,14 @@ public class ItemHandler {
         String status = request.getParameter("status");
         int itemID = Item.getItemIdByName(previousName).getId();
         Item.editItem(new Item(itemID,name,price,desc, quantity,category,status));
-
         return true;
     }
     public static boolean addItem(HttpServletRequest request) throws SQLException {
-        HttpSession session = request.getSession();
-        UserInfo userInfo = (UserInfo) session.getAttribute("user");
+        UserInfo userInfo = (UserInfo) request.getSession().getAttribute("user");
+        User user = User.searchUser(userInfo.getName());
+        if(user == null)
+            return false;
+
         String name = request.getParameter("name");
         String price = request.getParameter("price");
         String quantity = request.getParameter("quantity");
@@ -59,20 +59,12 @@ public class ItemHandler {
         String category = request.getParameter("category");
         String status = request.getParameter("status");
         status = status.toUpperCase();
-        ItemInfo itemInfo = new ItemInfo(name, Integer.parseInt(price),desc,Integer.parseInt(quantity),category, status );
-        User user = User.searchUser(userInfo.getName());
-        if(!Item.isNotNULL(itemInfo))
+
+        Item item = new Item(0, name, Integer.parseInt(price), desc, Integer.parseInt(quantity), category, status);
+        if(!Item.isNotNULL(item))
             return false;
-        if(user == null)
-            return false;
-        return Item.createItem(new Item(
-                    0,
-                    itemInfo.getName(),
-                    itemInfo.getPrice(),
-                    itemInfo.getDescription(),
-                    itemInfo.getQuantity(),
-                    itemInfo.getCategory(),
-                    itemInfo.getStatus()));
+
+        return Item.createItem(item);
     }
 
 }

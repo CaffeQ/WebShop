@@ -1,5 +1,6 @@
 package com.example.webshop;
 
+import com.example.webshop.bo.CartHandler;
 import com.example.webshop.bo.ItemHandler;
 import com.example.webshop.bo.OrderHandler;
 import com.example.webshop.bo.UserHandler;
@@ -19,7 +20,8 @@ public class ControllerServlet extends HttpServlet {
         String action = request.getParameter("action");
         switch (action){
             case "cart":
-                OrderHandler.checkCartEmpty(session);
+                CartHandler.checkCartEmpty(session);
+                CartHandler.getCartList(request);
                 request.getRequestDispatcher("cart.jsp").forward(request,response);
                 break;
 
@@ -85,7 +87,7 @@ public class ControllerServlet extends HttpServlet {
         String action = request.getParameter("action");
         switch(action){
             case "addItemToCart" :
-                OrderHandler.addToCart(request);
+                CartHandler.addToCart(request);
                 request.getRequestDispatcher("cart.jsp").forward(request,response);
                 response.sendRedirect("cart.jsp");
                 break;
@@ -115,7 +117,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
 
             case "placeOrder" :
-                OrderHandler.checkCartEmpty(session);
+                CartHandler.checkCartEmpty(session);
                 try {
                     if(UserHandler.isVerified(session)){
                         OrderHandler.placeOrder(session);
@@ -130,7 +132,7 @@ public class ControllerServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 finally{
-                    session.setAttribute("cart",OrderHandler.createNewCart());
+                    session.setAttribute("cart", CartHandler.createNewCart());
                 }
                 break;
 

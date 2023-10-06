@@ -12,8 +12,8 @@ import java.util.Collection;
 
 public class OrderDB extends Order {
 
-    public OrderDB(int orderID, int userID, Date date, String status) {
-        super(orderID, userID, date, status);
+    public OrderDB(int orderID, int userID, Date date, String status, ArrayList<CartItem> items) {
+        super(orderID, userID, date, status, items);
     }
     
     public static OrderDB getOrderByID(int orderID){
@@ -24,13 +24,16 @@ public class OrderDB extends Order {
             con = DBManager.getConnection();
             PreparedStatement psT_Order = con.prepareStatement("SELECT * FROM T_Order  WHERE orderID = " + orderID);
             rs = psT_Order.executeQuery();
+
+            ArrayList<CartItem> items = PurchaseItemDB.getCartItemByOrderID(orderID);
             
             while(rs.next()){
                 orderDB = new OrderDB(
                         rs.getInt("orderID"),
                         rs.getInt("userID"),
                         rs.getDate("date"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        items
                 );
             }
             
@@ -60,9 +63,9 @@ public class OrderDB extends Order {
     }
 
 
-    public static Collection<OrderDB> getAllOrders(){
+    public static Collection<Order> getAllOrders(){
         ResultSet rs;
-        ArrayList<OrderDB> orders = new ArrayList<>();
+        ArrayList<Order> orders = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
             if(con == null) {
@@ -72,12 +75,14 @@ public class OrderDB extends Order {
             rs = st.executeQuery("SELECT * from T_Order");
 
             while(rs.next()){
+                int orderID = rs.getInt("orderID");
                 orders.add(new
                         OrderDB(
-                        rs.getInt("orderID"),
-                        rs.getInt("userID"),
-                        rs.getDate("date"),
-                        rs.getString("status")
+                            orderID,
+                            rs.getInt("userID"),
+                            rs.getDate("date"),
+                            rs.getString("status"),
+                            PurchaseItemDB.getCartItemByOrderID(orderID)
                 ));
             }
         }
@@ -87,19 +92,19 @@ public class OrderDB extends Order {
         return orders;
     }
 
-    public static boolean placeOrder(ArrayList<CartItem<Item>> cartList, User user) throws SQLException {
+    public static boolean placeOrder(Order order, User user) throws SQLException {
         Connection con = null;
         try {
             con = DBManager.getConnection();
             con.setAutoCommit(false);
 
-            if (!updateInventory(cartList)) {
+            if (!updateInventory(order.getItems())) {
                 throw new SQLException("NOT ENOUGH ITEM IN STOCK");
             }
 
             int newOrderId = createOrder(user);
 
-            insertPurchaseDetails(newOrderId, cartList);
+            insertPurchaseDetails(newOrderId, order);
 
             con.commit();
         } catch (SQLException e) {
@@ -116,14 +121,13 @@ public class OrderDB extends Order {
         return true;
     }
 
-    public static boolean updateInventory(ArrayList<CartItem<Item>> cartList) {
+    public static boolean updateInventory(ArrayList<CartItem> cartList) {
         try {
             Connection con = DBManager.getConnection();
             Item item;
             PreparedStatement psItem = con.prepareStatement("UPDATE T_Item SET quantity = ?, status  = ? WHERE itemID = ?");
 
-            for (CartItem<Item> cartItem : cartList) {
-                //item = ItemDB.getItemIdByName(cartItem.getItem().getName());
+            for (CartItem cartItem : cartList) {
                 item = ItemDB.getItemByName(cartItem.getItem().getName());
                 int difference = item.getQuantity() - cartItem.getQuantity();
                 if (difference < 0) return false;
@@ -168,12 +172,12 @@ public class OrderDB extends Order {
         }
     }
 
-    public static void insertPurchaseDetails(int newOrderId, ArrayList<CartItem<Item>> cartList) {
+    public static void insertPurchaseDetails(int newOrderId, Order order) {
         try {
             Connection con = DBManager.getConnection();
             PreparedStatement psT_PurchaseItems = con.prepareStatement("INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES (?, ?, ?)");
 
-            for (CartItem<Item> cartItem : cartList) {
+            for (CartItem cartItem : order.getItems()) {
                 psT_PurchaseItems.setInt(1, newOrderId);
                 psT_PurchaseItems.setInt(2, cartItem.getItem().getId());
                 psT_PurchaseItems.setInt(3, cartItem.getQuantity());
@@ -185,6 +189,5 @@ public class OrderDB extends Order {
             e.printStackTrace();
         }
     }
-
 
 }
