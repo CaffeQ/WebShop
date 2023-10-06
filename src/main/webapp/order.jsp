@@ -12,30 +12,68 @@
 <html>
 <head>
     <title>Order</title>
-    <h1>Order</h1>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .order {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .item-info {
+            margin-bottom: 5px;
+        }
+
+        .btn-send-order {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-send-order:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<%
-    ArrayList<OrderInfo> orders = (ArrayList<OrderInfo>) request.getSession().getAttribute("order");
-    for(OrderInfo order : orders){
-%>
-<p>
-    <form action="controller-servlet" method="post">
-        <%= order.getOrderID() %> <%= order.getUserID() %> <%= order.getDate() %> <%= order.getStatus()%>
-        <input type="hidden" name="action" value="sendOrder">
-        <input type="hidden" name="sendOrderID" value=<%=order.getOrderID()%>>
-        <input type="submit" value="Send">
-    </form>
-    <% for (CartItem<ItemInfo> item : order.getItems()){%>
-        <p>
-        <%= item.getItem().getName() %> <%= item.getItem().getPrice() %> <%= item.getItem().getDescription() %><%= item.getItem().getCategory() %>  <%= item.getQuantity()%>
-        </p>
+<div class="container">
+    <h1>Your Orders</h1>
+
     <%
-    }
+        ArrayList<OrderInfo> orders = (ArrayList<OrderInfo>) request.getSession().getAttribute("order");
+        for (OrderInfo order : orders) {
     %>
-    </p>
-<%
-    }
-%>
+    <div class="order">
+        <form action="controller-servlet" method="post">
+            <%= order.getOrderID() %> - <%= order.getUserID() %> - <%= order.getDate() %> - <%= order.getStatus()%>
+            <input type="hidden" name="action" value="sendOrder">
+            <input type="hidden" name="sendOrderID" value=<%= order.getOrderID()%>>
+            <input type="submit" class="btn-send-order" value="Send">
+        </form>
+        <% for (CartItem<ItemInfo> item : order.getItems()) { %>
+        <div class="item-info">
+            <%= item.getItem().getName() %> - <%= item.getItem().getDescription() %> - Price: <%= item.getItem().getPrice() %> - Category: <%= item.getItem().getCategory() %> - Quantity: <%= item.getQuantity() %>
+        </div>
+        <%
+            }
+        %>
+    </div>
+    <%
+        }
+    %>
+</div>
 </body>
 </html>
