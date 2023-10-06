@@ -123,7 +123,8 @@ public class OrderDB extends Order {
             PreparedStatement psItem = con.prepareStatement("UPDATE T_Item SET quantity = ?, status  = ? WHERE itemID = ?");
 
             for (CartItem<Item> cartItem : cartList) {
-                item = ItemDB.getItemIdByName(cartItem.getItem().getName());
+                //item = ItemDB.getItemIdByName(cartItem.getItem().getName());
+                item = ItemDB.getItemByName(cartItem.getItem().getName());
                 int difference = item.getQuantity() - cartItem.getQuantity();
                 if (difference < 0) return false;
 

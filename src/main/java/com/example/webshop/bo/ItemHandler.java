@@ -32,7 +32,7 @@ public class ItemHandler {
         return new ItemInfo(itemDB.getName(), itemDB.getPrice(),itemDB.getDescription(), itemDB.getQuantity(), itemDB.getCategory(), itemDB.getStatus());
     }
 
-    public static ItemInfo itemToItemInfo(Item item){
+    protected static ItemInfo itemToItemInfo(Item item){
         return new ItemInfo(item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(), item.getStatus());
     }
 
@@ -44,9 +44,8 @@ public class ItemHandler {
         String desc = request.getParameter("description");
         String category = request.getParameter("category");
         String status = request.getParameter("status");
-        Item.editItem(new ItemInfo(name,price,desc, quantity,category,status), previousName);
-
-
+        int itemID = Item.getItemIdByName(previousName).getId();
+        Item.editItem(new Item(itemID,name,price,desc, quantity,category,status));
 
         return true;
     }
@@ -66,7 +65,8 @@ public class ItemHandler {
             return false;
         if(user == null)
             return false;
-        return Item.createItem(new ItemInfo(
+        return Item.createItem(new Item(
+                    0,
                     itemInfo.getName(),
                     itemInfo.getPrice(),
                     itemInfo.getDescription(),

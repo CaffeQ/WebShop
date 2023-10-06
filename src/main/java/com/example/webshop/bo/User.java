@@ -19,7 +19,7 @@ public class User {
     }
 
 
-    public static User searchUser(String userName){
+    protected static User searchUser(String userName){
         return UserDB.searchUser(userName);
     }
 

@@ -26,22 +26,19 @@ public class Item{
         this.status = status;
     }
 
-    public static Collection<ItemDB> searchItems(){ //TODO! <--- Add correct parameter here
+    protected static Collection<ItemDB> searchItems(){ //TODO! <--- Add correct parameter here
         return ItemDB.searchItems();
     }
-    public static ItemDB getItemIdByName(String name){return ItemDB.getItemByName(name);}
+    protected static ItemDB getItemIdByName(String name){return ItemDB.getItemByName(name);}
 
-    public static boolean createItem(ItemInfo item) throws SQLException {
-        return ItemDB.createItem( new Item(0, item.getName(), item.getPrice(),
-                item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus()) );
+    protected static boolean createItem(Item item) throws SQLException {
+        return ItemDB.createItem( item );
     }
-    public static boolean editItem(ItemInfo item, String previousName){
-        int itemID = Item.getItemIdByName(previousName).getId();
-        return ItemDB.editItem( new Item(itemID, item.getName(), item.getPrice(),
-                item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus()) );
+    protected static boolean editItem(Item item){
+        return ItemDB.editItem( item );
     }
 
-    public static boolean isNotNULL(ItemInfo item){
+    protected static boolean isNotNULL(ItemInfo item){
         if(item == null)
             return false;
         return item.getName() != null || item.getName().isEmpty() ||
