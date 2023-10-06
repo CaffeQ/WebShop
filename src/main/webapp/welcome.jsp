@@ -32,7 +32,7 @@
         if(userInfo.getRole().equals("warehouse_staff"))
             role = " Warehouse staff";
         else if(userInfo.getRole().equals("admin"))
-            role = " Admin";
+            role = "n Admin";
     }
 %>
 <h1><%= "Welcome " + name + " to the Silk Road!" %></h1>
