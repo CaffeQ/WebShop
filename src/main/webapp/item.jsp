@@ -45,6 +45,11 @@
         <input type="hidden" name="action" value="processAdd">
     </div>
 </form>
+<% if (request.getAttribute("errorMessage") != null) { %>
+<div style="color: red;">
+    <%= request.getAttribute("errorMessage") %>
+</div>
+<% } %>
 <a href="controller-servlet?action=welcome">Welcome</a>
 </body>
 </html>

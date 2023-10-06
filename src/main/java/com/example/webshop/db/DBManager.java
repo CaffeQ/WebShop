@@ -2,9 +2,11 @@ package com.example.webshop.db;
 
 import com.example.webshop.Secret;
 
+import javax.annotation.processing.ProcessingEnvironment;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DBManager{
     private static Connection con;
@@ -17,7 +19,7 @@ public class DBManager{
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/webshop";
 
-            newCon = DriverManager.getConnection(url, "root", Secret.getPassword()); // <-- Change login here
+            newCon = DriverManager.getConnection(url, "root", System.getenv("DB_PASSWORD")); // <-- Change login here
 
         }
         catch (SQLException e) {

@@ -42,6 +42,7 @@ public class ControllerServlet extends HttpServlet {
                 if(UserHandler.isUserAdmin(session)){
                     String name = request.getParameter("editName");
                     session.setAttribute("item",ItemHandler.getItemByName(name));
+                    request.setAttribute("errorMessage","");
                     request.getRequestDispatcher("edit.jsp").forward(request,response);
                     response.sendRedirect("edit.jsp");
                 }
@@ -106,7 +107,12 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "processEdit":
                 if(UserHandler.isUserAdmin(request.getSession())){
-                    ItemHandler.editItem(request);
+                    if(!ItemHandler.editItem(request)){
+                        System.out.println("Could not edit item");
+                        request.setAttribute("errorMessage","Invalid item parameters");
+                    }else {
+                        request.setAttribute("errorMessage","");
+                    }
                     request.getRequestDispatcher("edit.jsp").forward(request,response);
                     response.sendRedirect("edit.jsp");
                 }else{
@@ -139,11 +145,17 @@ public class ControllerServlet extends HttpServlet {
             case "processAdd":
                 if(UserHandler.isUserAdmin(request.getSession())){
                     try {
-                        ItemHandler.addItem(request);
+                        if(!ItemHandler.addItem(request)){
+                            System.out.println("Could not add item");
+                            request.setAttribute("errorMessage","Invalid item parameters");
+                            request.getRequestDispatcher("item.jsp").forward(request,response);
+                            response.sendRedirect("item.jsp");
+                        }
                     }
                     catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
+                    request.setAttribute("errorMessage","");
                     request.getRequestDispatcher("item.jsp").forward(request,response);
                     response.sendRedirect("item.jsp");
                 }else{

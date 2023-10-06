@@ -58,13 +58,30 @@ public class ItemHandler {
         String desc = request.getParameter("description");
         String category = request.getParameter("category");
         String status = request.getParameter("status");
+        if(!checkItemParameters(name,price,quantity,desc,category,status))
+            return false;
         status = status.toUpperCase();
 
         Item item = new Item(0, name, Integer.parseInt(price), desc, Integer.parseInt(quantity), category, status);
-        if(!Item.isNotNULL(item))
-            return false;
 
         return Item.createItem(item);
+    }
+    private static boolean checkItemParameters(String name, String price, String quantity, String desc, String category, String status){
+        if(name == null || price == null || quantity == null || desc == null || category == null || status == null)
+          return false;
+        if(name.isEmpty()  || price.isEmpty()  || quantity.isEmpty() || desc.isEmpty() || category.isEmpty() || status.isEmpty())
+            return false;
+        return Integer.parseInt(quantity) >= 0 && Integer.parseInt(price) > 0;
+    }
+    protected static boolean isNotNULL(ItemInfo item){
+        if(item == null)
+            return false;
+        return item.getName() != null && !item.getName().isEmpty() &&
+                item.getDescription() != null &&
+                item.getStatus() != null &&
+                item.getQuantity() >= 0 &&
+                item.getCategory() != null &&
+                item.getPrice() > 0;
     }
 
 }
