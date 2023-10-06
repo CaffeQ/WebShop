@@ -39,13 +39,17 @@ public class ItemHandler {
     public static boolean editItem(HttpServletRequest request){
         String previousName = request.getParameter("previousName");
         String name = request.getParameter("name");
-        int price = Integer.parseInt(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        if(name.isEmpty() || name.equals(" "))
+            return false;
+        String quantity = request.getParameter("quantity");
         String desc = request.getParameter("description");
         String category = request.getParameter("category");
         String status = request.getParameter("status");
+        String price = request.getParameter("price");
+        if(!checkItemParameters(name,price,quantity,desc,category,status))
+            return false;
         int itemID = Item.getItemIdByName(previousName).getId();
-        Item.editItem(new Item(itemID,name,price,desc, quantity,category,status));
+        Item.editItem(new Item(itemID,name,Integer.parseInt(price),desc, Integer.parseInt(quantity),category,status));
 
         return true;
     }
@@ -58,10 +62,12 @@ public class ItemHandler {
         String desc = request.getParameter("description");
         String category = request.getParameter("category");
         String status = request.getParameter("status");
+        if(!checkItemParameters(name,price,quantity,desc,category,status))
+            return false;
         status = status.toUpperCase();
         ItemInfo itemInfo = new ItemInfo(name, Integer.parseInt(price),desc,Integer.parseInt(quantity),category, status );
         User user = User.searchUser(userInfo.getName());
-        if(!Item.isNotNULL(itemInfo))
+        if(!isNotNULL(itemInfo))
             return false;
         if(user == null)
             return false;
@@ -73,6 +79,22 @@ public class ItemHandler {
                     itemInfo.getQuantity(),
                     itemInfo.getCategory(),
                     itemInfo.getStatus()));
+    }
+    private static boolean checkItemParameters(String name, String price, String quantity, String desc, String category, String status){
+        if(name == null || price == null || quantity == null || desc == null || category == null || status == null)
+          return false;
+        if(name.isEmpty()  || price.isEmpty()  || quantity.isEmpty() || desc.isEmpty() || category.isEmpty() || status.isEmpty())
+            return false;
+        return Integer.parseInt(quantity) >= 0 && Integer.parseInt(price) > 0;
+    }
+    protected static boolean isNotNULL(ItemInfo item){
+        if(item == null)
+            return false;
+        return item.getName() != null && item.getName().isEmpty() &&
+                item.getDescription() != null &&
+                item.getStatus() != null &&
+                item.getQuantity() >= 0 &&
+                item.getCategory() != null;
     }
 
 }

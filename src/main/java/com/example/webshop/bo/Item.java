@@ -38,14 +38,8 @@ public class Item{
         return ItemDB.editItem( item );
     }
 
-    protected static boolean isNotNULL(ItemInfo item){
-        if(item == null)
-            return false;
-        return item.getName() != null || item.getName().isEmpty() ||
-                item.getDescription() != null ||
-                item.getStatus() != null;
 
-    }
+
 
     public void setPrice(int price) {
         this.price = price;

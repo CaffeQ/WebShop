@@ -30,7 +30,7 @@
         <input type="text" id="quantity" name="quantity" value="<%=item.getQuantity()%>">
     </div>
     <div>
-        <label for="category">Edit Quantity#</label>
+        <label for="category">Edit category</label>
         <input type="text" id="category" name="category" value="<%=item.getCategory()%>">
     </div>
     <div>
@@ -45,6 +45,11 @@
         <input type="hidden" name="action" value="processEdit">
     </div>
 </form>
+<% if (request.getAttribute("errorMessage") != null) { %>
+<div style="color: red;">
+    <%= request.getAttribute("errorMessage") %>
+</div>
+<% } %>
 <a href="controller-servlet?action=welcome">Welcome</a>
 </body>
 </html>
