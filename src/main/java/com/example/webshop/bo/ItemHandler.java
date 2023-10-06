@@ -1,13 +1,12 @@
 package com.example.webshop.bo;
 
-import com.example.webshop.bo.Item;
-import com.example.webshop.bo.User;
 import com.example.webshop.db.ItemDB;
 import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -51,7 +50,7 @@ public class ItemHandler {
 
         return true;
     }
-    public static boolean addItem(HttpServletRequest request){
+    public static boolean addItem(HttpServletRequest request) throws SQLException {
         HttpSession session = request.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         String name = request.getParameter("name");
@@ -62,7 +61,6 @@ public class ItemHandler {
         String status = request.getParameter("status");
         status = status.toUpperCase();
         ItemInfo itemInfo = new ItemInfo(name, Integer.parseInt(price),desc,Integer.parseInt(quantity),category, status );
-        System.out.println("Adding item: " + itemInfo.toString());
         User user = User.searchUser(userInfo.getName());
         if(!Item.isNotNULL(itemInfo))
             return false;

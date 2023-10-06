@@ -58,46 +58,47 @@ public class ItemDB extends Item {
         return true;
     }
 
-    public static boolean createItem(Item item){
-        ItemDB itemDB = new ItemDB(item.getId(), item.getName(), item.getPrice(),
-                item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus());
+    public static boolean createItem(Item item) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
         try{
-            System.out.println("DB item: "+ itemDB.toString());
-            Connection con = DBManager.getConnection();
+            con = DBManager.getConnection();
+            if(con == null) throw new SQLException("No connection");
+
             con.setAutoCommit(false);
-            PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO T_Item (name, price, description, quantity, category,status) VALUES " +
-                            "(?,?,?,?,?,?)");
-            ps.setString(1,itemDB.getName());
-            ps.setInt(2,itemDB.getPrice());
-            ps.setString(3,itemDB.getDescription());
-            ps.setInt(4,itemDB.getQuantity());
-            ps.setString(5,itemDB.getCategory());
-            ps.setString(6,itemDB.getStatus());
-            int rowsAffected = ps.executeUpdate();
-            System.out.println("Rows affected "+rowsAffected);
-            if (rowsAffected > 0) {
-                System.out.println("Item added successfully");
-                con.commit();
-                return true;
-            } else {
-                System.out.println("Failed to add item");
-                con.rollback();
-                return false;
-            }
-        }catch (SQLException e){
+            ps = con.prepareStatement("INSERT INTO T_Item (name, price, description, quantity, category,status) VALUES (?,?,?,?,?,?)");
+            ps.setString(1,item.getName());
+            ps.setInt(2,item.getPrice());
+            ps.setString(3,item.getDescription());
+            ps.setInt(4,item.getQuantity());
+            ps.setString(5,item.getCategory());
+            ps.setString(6,item.getStatus());
+            ps.executeUpdate();
+
+            con.commit();
+
+        }
+        catch (SQLException e){
+            con.rollback();
             e.printStackTrace();
             return false;
         }
+        finally {
+            con.setAutoCommit(true);
+        }
+        return true;
     }
 
     public static ItemDB getItemByName(String itemName){
         ResultSet rs;
+        Connection con;
+        PreparedStatement ps;
         ItemDB item = null;
         try {
-            Connection con = DBManager.getConnection();
-            Statement st = con.createStatement();
-            rs = st.executeQuery("SELECT * from T_Item WHERE T_Item.name = " +"'" + itemName + "'");
+            con = DBManager.getConnection();
+            ps = con.prepareStatement("SELECT * from T_Item WHERE T_Item.name = ?");
+            ps.setString(1,itemName);
+            rs = ps.executeQuery();
 
             while(rs.next()) {
                 item = new ItemDB(

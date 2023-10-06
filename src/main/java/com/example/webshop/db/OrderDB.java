@@ -88,46 +88,91 @@ public class OrderDB extends Order {
     }
 
     public static boolean placeOrder(ArrayList<CartItem<Item>> cartList, User user) throws SQLException {
-        if(cartList == null) return false;
         Connection con = null;
-
         try {
             con = DBManager.getConnection();
             con.setAutoCommit(false);
 
+            if (!updateInventory(cartList)) {
+                throw new SQLException("NOT ENOUGH ITEM IN STOCK");
+            }
+
+            int newOrderId = createOrder(user);
+
+            insertPurchaseDetails(newOrderId, cartList);
+
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if (con != null) {
+                con.rollback();
+            }
+            return false;
+        } finally {
+            if (con != null) {
+                con.setAutoCommit(true);
+            }
+        }
+        return true;
+    }
+
+    public static boolean updateInventory(ArrayList<CartItem<Item>> cartList) {
+        try {
+            Connection con = DBManager.getConnection();
             Item item;
-            for(CartItem<Item> cartItem : cartList){
+            PreparedStatement psItem = con.prepareStatement("UPDATE T_Item SET quantity = ?, status  = ? WHERE itemID = ?");
+
+            for (CartItem<Item> cartItem : cartList) {
                 item = ItemDB.getItemIdByName(cartItem.getItem().getName());
                 int difference = item.getQuantity() - cartItem.getQuantity();
-                if(difference < 0) throw new SQLException("NOT ENOUGH ITEM IN STOCK");
-                if(difference==0) cartItem.getItem().setStatus("OUT_OF_STOCK");
+                if (difference < 0) return false;
+
+                if (difference == 0) cartItem.getItem().setStatus("OUT_OF_STOCK");
+
                 cartItem.getItem().setQuantity(difference);
-            }
-
-            PreparedStatement psT_Order = con.prepareStatement("INSERT INTO T_Order (userID, date, status) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            psT_Order.setInt(1, user.getId());
-            psT_Order.setDate(2, java.sql.Date.valueOf(LocalDateTime.now().toLocalDate()));
-            psT_Order.setString(3, "active");
-
-
-            int affectedRows = psT_Order.executeUpdate();
-            int newOrderId = 0;
-            ResultSet generatedKeys = psT_Order.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                newOrderId = generatedKeys.getInt(1); // or generatedKeys.getInt("orderID");
-            }
-
-            PreparedStatement psItem = con.prepareStatement("UPDATE T_Item SET quantity = ?, status  = ? WHERE itemID = ?");
-            for(CartItem<Item> i : cartList){
-                psItem.setInt(1,i.getItem().getQuantity());
-                psItem.setString(2,i.getItem().getStatus());
-                psItem.setInt(3, i.getItem().getId());
+                psItem.setInt(1, cartItem.getItem().getQuantity());
+                psItem.setString(2, cartItem.getItem().getStatus());
+                psItem.setInt(3, cartItem.getItem().getId());
                 psItem.addBatch();
             }
             psItem.executeBatch();
 
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public static int createOrder(User user) {
+        try {
+            Connection con = DBManager.getConnection();
+            PreparedStatement psT_Order = con.prepareStatement("INSERT INTO T_Order (userID, date, status) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+            psT_Order.setInt(1, user.getId());
+            psT_Order.setDate(2, java.sql.Date.valueOf(LocalDateTime.now().toLocalDate()));
+            psT_Order.setString(3, "active");
+            psT_Order.executeUpdate();
+
+            ResultSet generatedKeys = psT_Order.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
+
+            return 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public static void insertPurchaseDetails(int newOrderId, ArrayList<CartItem<Item>> cartList) {
+        try {
+            Connection con = DBManager.getConnection();
             PreparedStatement psT_PurchaseItems = con.prepareStatement("INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES (?, ?, ?)");
-            for(CartItem<Item> cartItem : cartList) {
+
+            for (CartItem<Item> cartItem : cartList) {
                 psT_PurchaseItems.setInt(1, newOrderId);
                 psT_PurchaseItems.setInt(2, cartItem.getItem().getId());
                 psT_PurchaseItems.setInt(3, cartItem.getQuantity());
@@ -135,19 +180,10 @@ public class OrderDB extends Order {
             }
             psT_PurchaseItems.executeBatch();
 
-            con.commit();
-
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            con.rollback();
-            return false;
         }
-        finally{
-            assert con != null;
-            con.setAutoCommit(true);
-
-        }
-        return true;
     }
+
+
 }

@@ -3,6 +3,7 @@ package com.example.webshop.bo;
 import com.example.webshop.db.ItemDB;
 import com.example.webshop.ui.ItemInfo;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class Item{
@@ -30,7 +31,7 @@ public class Item{
     }
     public static ItemDB getItemIdByName(String name){return ItemDB.getItemByName(name);}
 
-    public static boolean createItem(ItemInfo item){
+    public static boolean createItem(ItemInfo item) throws SQLException {
         return ItemDB.createItem( new Item(0, item.getName(), item.getPrice(),
                 item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus()) );
     }

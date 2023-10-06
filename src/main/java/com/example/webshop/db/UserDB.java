@@ -13,8 +13,8 @@ public class UserDB extends User {
         UserDB userDB = null;
         try{
             Connection con = DBManager.getConnection();
-            System.out.println("UserDB name = "+userName);
-            PreparedStatement ps = con.prepareStatement("SELECT * from T_User where T_User.name = "+ "'"+ userName +"'");
+            PreparedStatement ps = con.prepareStatement("SELECT * from T_User where T_User.name = ?");
+            ps.setString(1,userName);
             rs = ps.executeQuery();
 
             if (rs.next()){
@@ -26,7 +26,6 @@ public class UserDB extends User {
                         rs.getString("token"));
             }
         }catch (SQLException e){
-            System.out.println("User not found");
             e.printStackTrace();
         }
         return userDB;
@@ -35,4 +34,6 @@ public class UserDB extends User {
     public UserDB(int id, String name, String password, String role, String address) {
         super(id, name, password, role, address);
     }
+
+
 }

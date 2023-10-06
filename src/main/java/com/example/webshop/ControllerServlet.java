@@ -83,7 +83,6 @@ public class ControllerServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        System.out.println("action: " + action);
         switch(action){
             case "addItemToCart" :
                 OrderHandler.addToCart(request);
@@ -105,7 +104,6 @@ public class ControllerServlet extends HttpServlet {
                 break;
             case "processEdit":
                 if(UserHandler.isUserAdmin(request.getSession())){
-                    System.out.println("Inside");
                     ItemHandler.editItem(request);
                     request.getRequestDispatcher("edit.jsp").forward(request,response);
                     response.sendRedirect("edit.jsp");
@@ -138,7 +136,12 @@ public class ControllerServlet extends HttpServlet {
 
             case "processAdd":
                 if(UserHandler.isUserAdmin(request.getSession())){
-                    ItemHandler.addItem(request);
+                    try {
+                        ItemHandler.addItem(request);
+                    }
+                    catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                     request.getRequestDispatcher("item.jsp").forward(request,response);
                     response.sendRedirect("item.jsp");
                 }else{

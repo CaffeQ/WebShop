@@ -1,7 +1,5 @@
 package com.example.webshop.bo;
 
-import com.example.webshop.bo.Roles;
-import com.example.webshop.bo.User;
 import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

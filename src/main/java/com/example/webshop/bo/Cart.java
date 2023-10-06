@@ -21,17 +21,19 @@ public class Cart{
         return copy;
     }
 
-    public boolean add(String itemName, String quantity) {//TODO: Adding multiple of same item is strange
+    public boolean add(String itemName, String quantity) {
         Item item = Item.getItemIdByName(itemName);
         if(item == null) return false;
         if(item.getQuantity()<=0 || item.getQuantity() < Integer.parseInt(quantity)) return false;
 
+        boolean inCart = false;
         for (CartItem<Item> itemCartItem : cartList) {
 
             if (itemCartItem.getItem().getName().compareTo(itemName) == 0) {
                 int nrOfItemInStock = item.getQuantity();
                 int nrOfItemInCart = itemCartItem.getQuantity();
                 int nrOfItemRequested = Integer.parseInt(quantity);
+                inCart = true;
 
                 if (nrOfItemInStock < nrOfItemInCart + nrOfItemRequested) {
                     return false;
@@ -40,7 +42,11 @@ public class Cart{
                 break;
             }
         }
-        cartList.add(new CartItem<>(item,Integer.parseInt(quantity)));
+
+        if(!inCart){
+            cartList.add(new CartItem<>(item,Integer.parseInt(quantity)));
+        }
+
         return true;
     }
 
