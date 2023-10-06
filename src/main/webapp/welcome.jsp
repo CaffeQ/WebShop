@@ -3,24 +3,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WebShop</title>
+    <title>WebShop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            margin-right: 10px;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<h1>
-  <%  UserInfo userInfo = (UserInfo) session.getAttribute("user");
-      String name = "";
-      String role = " Customer";
-      if(userInfo!=null) {
-          name = userInfo.getName();
-          if(userInfo.getRole().equals( "warehouse_staff" ))
-              role = " Warehouse staff";
-          else if(userInfo.getRole().equals( "admin" ))
-              role = "n Admin";
-      }
-  %>
-</h1>
-<h1><%= "Welcome "+ name + " to the silk road!" %></h1>
-<h1><%= "You are a"+ role + "!" %></h1>
+<%
+    UserInfo userInfo = (UserInfo) session.getAttribute("user");
+    String name = "";
+    String role = " Customer";
+    if(userInfo != null) {
+        name = userInfo.getName();
+        if(userInfo.getRole().equals("warehouse_staff"))
+            role = " Warehouse staff";
+        else if(userInfo.getRole().equals("admin"))
+            role = " Admin";
+    }
+%>
+<h1><%= "Welcome " + name + " to the Silk Road!" %></h1>
+<h1><%= "You are a" + role + "!" %></h1>
 <br/>
 <a href="controller-servlet?action=welcome">Welcome</a>
 <a href="controller-servlet?action=login">Login</a>
