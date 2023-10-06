@@ -8,48 +8,109 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add item page</title>
+    <title>Add Item</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 300px;
+            margin: auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="radio"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .radio-label {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-<h1>Add items</h1>
-<form action ="controller-servlet" method="post">
-    <div>
-        <label for="name">Item name</label>
-        <input type="text" id="name" name="name">
+<div class="container">
+    <h1>Add Items</h1>
+    <form action="controller-servlet" method="post">
+        <div class="form-group">
+            <label for="name">Item Name</label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="price">Price $</label>
+            <input type="text" id="price" name="price">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description">
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="text" id="quantity" name="quantity">
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" id="category" name="category">
+        </div>
+        <div class="form-group">
+            <label>Status:</label>
+            <div class="radio-label">
+                <input type="radio" id="in_stock" name="status" value="in_stock">
+                <label for="in_stock">In stock</label>
+            </div>
+            <div class="radio-label">
+                <input type="radio" id="out_of_stock" name="status" value="out_of_stock">
+                <label for="out_of_stock">Out of stock</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit">
+            <input type="hidden" name="action" value="processAdd">
+        </div>
+    </form>
+    <% if (request.getAttribute("errorMessage") != null) { %>
+    <div class="error-message">
+        <%= request.getAttribute("errorMessage") %>
     </div>
-    <div>
-        <label for="price">Price $</label>
-        <input type="text" id="price" name="price">
-    </div>
-    <div>
-        <label for="description">Description</label>
-        <input type="text" id="description" name="description">
-    </div>
-    <div>
-        <label for="quantity">Quantity#</label>
-        <input type="text" id="quantity" name="quantity">
-    </div>
-    <div>
-        <label for="category">Category</label>
-        <input type="text" id="category" name="category">
-    </div>
-    <div>
-        <label>Status:</label><br>
-        <input type="radio" id="in_stock" name="status" value="in_stock">
-        <label for="in_stock">In stock</label><br>
-        <input type="radio" id="out_of_stock" name="status" value="out_of_stock">
-        <label for="out_of_stock">Out of stock</label>
-    </div>
-    <div>
-        <input type ="submit" value="submit">
-        <input type="hidden" name="action" value="processAdd">
-    </div>
-</form>
-<% if (request.getAttribute("errorMessage") != null) { %>
-<div style="color: red;">
-    <%= request.getAttribute("errorMessage") %>
+    <% } %>
+    <a href="controller-servlet?action=welcome">Welcome</a>
 </div>
-<% } %>
-<a href="controller-servlet?action=welcome">Welcome</a>
 </body>
 </html>
