@@ -76,7 +76,7 @@
         <form action="controller-servlet" method="get" class="edit-form">
             <input type="hidden" name="action" value="edit">
             <input type="hidden" name="editName" value="<%= item.getName() %>">
-            <input type="submit" value="Edit" class="btn">
+            <a href="controller-servlet?action=edit&editName=<%= item.getName() %>" class="btn">Edit</a>
         </form>
     </form>
     <%
