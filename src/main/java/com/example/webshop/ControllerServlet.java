@@ -11,9 +11,21 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Handles the main routing for the web application.
+ * Forwards requests to the appropriate views (JSP files) and interacts with the BO layer.
+ */
 @WebServlet(name = "controllerServlet", value = "/controller-servlet")
 public class ControllerServlet extends HttpServlet {
 
+    /**
+     * Handles GET requests and routes them to the appropriate action.
+     *
+     * @param request The HttpServletRequest object containing the client's request.
+     * @param response The HttpServletResponse object for sending responses back to the client.
+     * @throws IOException If an I/O error occurs.
+     * @throws ServletException If the request cannot be handled.
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         HttpSession session = request.getSession();
@@ -70,8 +82,6 @@ public class ControllerServlet extends HttpServlet {
                         orderFilter = "all";
                     }
 
-                    System.out.println(orderFilter);
-
                     if(orderFilter.equals("all")){
                         request.getSession().setAttribute("order", OrderHandler.getAll());
                         request.getRequestDispatcher("order.jsp").forward(request,response);
@@ -104,6 +114,14 @@ public class ControllerServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Handles POST requests and routes them to the appropriate action.
+     *
+     * @param request The HttpServletRequest object containing the client's request.
+     * @param response The HttpServletResponse object for sending responses back to the client.
+     * @throws IOException If an I/O error occurs.
+     * @throws ServletException If the request cannot be handled.
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         HttpSession session = request.getSession();

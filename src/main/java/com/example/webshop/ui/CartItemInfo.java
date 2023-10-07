@@ -1,12 +1,19 @@
 package com.example.webshop.ui;
 
-import com.example.webshop.bo.Item;
-
+/**
+ * Represents an item in the cart, along with its quantity, for the UI layer.
+ */
 public class CartItemInfo {
 
     private final ItemInfo item;
     private int quantity;
 
+    /**
+     * Constructs a new CartItemInfo object.
+     *
+     * @param item The item information.
+     * @param quantity The quantity of the item in the cart.
+     */
     public CartItemInfo(ItemInfo item, int quantity) {
         this.item = item;
         this.quantity = quantity;

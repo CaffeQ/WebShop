@@ -5,8 +5,22 @@ import com.example.webshop.bo.Item;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Manages database operations related to items in the webshop system.
+ * Extends the Item class to provide additional database functionalities.
+ *
+ * @author Tim Johansson
+ * @version 1.0
+ * @since 2023-10-07
+ */
 public class ItemDB extends Item {
 
+    /**
+     * Marks an item as inactive in the database.
+     *
+     * @param item Item object to be marked as inactive.
+     * @return boolean True if the operation is successful, otherwise false.
+     */
     public static boolean removeItem(Item item) {
         try{
             Connection con = DBManager.getConnection();
@@ -24,8 +38,11 @@ public class ItemDB extends Item {
         }
     }
 
-
-
+    /**
+     * Fetches all active items from the database.
+     *
+     * @return ArrayList<Item> List of active Item objects.
+     */
     public static ArrayList<Item> searchItems(){
         ResultSet rs;
         ArrayList<Item> items = new ArrayList<>();
@@ -54,6 +71,12 @@ public class ItemDB extends Item {
         return items;
     }
 
+    /**
+     * Updates an existing item's details in the database.
+     *
+     * @param item Item object containing the updated details.
+     * @return boolean True if the update is successful, otherwise false.
+     */
     public static boolean editItem(Item item){
         Item itemDB = new ItemDB(item.getId(), item.getName(), item.getPrice(), item.getDescription(), item.getQuantity(), item.getCategory(),item.getStatus(), item.isActive());
         try{
@@ -77,6 +100,13 @@ public class ItemDB extends Item {
         return true;
     }
 
+    /**
+     * Inserts a new item into the database.
+     *
+     * @param item Item object to be inserted.
+     * @return boolean True if the insertion is successful, otherwise false.
+     * @throws SQLException If a database error occurs.
+     */
     public static boolean createItem(Item item) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
@@ -108,6 +138,12 @@ public class ItemDB extends Item {
         return true;
     }
 
+    /**
+     * Retrieves an item by its name from the database.
+     *
+     * @param itemName Name of the item to be retrieved.
+     * @return Item The Item object or null if not found.
+     */
     public static Item getItemByName(String itemName){
         ResultSet rs;
         Connection con;
@@ -137,6 +173,12 @@ public class ItemDB extends Item {
         return item;
     }
 
+    /**
+     * Retrieves items associated with a given order ID.
+     *
+     * @param orderID The ID of the order.
+     * @return ArrayList<ItemDB> List of ItemDB objects associated with the order.
+     */
     public static ArrayList<ItemDB> getItemsIdByOrderID(int orderID){
         ResultSet rs;
         ArrayList<ItemDB> items = new ArrayList<>();

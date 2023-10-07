@@ -1,5 +1,8 @@
 package com.example.webshop.ui;
 
+/**
+ * Represents information about an item for the UI layer.
+ */
 public class ItemInfo {
 
     private final String name;
@@ -9,6 +12,16 @@ public class ItemInfo {
     private final String category;
     private final String status;
 
+    /**
+     * Constructs a new ItemInfo object.
+     *
+     * @param name The name of the item.
+     * @param price The price of the item.
+     * @param description The description of the item.
+     * @param quantity The available quantity of the item.
+     * @param category The category of the item.
+     * @param status The status of the item.
+     */
     public ItemInfo(String name, int price, String description, int quantity, String category, String status) {
         this.name = name;
         this.price = price;

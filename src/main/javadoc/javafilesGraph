@@ -1,0 +1,1576 @@
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:demostyle2="http://www.yworks.com/yFilesHTML/demos/FlatDemoStyle/2.0" xmlns:demostyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoStyle/1.0" xmlns:icon-style="http://www.yworks.com/yed-live/icon-style/1.0" xmlns:bpmn="http://www.yworks.com/xml/yfiles-bpmn/2.0" xmlns:demotablestyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoTableStyle/1.0" xmlns:uml="http://www.yworks.com/yFilesHTML/demos/UMLDemoStyle/1.0" xmlns:GraphvizNodeStyle="http://www.yworks.com/yFilesHTML/graphviz-node-style/1.0" xmlns:VuejsNodeStyle="http://www.yworks.com/demos/yfiles-vuejs-node-style/1.0" xmlns:explorer-style="http://www.yworks.com/data-explorer/1.0" xmlns:y="http://www.yworks.com/xml/yfiles-common/3.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/3.0" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:yjs="http://www.yworks.com/xml/yfiles-for-html/2.0/xaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml.html/2.0/ygraphml.xsd ">
+  <key id="d0" for="node" attr.type="int" attr.name="zOrder" y:attr.uri="http://www.yworks.com/xml/yfiles-z-order/1.0/zOrder" />
+  <key id="d1" for="node" attr.type="boolean" attr.name="Expanded" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/Expanded">
+    <default>true</default>
+  </key>
+  <key id="d2" for="node" attr.type="string" attr.name="url" />
+  <key id="d3" for="node" attr.type="string" attr.name="description" />
+  <key id="d4" for="node" attr.name="NodeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeLabels" />
+  <key id="d5" for="node" attr.name="NodeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeGeometry" />
+  <key id="d6" for="all" attr.name="UserTags" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/UserTags" />
+  <key id="d7" for="node" attr.name="NodeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeStyle" />
+  <key id="d8" for="node" attr.name="NodeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/NodeViewState" />
+  <key id="d9" for="edge" attr.type="string" attr.name="url" />
+  <key id="d10" for="edge" attr.type="string" attr.name="description" />
+  <key id="d11" for="edge" attr.name="EdgeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeLabels" />
+  <key id="d12" for="edge" attr.name="EdgeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeGeometry" />
+  <key id="d13" for="edge" attr.name="EdgeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeStyle" />
+  <key id="d14" for="edge" attr.name="EdgeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/EdgeViewState" />
+  <key id="d15" for="port" attr.name="PortLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLabels" />
+  <key id="d16" for="port" attr.name="PortLocationParameter" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLocationParameter">
+    <default>
+      <x:Static Member="y:FreeNodePortLocationModel.NodeCenterAnchored" />
+    </default>
+  </key>
+  <key id="d17" for="port" attr.name="PortStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortStyle">
+    <default>
+      <x:Static Member="y:VoidPortStyle.Instance" />
+    </default>
+  </key>
+  <key id="d18" for="port" attr.name="PortViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/PortViewState" />
+  <key id="d19" attr.name="SharedData" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/SharedData" />
+  <data key="d19">
+    <y:SharedData>
+      <y:InteriorLabelModel x:Key="1" />
+      <y:CompositeLabelModelParameter x:Key="2">
+        <y:CompositeLabelModelParameter.Parameter>
+          <y:InteriorLabelModelParameter Position="Center" Model="{y:GraphMLReference 1}" />
+        </y:CompositeLabelModelParameter.Parameter>
+        <y:CompositeLabelModelParameter.Model>
+          <y:CompositeLabelModel>
+            <y:CompositeLabelModel.LabelModels>
+              <y:ExteriorLabelModel Insets="5" />
+              <y:GraphMLReference ResourceKey="1" />
+              <y:FreeNodeLabelModel />
+            </y:CompositeLabelModel.LabelModels>
+          </y:CompositeLabelModel>
+        </y:CompositeLabelModelParameter.Model>
+      </y:CompositeLabelModelParameter>
+      <y:SmartEdgeLabelModel x:Key="3" />
+    </y:SharedData>
+  </data>
+  <graph id="G" edgedefault="directed">
+    <data key="d6">
+      <y:Json>{&quot;version&quot;:&quot;2.0.0&quot;,&quot;theme&quot;:{&quot;name&quot;:&quot;light&quot;,&quot;version&quot;:&quot;1.0.0&quot;},&quot;bridge-style&quot;:&quot;ARC_SCALED&quot;}</y:Json>
+    </data>
+    <node id="node5">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="242" Y="-38" Width="235" Height="112" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="Cart" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String># Cart():</sys:String>
+                  <sys:String># add(String, String): boolean</sys:String>
+                  <sys:String># getCart(): ArrayList&lt;CartItem&gt;</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.0" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.36607522942602394" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.5000038008545954" />
+        </data>
+      </port>
+    </node>
+    <node id="node17">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-215" Y="-110" Width="402" Height="156" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="CartHandler" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ CartHandler():</sys:String>
+                  <sys:String>+ addToCart(HttpServletRequest): void</sys:String>
+                  <sys:String>+ checkCartEmpty(HttpSession): void</sys:String>
+                  <sys:String>+ createNewCart(): Cart</sys:String>
+                  <sys:String>+ createNewCartList(): ArrayList&lt;CartItemInfo&gt;</sys:String>
+                  <sys:String>+ getCartList(HttpServletRequest): ArrayList&lt;CartItemInfo&gt;</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,1.0" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="-6.603651687962848E-7,0.49999969332154554" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.4184779541911108" />
+        </data>
+      </port>
+    </node>
+    <node id="node12">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="242" Y="-814" Width="176" Height="136" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="CartItem" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String># CartItem(Item, int):</sys:String>
+                  <sys:String>+ getItem(): Item</sys:String>
+                  <sys:String>+ getQuantity(): int</sys:String>
+                  <sys:String>+ setQuantity(int): void</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.9093220287184998,1.0" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.6102941176470589" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.6692738832790952,1.0" />
+        </data>
+      </port>
+      <port name="port3">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.6335269163058959" />
+        </data>
+      </port>
+      <port name="port4">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,1.0" />
+        </data>
+      </port>
+      <port name="port5">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.3897058823529412" />
+        </data>
+      </port>
+      <port name="port6">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.414771950857013,1.0" />
+        </data>
+      </port>
+      <port name="port7">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node11">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-701" Y="-86" Width="213" Height="136" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="CartItemInfo" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ CartItemInfo(ItemInfo, int):</sys:String>
+                  <sys:String>+ getItem(): ItemInfo</sys:String>
+                  <sys:String>+ getQuantity(): int</sys:String>
+                  <sys:String>+ setQuantity(int): void</sys:String>
+                  <sys:String>+ toString(): String</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.7629107981220657,1.0" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.33124964731977735" />
+        </data>
+      </port>
+    </node>
+    <node id="node2">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-701" Y="465" Width="392" Height="122" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ControllerServlet" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ ControllerServlet():</sys:String>
+                  <sys:String>+ doGet(HttpServletRequest, HttpServletResponse): void</sys:String>
+                  <sys:String>+ doPost(HttpServletRequest, HttpServletResponse): void</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+    </node>
+    <node id="node19">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="1594" Y="-872" Width="224" Height="88" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DBManager" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ DBManager():</sys:String>
+                  <sys:String>+ getConnection(): Connection</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+    </node>
+    <node id="node6">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="531" Y="-77" Width="381" Height="498" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="Item" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String># Item(int, String, int, String, int, String, String, boolean ...):</sys:String>
+                  <sys:String># createItem(Item): boolean</sys:String>
+                  <sys:String># editItem(Item): boolean</sys:String>
+                  <sys:String>+ getCategory(): String</sys:String>
+                  <sys:String>+ getDesc(): String</sys:String>
+                  <sys:String>+ getDescription(): String</sys:String>
+                  <sys:String>+ getId(): int</sys:String>
+                  <sys:String># getItemIdByName(String): Item</sys:String>
+                  <sys:String>+ getName(): String</sys:String>
+                  <sys:String>+ getPrice(): int</sys:String>
+                  <sys:String>+ getQuantity(): int</sys:String>
+                  <sys:String>+ getStatus(): String</sys:String>
+                  <sys:String>+ isActive(): boolean</sys:String>
+                  <sys:String># isNotNULL(Item): boolean</sys:String>
+                  <sys:String># removeItem(Item): boolean</sys:String>
+                  <sys:String># searchItems(): Collection&lt;Item&gt;</sys:String>
+                  <sys:String>+ setActive(boolean): void</sys:String>
+                  <sys:String>+ setCategory(String): void</sys:String>
+                  <sys:String>+ setDesc(String): void</sys:String>
+                  <sys:String>+ setDescription(String): void</sys:String>
+                  <sys:String>+ setId(int): void</sys:String>
+                  <sys:String>+ setName(String): void</sys:String>
+                  <sys:String>+ setPrice(int): void</sys:String>
+                  <sys:String>+ setQuantity(int): void</sys:String>
+                  <sys:String>+ setStatus(String): void</sys:String>
+                  <sys:String>+ toString(): String</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,1.0" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.0" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.46062912645967236,1.0" />
+        </data>
+      </port>
+      <port name="port3">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.01968503937007874,0.0" />
+        </data>
+      </port>
+    </node>
+    <node id="node20">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="1479" Y="-3" Width="385" Height="177" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ItemDB" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String># ItemDB(int, String, int, String, int, String, String,  ...):</sys:String>
+                  <sys:String>+ createItem(Item): boolean</sys:String>
+                  <sys:String>+ editItem(Item): boolean</sys:String>
+                  <sys:String>+ getItemByName(String): Item</sys:String>
+                  <sys:String>+ getItemsIdByOrderID(int): ArrayList&lt;ItemDB&gt;</sys:String>
+                  <sys:String>+ removeItem(Item): boolean</sys:String>
+                  <sys:String>+ searchItems(): ArrayList&lt;Item&gt;</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.5004853836500592" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.9961038961038962,0.0" />
+        </data>
+      </port>
+    </node>
+    <node id="node0">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-238" Y="345" Width="449" Height="206" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ItemHandler" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ ItemHandler():</sys:String>
+                  <sys:String>+ addItem(HttpServletRequest): boolean</sys:String>
+                  <sys:String>- checkItemParameters(String, String, String, String, String ...): boolean</sys:String>
+                  <sys:String>+ editItem(HttpServletRequest): boolean</sys:String>
+                  <sys:String>+ getItemByName(String): ItemInfo</sys:String>
+                  <sys:String>+ getItems(): Collection&lt;ItemInfo&gt;</sys:String>
+                  <sys:String># itemToItemInfo(Item): ItemInfo</sys:String>
+                  <sys:String>+ removeItem(HttpServletRequest): boolean</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="7.073898701468704E-7,0.5000012423427066" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.429334876862759" />
+        </data>
+      </port>
+    </node>
+    <node id="node3">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-701" Y="192" Width="325" Height="197" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ItemInfo" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ ItemInfo(String, int, String, int, String, String):</sys:String>
+                  <sys:String>+ getCategory(): String</sys:String>
+                  <sys:String>+ getDescription(): String</sys:String>
+                  <sys:String>+ getName(): String</sys:String>
+                  <sys:String>+ getPrice(): int</sys:String>
+                  <sys:String>+ getQuantity(): int</sys:String>
+                  <sys:String>+ getStatus(): String</sys:String>
+                  <sys:String>+ toString(): String</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.9999992981085202,0.5000018348953219" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.9999992981085202,0.5000018348953219" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.0" />
+        </data>
+      </port>
+    </node>
+    <node id="node9">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="967" Y="-597" Width="348" Height="246" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="Order" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String># Order(int, int, Date, String, ArrayList&lt;CartItem&gt;):</sys:String>
+                  <sys:String># getAllOrders(): Collection&lt;Order&gt;</sys:String>
+                  <sys:String>+ getDate(): Date</sys:String>
+                  <sys:String>+ getItems(): ArrayList&lt;CartItem&gt;</sys:String>
+                  <sys:String># getOrderByID(int): Order</sys:String>
+                  <sys:String>+ getOrderID(): int</sys:String>
+                  <sys:String>+ getStatus(): String</sys:String>
+                  <sys:String>+ getUserID(): int</sys:String>
+                  <sys:String># placeOrder(Cart, User): boolean</sys:String>
+                  <sys:String># sendOrder(int): boolean</sys:String>
+                  <sys:String>+ setStatus(String): void</sys:String>
+                  <sys:String>+ toString(): String</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.48438908672642633" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5431020154253873,0.0" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.49999856714952523,0.0" />
+        </data>
+      </port>
+      <port name="port3">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node14">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="1423" Y="-295" Width="366" Height="197" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="OrderDB" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ OrderDB(int, int, Date, String, ArrayList&lt;CartItem&gt;):</sys:String>
+                  <sys:String>+ createOrder(User): int</sys:String>
+                  <sys:String>+ getAllOrders(): Collection&lt;Order&gt;</sys:String>
+                  <sys:String>+ getOrderByID(int): OrderDB</sys:String>
+                  <sys:String>+ insertPurchaseDetails(int, Order): void</sys:String>
+                  <sys:String>+ placeOrder(Order, User): boolean</sys:String>
+                  <sys:String>+ sendOrder(int): boolean</sys:String>
+                  <sys:String>+ updateInventory(ArrayList&lt;CartItem&gt;): boolean</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.3654329454253939" />
+        </data>
+      </port>
+    </node>
+    <node id="node10">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-174" Y="-566" Width="299" Height="136" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="OrderHandler" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ OrderHandler():</sys:String>
+                  <sys:String>+ getAll(): ArrayList&lt;OrderInfo&gt;</sys:String>
+                  <sys:String>+ placeOrder(HttpSession): boolean</sys:String>
+                  <sys:String>+ sendOrder(HttpServletRequest): boolean</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.3818030275496896" />
+        </data>
+      </port>
+    </node>
+    <node id="node13">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-701" Y="-612" Width="372" Height="165" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="OrderInfo" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ OrderInfo(int, int, Date, String, ArrayList&lt;CartItem&gt;):</sys:String>
+                  <sys:String>+ getDate(): Date</sys:String>
+                  <sys:String>+ getItems(): ArrayList&lt;CartItem&gt;</sys:String>
+                  <sys:String>+ getOrderID(): int</sys:String>
+                  <sys:String>+ getStatus(): String</sys:String>
+                  <sys:String>+ getUserID(): int</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.0" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node15">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="1510" Y="-477" Width="341" Height="88" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="PurchaseItemDB" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String># PurchaseItemDB(ItemDB, int):</sys:String>
+                  <sys:String>+ getCartItemByOrderID(int): ArrayList&lt;CartItem&gt;</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.0" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node7">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="1272" Y="247" Width="96" Height="63" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="Roles" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ Roles():</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+    </node>
+    <node id="node18">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-701" Y="-843" Width="180" Height="98" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="Secret" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ Secret():</sys:String>
+                  <sys:String>+ getPassword(): String</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+    </node>
+    <node id="node8">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="967" Y="259" Width="281" Height="246" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="User" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String># User(int, String, String, String, String):</sys:String>
+                  <sys:String>+ getId(): int</sys:String>
+                  <sys:String>+ getName(): String</sys:String>
+                  <sys:String>+ getPassword(): String</sys:String>
+                  <sys:String>+ getRole(): String</sys:String>
+                  <sys:String>+ getToken(): String</sys:String>
+                  <sys:String># searchUser(String): User</sys:String>
+                  <sys:String>+ setName(String): void</sys:String>
+                  <sys:String>+ setPassword(String): void</sys:String>
+                  <sys:String>+ setRole(String): void</sys:String>
+                  <sys:String>+ setToken(String): void</sys:String>
+                  <sys:String>+ toString(): String</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node4">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="1522" Y="367" Width="299" Height="88" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="UserDB" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ UserDB(int, String, String, String, String):</sys:String>
+                  <sys:String>+ searchUser(String): UserDB</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.4999999999999987" />
+        </data>
+      </port>
+    </node>
+    <node id="node1">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-215" Y="-354" Width="340" Height="156" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="UserHandler" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ UserHandler():</sys:String>
+                  <sys:String>+ authenticateUser(HttpServletRequest): boolean</sys:String>
+                  <sys:String>+ getUser(String): UserInfo?</sys:String>
+                  <sys:String>+ isUserAdmin(HttpSession): boolean</sys:String>
+                  <sys:String>+ isUserW_Staff(HttpSession): boolean</sys:String>
+                  <sys:String>+ isVerified(HttpSession): boolean</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.0,0.6304347826086957" />
+        </data>
+      </port>
+    </node>
+    <node id="node16">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-701" Y="-306" Width="239" Height="136" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="UserInfo" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ UserInfo(String, String, String):</sys:String>
+                  <sys:String>+ getName(): String</sys:String>
+                  <sys:String>+ getRole(): String</sys:String>
+                  <sys:String>+ getToken(): String</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="1.0,0.5" />
+        </data>
+      </port>
+    </node>
+    <edge id="edge5" source="node5" target="node12" sourceport="port0" targetport="port2">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>1</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="0" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="LEFT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>*</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>cartList</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="DIAMOND" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge10" source="node5" target="node12" sourceport="port1" targetport="port4">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="329.55662576440886,2.976035675928472" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge7" source="node17" target="node5" sourceport="port0" targetport="port2">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-13.679892994235615,17.976035675928472" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge12" source="node17" target="node11" sourceport="port2" targetport="port1">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge11" source="node17" target="node3" sourceport="port1" targetport="port0">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-250.0,-18.02444644862183" />
+          <y:Bend Location="-250.0,307.719" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge20" source="node12" target="node6" sourceport="port0" targetport="port3">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>1</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="0" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="LEFT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>1</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>item</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="401.5973028188648,-77.46411905733055" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="DIAMOND" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge16" source="node11" target="node3" sourceport="port0" targetport="port2">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>1</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="0" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="LEFT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>1</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>item</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="DIAMOND" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge1" source="node20" target="node6" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="721.8775514372949,100.91264051480493" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge17" source="node0" target="node6" sourceport="port1" targetport="port2">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="706.87724861843,448.43492114345713" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge6" source="node0" target="node3" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-250.0,465.53618158960444" />
+          <y:Bend Location="-250.0,307.719" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge13" source="node9" target="node12" sourceport="port1" targetport="port5">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="1155.9057750210948,-761.1539017359493" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge18" source="node9" target="node12" sourceport="port2" targetport="port7">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>1</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="0" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="LEFT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>*</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>items</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="1140.9057750210948,-746.1539017359493" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="DIAMOND" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge9" source="node9" target="node6" sourceport="port0" targetport="port1">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="721.8775514372949,-437.96240820622893" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge3" source="node14" target="node9" sourceport="port0" targetport="port3">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="1406.4149657150022,-210.6831914278804" />
+          <y:Bend Location="1406.4149657150022,-432.84202865249677" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge14" source="node10" target="node12" sourceport="port0" targetport="port6">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="314.55648911524315,-498.46240820622893" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge15" source="node10" target="node13" sourceport="port1" targetport="port1">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge8" source="node13" target="node12" sourceport="port0" targetport="port3">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>1</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="0" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="LEFT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>*</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+          <y:Label>
+            <y:Label.Text>items</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" SegmentRatio="1" Distance="6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="RIGHT" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-515.344771885269,-727.9942411183474" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="DIAMOND" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge2" source="node15" target="node12" sourceport="port0" targetport="port1">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="1680.9236577769443,-731.1539017359493" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge19" source="node15" target="node20" sourceport="port1" targetport="port1">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="1862.9821277890424,-432.84202865249665" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge0" source="node4" target="node8" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="1428.1490782044548,411.39544569573536" />
+          <y:Bend Location="1428.1490782044548,422.53588094266945" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge4" source="node1" target="node16" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List>
+          <y:Label>
+            <y:Label.Text>«create»</y:Label.Text>
+            <y:Label.LayoutParameter>
+              <y:SmartEdgeLabelModelParameter Model="{y:GraphMLReference 3}" Distance="-6" />
+            </y:Label.LayoutParameter>
+            <y:Label.Style>
+              <yjs:DefaultLabelStyle backgroundFill="WHITE" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" backgroundStroke="WHITE" font="'Arial'" autoFlip="false" textFill="BLACK" textSize="8" />
+            </y:Label.Style>
+          </y:Label>
+        </x:List>
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#595959" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="SIMPLE" stroke="#595959" fill="#595959" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+  </graph>
+</graphml>

@@ -2,6 +2,13 @@ package com.example.webshop.bo;
 
 import com.example.webshop.db.UserDB;
 
+/**
+ * Represents a user in the webshop system.
+ *
+ * @author Tim Johansson
+ * @version 1.0
+ * @since 2023-10-07
+ */
 public class User {
     private final int id;
     private String email;
@@ -9,6 +16,15 @@ public class User {
     private String role;
     private String token;
 
+    /**
+     * Initializes a new User with the given attributes.
+     *
+     * @param id Unique identifier for the user.
+     * @param email Email address of the user.
+     * @param password Password of the user.
+     * @param role Role of the user.
+     * @param token Token for user authentication.
+     */
     protected User(int id, String email, String password, String role, String token) {
         this.id = id;
         this.email = email;
@@ -18,6 +34,12 @@ public class User {
     }
 
 
+    /**
+     * Searches for a User based on their email address.
+     *
+     * @param email Email address of the user to search for.
+     * @return User User object corresponding to the given email address.
+     */
     protected static User searchUser(String email){
         return UserDB.searchUser(email);
     }
