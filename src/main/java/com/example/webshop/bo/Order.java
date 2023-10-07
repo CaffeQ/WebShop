@@ -29,6 +29,10 @@ public class Order {
     protected static Collection<Order> getAllOrders(){
         return OrderDB.getAllOrders();
     }
+    protected static Collection<Order> getOrderByStatus(String status){
+        return OrderDB.getOrderByStatus(status);
+    }
+
 
     protected static boolean placeOrder(Cart cart, User user) throws SQLException {
         Order order = new Order(0,user.getId(),Date.valueOf(LocalDateTime.now().toLocalDate()),"active",cart.getCart());

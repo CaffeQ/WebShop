@@ -68,6 +68,12 @@
 <body>
 <div class="container">
     <h1>Add Items</h1>
+    <a href="controller-servlet?action=welcome">Welcome</a>
+    <a href="controller-servlet?action=login">Login</a>
+    <a href="controller-servlet?action=cart">Cart</a>
+    <a href="controller-servlet?action=product">Product</a>
+    <a href="controller-servlet?action=order">Order</a>
+
     <form action="controller-servlet" method="post">
         <div class="form-group">
             <label for="name">Item Name</label>
@@ -102,7 +108,7 @@
         </div>
         <div class="form-group">
             <input type="submit" value="Submit">
-            <input type="hidden" name="action" value="processAdd">
+            <input type="hidden" name="action" value="createItem">
         </div>
     </form>
     <% if (request.getAttribute("errorMessage") != null) { %>

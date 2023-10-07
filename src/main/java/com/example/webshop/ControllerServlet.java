@@ -30,8 +30,10 @@ public class ControllerServlet extends HttpServlet {
                 break;
 
             case "item":
-                if(UserHandler.isUserAdmin(session))
+                if(UserHandler.isUserAdmin(session)){
                     request.getRequestDispatcher("item.jsp").forward(request,response);
+                    response.sendRedirect("item.jsp");
+                }
                 else{
                     request.setAttribute("errorMessage","Invalid privilege");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
@@ -60,9 +62,28 @@ public class ControllerServlet extends HttpServlet {
 
             case "order":
                 if(UserHandler.isUserAdmin(session) || UserHandler.isUserW_Staff(session)){
-                    request.getSession().setAttribute("order", OrderHandler.getAll());
-                    request.getRequestDispatcher("order.jsp").forward(request,response);
-                }else {
+
+                    String orderFilter = request.getParameter("orderFilter");
+
+                    if(orderFilter == null){
+                        request.getSession().setAttribute("orderFilter","all");
+                        orderFilter = "all";
+                    }
+
+                    System.out.println(orderFilter);
+
+                    if(orderFilter.equals("all")){
+                        request.getSession().setAttribute("order", OrderHandler.getAll());
+                        request.getRequestDispatcher("order.jsp").forward(request,response);
+                    }
+                    else{
+                        request.getSession().setAttribute("order", OrderHandler.getOrderByStatus(orderFilter));
+                        request.getRequestDispatcher("order.jsp").forward(request,response);
+                    }
+                    break;
+
+                }
+                else {
                     request.setAttribute("errorMessage","Invalid privilege");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
                     response.sendRedirect("error.jsp");
@@ -75,6 +96,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
 
             default:
+                request.setAttribute("errorMessage", "Get action does not exits");
                 request.getRequestDispatcher("error.jsp").forward(request,response);
                 response.sendRedirect("error.jsp");
                 break;
@@ -103,12 +125,15 @@ public class ControllerServlet extends HttpServlet {
                     request.getRequestDispatcher("login.jsp").forward(request,response);
                     response.sendRedirect("login.jsp");
                 }
+                break;
 
+            case "removeItemFromCart":
+                CartHandler.removeItem(request);
+                response.sendRedirect("controller-servlet?action=cart");
                 break;
 
 
             case "removeItem":
-                System.out.println("Remove item");
                 if(UserHandler.isUserAdmin(session)){
                     ItemHandler.removeItem(request);
                     response.sendRedirect("controller-servlet?action=product");
@@ -119,18 +144,18 @@ public class ControllerServlet extends HttpServlet {
                 }
                 break;
 
-            case "processEdit":
-                if(UserHandler.isUserAdmin(request.getSession())){
-                    if(!ItemHandler.editItem(request)){
-                        System.out.println("Could not edit item");
-                        request.setAttribute("errorMessage","Invalid item parameters");
-                    }else {
-                        request.setAttribute("errorMessage","");
-                    }
-                    request.getRequestDispatcher("edit.jsp").forward(request,response);
-                    response.sendRedirect("edit.jsp");
-                }else{
+            case "editItem":
+                if(!UserHandler.isUserAdmin(request.getSession())){
                     request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    response.sendRedirect("error.jsp");
+                    break;
+                }
+
+                if(ItemHandler.editItem(request)){
+                    response.sendRedirect("controller-servlet?action=product");
+                }else {
+                    request.setAttribute("errorMessage","Invalid item parameters");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
                     response.sendRedirect("error.jsp");
                 }
@@ -156,28 +181,29 @@ public class ControllerServlet extends HttpServlet {
 
                 break;
 
-            case "processAdd":
-                if(UserHandler.isUserAdmin(request.getSession())){
-                    try {
-                        if(!ItemHandler.addItem(request)){
-                            System.out.println("Could not add item");
-                            request.setAttribute("errorMessage","Invalid item parameters");
-                            request.getRequestDispatcher("item.jsp").forward(request,response);
-                            response.sendRedirect("item.jsp");
-                        }
-                    }
-                    catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                    request.setAttribute("errorMessage","");
-                    request.getRequestDispatcher("item.jsp").forward(request,response);
-                    response.sendRedirect("item.jsp");
-                }else{
+            case "createItem":
+                if(!UserHandler.isUserAdmin(request.getSession())){
                     request.setAttribute("errorMessage","Invalid verification");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
                     response.sendRedirect("error.jsp");
                 }
+
+                try {
+                    if(ItemHandler.addItem(request)){
+                        response.sendRedirect("controller-servlet?action=product");
+                    }
+                    else{
+                        request.setAttribute("errorMessage","Invalid item parameters");
+                        request.getRequestDispatcher("error.jsp").forward(request,response);
+                        response.sendRedirect("error.jsp");
+                    }
+                }
+                catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
                 break;
+
             case "sendOrder":
                 if(UserHandler.isUserAdmin(session) || UserHandler.isUserW_Staff(session)) {
                     try {
@@ -195,6 +221,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
 
             default:
+                request.setAttribute("errorMessage", "Post action does not exits");
                 request.getRequestDispatcher("error.jsp").forward(request,response);
                 response.sendRedirect("error.jsp");
                 break;

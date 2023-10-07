@@ -44,11 +44,40 @@
         .btn-place-order:hover {
             background-color: #75b06b;
         }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #62bd52;
+            color: white;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #75b06b;
+        }
+
+        a {
+            text-decoration: none;
+            margin-right: 10px;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <h1>Your Cart</h1>
+    <a href="controller-servlet?action=welcome">Welcome</a>
+    <a href="controller-servlet?action=login">Login</a>
+    <a href="controller-servlet?action=cart">Cart</a>
+    <a href="controller-servlet?action=product">Product</a>
+    <a href="controller-servlet?action=order">Order</a>
+
+    <h2 class="heading">Overview</h2>
 
     <form action="controller-servlet" method="post">
         <input type="hidden" name="action" value="placeOrder">
@@ -62,7 +91,13 @@
     %>
     <div class="cart-item">
         <div class="item-info">
-            <%= item.getItem().getName() %> - <%= item.getItem().getDescription() %> - Price: <%= item.getItem().getPrice() %> - Quantity: <%= item.getQuantity() %> - Category: <%= item.getItem().getCategory() %> - Status: <%= item.getItem().getStatus() %>
+            <p><%= item.getItem().getName() %> - <%= item.getItem().getDescription() %> - Price: <%= item.getItem().getPrice() %> - Quantity: <%= item.getQuantity() %> - Category: <%= item.getItem().getCategory() %> - Status: <%= item.getItem().getStatus() %>
+                <form action="controller-servlet" method="post">
+                    <input type="hidden" name="action" value="removeItemFromCart">
+                    <input type="hidden" name="removeItemName" value="<%= item.getItem().getName() %>">
+                    <button type="submit" class="btn">Remove</button>
+                </form>
+            </p>
         </div>
     </div>
     <%

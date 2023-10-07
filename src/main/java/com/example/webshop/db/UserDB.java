@@ -13,14 +13,14 @@ public class UserDB extends User {
         UserDB userDB = null;
         try{
             Connection con = DBManager.getConnection();
-            PreparedStatement ps = con.prepareStatement("SELECT * from T_User where T_User.name = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * from T_User where T_User.email = ?");
             ps.setString(1,userName);
             rs = ps.executeQuery();
 
             if (rs.next()){
                 userDB = new UserDB(
                         rs.getInt("userID"),
-                        rs.getString("name"),
+                        rs.getString("email"),
                         rs.getString("password"),
                         rs.getString("role"),
                         rs.getString("token"));
@@ -31,8 +31,8 @@ public class UserDB extends User {
         return userDB;
     }
 
-    public UserDB(int id, String name, String password, String role, String address) {
-        super(id, name, password, role, address);
+    public UserDB(int id, String email, String password, String role, String address) {
+        super(id, email, password, role, address);
     }
 
 

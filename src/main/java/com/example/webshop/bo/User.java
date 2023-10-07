@@ -4,33 +4,32 @@ import com.example.webshop.db.UserDB;
 
 public class User {
     private final int id;
-    private String name;
+    private String email;
     private String password;
     private String role;
     private String token;
 
-    protected User(int id, String name,
-                String password, String role, String token) {
+    protected User(int id, String email, String password, String role, String token) {
         this.id = id;
-        this.name = name;
+        this.email = email;
         this.password = password;
         this.role = role;
         this.token = token;
     }
 
 
-    protected static User searchUser(String userName){
-        return UserDB.searchUser(userName);
+    protected static User searchUser(String email){
+        return UserDB.searchUser(email);
     }
 
     public int getId() {return id;}
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String name) {
+        this.email = name;
     }
 
     public String getPassword() {
@@ -61,7 +60,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", token='" + token + '\'' +

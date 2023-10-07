@@ -12,8 +12,8 @@ public class UserHandler {
         User user = User.searchUser(userName);
         if(user==null)
             return false;
-        if( user.getName().equals(userName) && user.getPassword().equals(password)) {
-            UserInfo userInfo = new UserInfo(user.getName(),user.getRole(),user.getToken());
+        if( user.getEmail().equals(userName) && user.getPassword().equals(password)) {
+            UserInfo userInfo = new UserInfo(user.getEmail(),user.getRole(),user.getToken());
             request.getSession().setAttribute("user",userInfo);
             return true;
         }
@@ -30,7 +30,7 @@ public class UserHandler {
         User user = User.searchUser(name);
         if(user == null)
             return null;
-        return new UserInfo(user.getName(),user.getRole(),user.getToken());
+        return new UserInfo(user.getEmail(),user.getRole(),user.getToken());
     }
     public static boolean isVerified(HttpSession session){
         UserInfo userInfo = (UserInfo) session.getAttribute("user");

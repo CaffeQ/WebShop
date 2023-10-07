@@ -17,6 +17,20 @@ public class CartHandler {
     }
 
 
+    public static boolean removeItem(HttpServletRequest request){
+        String itemName = request.getParameter("removeItemName");
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+
+        for(int i=0;i<cart.getCart().size();i++){
+            if(cart.getCart().get(i).getItem().getName().equals(itemName)){
+                cart.getCart().remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public static ArrayList<CartItemInfo> getCartList(HttpServletRequest request) {
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         ArrayList<CartItemInfo> copy = new ArrayList<>();

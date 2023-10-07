@@ -1,12 +1,8 @@
 package com.example.webshop.db;
 
 import com.example.webshop.bo.CartItem;
-import com.example.webshop.bo.Item;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class PurchaseItemDB extends CartItem{
@@ -21,10 +17,11 @@ public class PurchaseItemDB extends CartItem{
 
         try {
             Connection con = DBManager.getConnection();
-            Statement st = con.createStatement();
-            String query = "SELECT T_Item.*, T_PurchaseItems.quantity AS purchase_quantity FROM T_PurchaseItems INNER JOIN T_Item ON T_PurchaseItems.itemID = T_Item.itemID WHERE T_PurchaseItems.orderID = " + orderID;
+            String query = "SELECT T_Item.*, T_PurchaseItems.quantity AS purchase_quantity FROM T_PurchaseItems INNER JOIN T_Item ON T_PurchaseItems.itemID = T_Item.itemID WHERE T_PurchaseItems.orderID = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, orderID);
 
-            rs = st.executeQuery(query);
+            rs = pst.executeQuery();
             while(rs.next()){
                 cartItems.add(new PurchaseItemDB(
                         new ItemDB(

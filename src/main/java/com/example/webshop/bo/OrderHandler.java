@@ -27,6 +27,20 @@ public class OrderHandler {
         }
         return copy;
     }
+    public static ArrayList<OrderInfo> getOrderByStatus(String status){
+        Collection<Order> orders =  Order.getOrderByStatus(status);
+        ArrayList<OrderInfo> copy = new ArrayList<>();
+
+        for(Order o : orders){
+            ArrayList<CartItemInfo> itemInfos = new ArrayList<>();
+
+            for(CartItem cartItem : o.getItems()){
+                itemInfos.add(new CartItemInfo(new ItemInfo(cartItem.getItem().getName(),cartItem.getItem().getPrice(),cartItem.getItem().getDescription(),cartItem.getItem().getQuantity(),cartItem.getItem().getCategory(),cartItem.getItem().getStatus()), cartItem.getQuantity()));
+            }
+            copy.add(new OrderInfo(o.getOrderID(), o.getUserID(), o.getDate(), o.getStatus(),itemInfos));
+        }
+        return copy;
+    }
 
     public static boolean placeOrder(HttpSession session) throws SQLException {
         Cart cart = (Cart) session.getAttribute("cart");

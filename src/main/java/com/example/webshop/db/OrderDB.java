@@ -92,6 +92,40 @@ public class OrderDB extends Order {
         return orders;
     }
 
+
+    public static Collection<Order> getOrderByStatus(String status){
+        ResultSet rs;
+        ArrayList<Order> orders = new ArrayList<>();
+        try {
+            Connection con = DBManager.getConnection();
+            if(con == null) {
+                throw new SQLException("Failed to establish connection.");
+            }
+
+            String query = "SELECT * from T_Order WHERE status = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, status);
+
+            rs = pst.executeQuery();
+
+            while(rs.next()){
+                int orderID = rs.getInt("orderID");
+                orders.add(new
+                        OrderDB(
+                        orderID,
+                        rs.getInt("userID"),
+                        rs.getDate("date"),
+                        rs.getString("status"),
+                        PurchaseItemDB.getCartItemByOrderID(orderID)
+                ));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return orders;
+    }
+
     public static boolean placeOrder(Order order, User user) throws SQLException {
         Connection con = null;
         try {

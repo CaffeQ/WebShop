@@ -61,6 +61,11 @@
 <body>
 <div class="container">
     <h1>Edit Item</h1>
+    <a href="controller-servlet?action=welcome">Welcome</a>
+    <a href="controller-servlet?action=login">Login</a>
+    <a href="controller-servlet?action=cart">Cart</a>
+    <a href="controller-servlet?action=product">Product</a>
+    <a href="controller-servlet?action=order">Order</a>
     <%
         ItemInfo item = (ItemInfo) request.getSession().getAttribute("item");
     %>
@@ -96,7 +101,7 @@
         </div>
         <div class="form-group">
             <input type="submit" value="Submit Edit">
-            <input type="hidden" name="action" value="processEdit">
+            <input type="hidden" name="action" value="editItem">
         </div>
     </form>
     <% if (request.getAttribute("errorMessage") != null) { %>

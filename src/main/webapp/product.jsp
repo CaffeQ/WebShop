@@ -16,6 +16,10 @@
             color: #333;
         }
 
+        .input-small {
+            max-width: 50px;  /* Limiting the width of the input field */
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -60,6 +64,16 @@
         .btn:hover {
             background-color: #75b06b;
         }
+
+        a {
+            text-decoration: none;
+            margin-right: 10px;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 
@@ -69,7 +83,18 @@
 
 <div class="container">
     <h1 class="heading">Products</h1>
+    <a href="controller-servlet?action=welcome">Welcome</a>
+    <a href="controller-servlet?action=login">Login</a>
+    <a href="controller-servlet?action=cart">Cart</a>
+    <a href="controller-servlet?action=product">Product</a>
+    <a href="controller-servlet?action=order">Order</a>
+
     <h2 class="heading">Add Items to Cart</h2>
+
+    <form action="controller-servlet" method="get">
+        <input type="hidden" name="action" value="item">
+        <button type="submit" class="btn">Add New Item</button>
+    </form>
 
     <%
         Collection<ItemInfo> items = (Collection<ItemInfo>) request.getSession().getAttribute("itemInfo");
@@ -77,21 +102,29 @@
     %>
     <div class="product">
         <div class="product-info">
-            <%= item.getName() %> - <%= item.getDescription() %> - Price: <%= item.getPrice() %> - Quantity: <%= item.getQuantity() %> - Category: <%= item.getCategory() %> - Status: <%= item.getStatus() %>
+            <p>
+                <strong>Name:</strong> <%= item.getName() %>,
+                <strong>Description:</strong> <%= item.getDescription() %>,
+                <strong>Price:</strong> <%= item.getPrice() %>,
+                <strong>Quantity:</strong> <%= item.getQuantity() %>,
+                <strong>Category:</strong> <%= item.getCategory() %>,
+                <strong>Status:</strong> <%= item.getStatus() %>
+            </p>
         </div>
+
         <div class="product-actions">
             <form action="controller-servlet" method="post">
                 <label for="quantity">Quantity:</label>
                 <input type="hidden" name="action" value="addItemToCart">
                 <input type="hidden" name="cartItemName" value="<%= item.getName() %>">
-                <input type="number" id="quantity" name="cartItemQuantity" min="1" required>
+                <input type="number" id="quantity" name="cartItemQuantity" min="1" required class="input-small">
                 <button type="submit" class="btn">Add to Cart</button>
             </form>
 
             <form action="controller-servlet" method="get">
                 <input type="hidden" name="action" value="edit">
                 <input type="hidden" name="editName" value="<%= item.getName() %>">
-                <a href="controller-servlet?action=edit&editName=<%= item.getName() %>" class="btn">Edit</a>
+                <button type="submit" class="btn">Edit</button>
             </form>
 
             <form action="controller-servlet" method="post">

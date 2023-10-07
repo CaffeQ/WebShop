@@ -9,16 +9,16 @@ USE webshop;
 
 CREATE TABLE T_User (
     userID INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'customer', 'warehouse_staff') NOT NULL,
     token VARCHAR(255) NOT NULL unique
 );
 
-INSERT INTO T_User (name, password, role, token) VALUES
-('Balder','password1', 'admin', UUID()),
-('Tim','password2', 'customer', UUID()),
-('Alex','password3', 'warehouse_staff', UUID());
+INSERT INTO T_User (email, password, role, token) VALUES
+('Balder@kth.se','password1', 'admin', UUID()),
+('Tim@kth.se','password2', 'customer', UUID()),
+('Alex@kth.se','password3', 'warehouse_staff', UUID());
 
 
 CREATE TABLE T_Item (
@@ -86,6 +86,7 @@ INSERT INTO T_PurchaseItems (orderID, itemID, quantity) VALUES
 
 
 
+SELECT * from T_User;
 SELECT * from T_Item;
 SELECT * from T_Order;
 SELECT * from T_PurchaseItems;

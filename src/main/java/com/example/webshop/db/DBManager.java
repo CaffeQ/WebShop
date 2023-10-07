@@ -1,12 +1,8 @@
 package com.example.webshop.db;
 
-import com.example.webshop.Secret;
-
-import javax.annotation.processing.ProcessingEnvironment;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class DBManager{
     private static Connection con;
