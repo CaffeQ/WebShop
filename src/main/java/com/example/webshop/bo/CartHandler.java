@@ -81,6 +81,7 @@ public class CartHandler {
         String itemName = request.getParameter("cartItemName");
         String itemQuantity = request.getParameter("cartItemQuantity");
         cart.add(itemName, itemQuantity);
+        session.setAttribute("cart", cart);
         getCartList(request);
     }
 

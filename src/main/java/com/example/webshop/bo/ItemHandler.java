@@ -80,13 +80,15 @@ public class ItemHandler {
     public static boolean editItem(HttpServletRequest request){
         String previousName = request.getParameter("previousName");
         String name = request.getParameter("name");
-        int price = Integer.parseInt(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String price = request.getParameter("price");
+        String quantity = request.getParameter("quantity");
         String desc = request.getParameter("description");
         String category = request.getParameter("category");
         String status = request.getParameter("status");
         int itemID = Item.getItemIdByName(previousName).getId();
-        return Item.editItem(new Item(itemID,name,price,desc, quantity,category,status, true));
+        if(!checkItemParameters(name,price,quantity,desc,category,status))
+            return false;
+        return Item.editItem(new Item(itemID,name,Integer.parseInt(price), desc, Integer.parseInt(quantity), category,status, true));
     }
 
     /**

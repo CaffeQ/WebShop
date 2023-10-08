@@ -29,12 +29,12 @@ public class UserHandler {
      * @return boolean True if authentication is successful, otherwise false.
      */
     public static boolean authenticateUser(HttpServletRequest request){
-        String userName = request.getParameter("name");
+        String userEmail = request.getParameter("name");
         String password = request.getParameter("password");
-        User user = User.searchUser(userName);
+        User user = User.searchUser(userEmail);
         if(user==null)
             return false;
-        if( user.getEmail().equals(userName) && user.getPassword().equals(password)) {
+        if( user.getEmail().equals(userEmail) && user.getPassword().equals(password)) {
             UserInfo userInfo = new UserInfo(user.getEmail(),user.getRole(),user.getToken());
             request.getSession().setAttribute("user",userInfo);
             return true;
@@ -45,11 +45,11 @@ public class UserHandler {
     /**
      * Retrieves user information based on their name.
      *
-     * @param name The name of the user to search for.
+     * @param userEmail The name of the user to search for.
      * @return UserInfo An object containing user information or null if not found.
      */
-    public static UserInfo getUser(String name){
-        User user = User.searchUser(name);
+    public static UserInfo getUserInfo(String userEmail){
+        User user = User.searchUser(userEmail);
         if(user == null)
             return null;
         return new UserInfo(user.getEmail(),user.getRole(),user.getToken());

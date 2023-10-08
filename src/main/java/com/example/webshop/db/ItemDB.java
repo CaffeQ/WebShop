@@ -184,10 +184,11 @@ public class ItemDB extends Item {
         ArrayList<ItemDB> items = new ArrayList<>();
         try {
             Connection con = DBManager.getConnection();
-            Statement st = con.createStatement();
-            String query = "SELECT T_Item.* FROM T_PurchaseItems INNER JOIN T_Item ON T_PurchaseItems.itemID = T_Item.itemID WHERE T_PurchaseItems.orderID = " + orderID;
+            String query = "SELECT T_Item.* FROM T_PurchaseItems INNER JOIN T_Item ON T_PurchaseItems.itemID = T_Item.itemID WHERE T_PurchaseItems.orderID = ?";
+            PreparedStatement pst = con.prepareStatement(query);
 
-            rs = st.executeQuery(query);
+            pst.setInt(1, orderID); // Set the parameter for the prepared statement
+            rs = pst.executeQuery();
 
             while(rs.next()){
                 items.add(new

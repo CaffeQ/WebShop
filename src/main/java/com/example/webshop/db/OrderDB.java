@@ -181,9 +181,7 @@ public class OrderDB extends Order {
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            if (con != null) {
-                con.rollback();
-            }
+            con.rollback();
             return false;
         } finally {
             if (con != null) {
