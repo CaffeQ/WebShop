@@ -23,6 +23,15 @@ public class UserHandler {
         public static final String CUSTOMER = "customer";
         public static final String STAFF = "staff";
     }
+    public static boolean createUser(HttpServletRequest request){
+        String email = request.getParameter("name");
+        String password = request.getParameter("password");
+        System.out.println("Creating user: " + email + " " + password);
+        User user = User.searchUser(email);
+        if(user != null)
+            return false;
+        return User.createUser(email,password);
+    }
 
     public static boolean removeUserByUserID(HttpServletRequest request){
         String userEmail = request.getParameter("changeUserStatusByUserName");
