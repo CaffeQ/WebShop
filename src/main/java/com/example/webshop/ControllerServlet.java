@@ -63,7 +63,9 @@ public class ControllerServlet extends HttpServlet {
                     request.getRequestDispatcher("error.jsp").forward(request,response);
                 }
                 break;
-
+            case "sign_in":
+                request.getRequestDispatcher("sign_in.jsp").forward(request,response);
+                break;
             case "cart":
                 CartHandler.checkCartEmpty(session);
                 CartHandler.getCartList(request);
@@ -153,6 +155,14 @@ public class ControllerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         switch(action){
+            case "processSign_in":
+                if(UserHandler.createUser(request)){
+                    response.sendRedirect("welcome.jsp");
+                } else{
+                    request.setAttribute("errorMessage","User mail already exists!");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                }
+                break;
             case "addItemToCart" :
                 CartHandler.addToCart(request);
                 request.getRequestDispatcher("cart.jsp").forward(request,response);
