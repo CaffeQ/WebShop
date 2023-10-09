@@ -53,6 +53,9 @@ public class User {
      * @param email Email address of the user to search for.
      * @return User object corresponding to the given email address.
      */
+    protected static boolean createUser(String userName, String password){
+        return UserDB.createUser(userName,password);
+    }
     protected static User searchUser(String email){
         return UserDB.searchUser(email);
     }

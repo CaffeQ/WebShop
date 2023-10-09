@@ -5,6 +5,7 @@ import com.example.webshop.bo.User;
 import java.sql.*;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Represents a user in the webshop database, extends the User class.
@@ -18,6 +19,23 @@ public class UserDB extends User {
      * @param email The username to search for.
      * @return A UserDB object if the user exists, otherwise null.
      */
+
+    public static boolean createUser(String email, String password) {
+        try {
+            Connection con = DBManager.getConnection();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO T_User (email, password, role, token,isActive) VALUES (?,?,?,?,?)");
+            ps.setString(1,email);
+            ps.setString(2,password);
+            ps.setString(3,"customer");
+            ps.setString(4, UUID.randomUUID().toString());
+            ps.setBoolean(5,false);
+            ps.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     public static User searchUser(String email){
         ResultSet rs;
         UserDB userDB = null;

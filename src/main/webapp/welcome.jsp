@@ -40,6 +40,7 @@
 <br/>
 <a href="controller-servlet?action=welcome">Welcome</a>
 <a href="controller-servlet?action=login">Login</a>
+<a href="controller-servlet?action=sign_in">Sign in</a>
 <a href="controller-servlet?action=cart">Cart</a>
 <a href="controller-servlet?action=product">Product</a>
 <a href="controller-servlet?action=order">Order</a>
