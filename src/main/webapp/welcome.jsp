@@ -29,13 +29,13 @@
     String role = " Customer";
     if(userInfo != null) {
         name = userInfo.getEmail();
-        if(userInfo.getRole().equals("warehouse_staff"))
+        if(userInfo.getRole().equals("staff"))
             role = " Warehouse staff";
         else if(userInfo.getRole().equals("admin"))
             role = "n Admin";
     }
 %>
-<h1><%= "Welcome " + name + " to the Silk Road!" %></h1>
+<h1><%= "Welcome " + name + " to KTH e-commercial" %></h1>
 <h1><%= "You are a" + role + "!" %></h1>
 <br/>
 <a href="controller-servlet?action=welcome">Welcome</a>

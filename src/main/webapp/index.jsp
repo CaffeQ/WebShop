@@ -16,5 +16,6 @@
 <a href="controller-servlet?action=cart">Cart</a>
 <a href="controller-servlet?action=product">Product</a>
 <a href="controller-servlet?action=order">Order</a>
+<a href="controller-servlet?action=user">Users</a>
 </body>
 </html>
