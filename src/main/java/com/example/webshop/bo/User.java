@@ -4,6 +4,7 @@ import com.example.webshop.db.UserDB;
 
 import java.util.ArrayList;
 
+
 /**
  * Represents a user in the webshop system.
  *
@@ -17,6 +18,15 @@ public class User {
     private String password;
     private String role;
     private String token;
+    private boolean isActive;
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     /**
      * Initializes a new User with the given attributes.
@@ -27,12 +37,13 @@ public class User {
      * @param role Role of the user.
      * @param token Token for user authentication.
      */
-    protected User(int id, String email, String password, String role, String token) {
+    protected User(int id, String email, String password, String role, String token, boolean isActive) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.role = role;
         this.token = token;
+        this.isActive = isActive;
     }
 
 
@@ -40,16 +51,17 @@ public class User {
      * Searches for a User based on their email address.
      *
      * @param email Email address of the user to search for.
-     * @return User User object corresponding to the given email address.
+     * @return User object corresponding to the given email address.
      */
     protected static User searchUser(String email){
         return UserDB.searchUser(email);
     }
+
     protected static ArrayList<User> getAll(){
-        return UserDB.getAll();
+        return UserDB.getAllUsers();
     }
-    protected static ArrayList<User> getUsersByStatus(){
-        return UserDB.getUsersByStatus();
+    protected static ArrayList<User> getUsersByStatus(String status){
+        return UserDB.getUsersByStatus(status);
     }
 
     public int getId() {return id;}

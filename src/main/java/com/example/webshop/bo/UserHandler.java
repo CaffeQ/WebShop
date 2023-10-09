@@ -1,8 +1,12 @@
 package com.example.webshop.bo;
 
+import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Handles user authentication and role verification in the webshop system.
@@ -21,7 +25,18 @@ public class UserHandler {
         public static final String W_STAFF = "warehouse_staff";
     }
 
-
+    public static Collection<UserInfo> getAllUsers(String orderFilter){
+        Collection<User> c = User.getUsersByStatus(orderFilter);
+        ArrayList<UserInfo> users = new ArrayList<>();
+        for (User user : c) {
+            users.add(new UserInfo(
+                    user.getEmail(),
+                    user.getRole(),
+                    user.getToken()
+            ));
+        }
+        return users;
+    }
     /**
      * Authenticates a user based on the provided HttpServletRequest parameters.
      *
