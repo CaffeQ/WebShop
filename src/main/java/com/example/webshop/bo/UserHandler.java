@@ -129,7 +129,8 @@ public class UserHandler {
             return false;
         User user = User.searchUser(userInfo.getEmail());
         return user.getRole().equals(userInfo.getRole()) &&
-                user.getToken().equals(userInfo.getToken());
+                user.getToken().equals(userInfo.getToken()) &&
+                user.isActive();
     }
 
     /**
@@ -145,7 +146,8 @@ public class UserHandler {
         User user = User.searchUser(userInfo.getEmail());
         if(user == null)
             return false;
-        return user.getRole().equals(Roles.ADMIN) && user.getToken().equals(userInfo.getToken());
+        return user.getRole().equals(Roles.ADMIN) && user.getToken().equals(userInfo.getToken()) &&
+                user.isActive();
     }
 
     /**
