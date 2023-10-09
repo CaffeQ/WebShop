@@ -80,6 +80,22 @@ public class UserDB extends User {
         }
         return true;
     }
+
+    public static boolean changeUserRole(User user){
+        try{
+            Connection con = DBManager.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE T_USER set role = ? WHERE userID = ?");
+            ps.setString(1,user.getRole());
+            ps.setInt(2,user.getId());
+            ps.executeUpdate();
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     public static boolean activateUserByUserID(int userID){
         try{
             Connection con = DBManager.getConnection();

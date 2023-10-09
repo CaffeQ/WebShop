@@ -21,7 +21,7 @@ public class UserHandler {
     private static class Roles {
         public static final String ADMIN = "admin";
         public static final String CUSTOMER = "customer";
-        public static final String W_STAFF = "warehouse_staff";
+        public static final String STAFF = "staff";
     }
 
     public static boolean removeUserByUserID(HttpServletRequest request){
@@ -33,6 +33,14 @@ public class UserHandler {
         String userEmail =  request.getParameter("changeUserStatusByUserName");
         User user = User.searchUser(userEmail);
         return User.activateUserByUserID(user.getId());
+    }
+
+    public static boolean changeUserRole(HttpServletRequest request){
+        String userEmail =  request.getParameter("changeUserRoleByEmail");
+        String role =  request.getParameter("changeUserRoleToRole");
+        User user = User.searchUser(userEmail);
+        user.setRole(role);
+        return User.changeUserRole(user);
     }
 
     public static Collection<UserInfo> getAllUsers(){
@@ -103,6 +111,9 @@ public class UserHandler {
      * @param session HttpSession object containing user information.
      * @return boolean True if the user is verified, otherwise false.
      */
+
+
+
     public static boolean isVerified(HttpSession session){
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         if(userInfo == null)
@@ -141,7 +152,7 @@ public class UserHandler {
         User user = User.searchUser(userInfo.getEmail());
         if(user == null)
             return false;
-        return user.getRole().equals(Roles.W_STAFF) && user.getToken().equals(userInfo.getToken());
+        return user.getRole().equals(Roles.STAFF) && user.getToken().equals(userInfo.getToken());
     }
 
 }

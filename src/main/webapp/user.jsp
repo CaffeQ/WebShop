@@ -82,6 +82,17 @@
             <strong>Token:</strong> <%= user.getToken() %>,
         </p>
 
+        <form action="controller-servlet" method="post">
+            <input type="hidden" name="action" value="changeUserRole">
+            <input type="hidden" name="changeUserRoleByEmail" value=<%= user.getEmail()%>>
+            <select name="changeUserRoleToRole" onchange="this.form.submit()">
+                <option disabled selected value>Role</option>
+                <option value="customer">Customer</option>
+                <option value="staff">Staff</option>
+                <option value="admin">Admin</option>
+            </select>
+        </form>
+
         <div>
             <form action="controller-servlet" method="post">
                 <input type="hidden" name="action" value="activateUser">

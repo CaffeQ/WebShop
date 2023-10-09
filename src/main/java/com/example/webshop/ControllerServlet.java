@@ -173,6 +173,17 @@ public class ControllerServlet extends HttpServlet {
                 response.sendRedirect("controller-servlet?action=cart");
                 break;
 
+            case "changeUserRole":
+                if(UserHandler.isUserAdmin(session)){
+                    UserHandler.changeUserRole(request);
+                    response.sendRedirect("controller-servlet?action=user");
+                }
+                else{
+                    request.setAttribute("errorMessage","Cannot change role");
+                    response.sendRedirect("error.jsp");
+                }
+                break;
+
 
             case "removeUser":
                 if(UserHandler.isUserAdmin(session)){

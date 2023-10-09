@@ -57,6 +57,10 @@ public class User {
         return UserDB.searchUser(email);
     }
 
+    protected static boolean changeUserRole(User user){
+        return UserDB.changeUserRole(user);
+    }
+
     protected static ArrayList<User> getAll(){
         return UserDB.getAllUsers();
     }

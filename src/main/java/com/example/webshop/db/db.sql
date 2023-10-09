@@ -11,7 +11,7 @@ CREATE TABLE T_User (
     userID INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'customer', 'warehouse_staff') NOT NULL,
+    role ENUM('admin', 'customer', 'staff') NOT NULL,
     token VARCHAR(255) NOT NULL unique,
     isActive BOOLEAN NOT NULL DEFAULT 1
 );
@@ -19,7 +19,7 @@ CREATE TABLE T_User (
 INSERT INTO T_User (email, password, role, token) VALUES
 ('Balder@kth.se','password1', 'admin', UUID()),
 ('Tim@kth.se','password2', 'customer', UUID()),
-('Alex@kth.se','password3', 'warehouse_staff', UUID());
+('Alex@kth.se','password3', 'staff', UUID());
 
 
 CREATE TABLE T_Item (
@@ -93,3 +93,4 @@ SELECT * from T_Order;
 SELECT * from T_PurchaseItems;
 SELECT * FROM T_Item WHERE active = 1;
 #UPDATE T_USER set isActive = false WHERE userID = 1;
+SELECT * from T_User WHERE isActive = true;
