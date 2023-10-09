@@ -3,6 +3,8 @@ package com.example.webshop.db;
 import com.example.webshop.bo.User;
 
 import java.sql.*;
+import java.util.AbstractList;
+import java.util.ArrayList;
 
 /**
  * Represents a user in the webshop database, extends the User class.
@@ -16,7 +18,7 @@ public class UserDB extends User {
      * @param userName The username to search for.
      * @return A UserDB object if the user exists, otherwise null.
      */
-    public static UserDB searchUser(String userName){
+    public static User searchUser(String userName){
         ResultSet rs;
         UserDB userDB = null;
         try{
@@ -37,6 +39,51 @@ public class UserDB extends User {
             e.printStackTrace();
         }
         return userDB;
+    }
+
+    public static ArrayList<User> getUsersByStatus(String status){
+        ResultSet rs;
+        ArrayList<User> users = new ArrayList<>();
+        try{
+            Connection con = DBManager.getConnection();
+            PreparedStatement ps = con.prepareStatement("SELECT * from T_User WHERE status = ?");
+            ps.setString(1,status);
+            rs = ps.executeQuery();
+
+            if (rs.next()){
+                users.add(new UserDB(
+                        rs.getInt("userID"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("role"),
+                        rs.getString("token")));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    public static ArrayList<User> getAllUsers(){
+        ResultSet rs;
+        ArrayList<User> users = new ArrayList<>();
+        try{
+            Connection con = DBManager.getConnection();
+            PreparedStatement ps = con.prepareStatement("SELECT * from T_User");
+            rs = ps.executeQuery();
+
+            if (rs.next()){
+                users.add(new UserDB(
+                        rs.getInt("userID"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("role"),
+                        rs.getString("token")));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return users;
     }
 
     /**

@@ -2,6 +2,8 @@ package com.example.webshop.bo;
 
 import com.example.webshop.db.UserDB;
 
+import java.util.ArrayList;
+
 /**
  * Represents a user in the webshop system.
  *
@@ -42,6 +44,12 @@ public class User {
      */
     protected static User searchUser(String email){
         return UserDB.searchUser(email);
+    }
+    protected static ArrayList<User> getAll(){
+        return UserDB.getAll();
+    }
+    protected static ArrayList<User> getUsersByStatus(){
+        return UserDB.getUsersByStatus();
     }
 
     public int getId() {return id;}
