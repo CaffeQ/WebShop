@@ -15,16 +15,16 @@ public class UserDB extends User {
     /**
      * Searches for a user in the database by username.
      *
-     * @param userName The username to search for.
+     * @param email The username to search for.
      * @return A UserDB object if the user exists, otherwise null.
      */
-    public static User searchUser(String userName){
+    public static User searchUser(String email){
         ResultSet rs;
         UserDB userDB = null;
         try{
             Connection con = DBManager.getConnection();
             PreparedStatement ps = con.prepareStatement("SELECT * from T_User where T_User.email = ?");
-            ps.setString(1,userName);
+            ps.setString(1,email);
             rs = ps.executeQuery();
 
             if (rs.next()){
@@ -42,13 +42,13 @@ public class UserDB extends User {
         return userDB;
     }
 
-    public static ArrayList<User> getUsersByStatus(String status){
+    public static ArrayList<User> getUsersByStatus(boolean status){
         ResultSet rs;
         ArrayList<User> users = new ArrayList<>();
         try{
             Connection con = DBManager.getConnection();
             PreparedStatement ps = con.prepareStatement("SELECT * from T_User WHERE isActive = ?");
-            ps.setString(1,status);
+            ps.setBoolean(1,status);
             rs = ps.executeQuery();
 
             while (rs.next()){
@@ -64,6 +64,35 @@ public class UserDB extends User {
             e.printStackTrace();
         }
         return users;
+    }
+
+    public static boolean removeUserByUserID(int userID){
+        try{
+            Connection con = DBManager.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE T_USER set isActive = false WHERE userID = ?");
+            ps.setInt(1,userID);
+            ps.executeUpdate();
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    public static boolean activateUserByUserID(int userID){
+        try{
+            Connection con = DBManager.getConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE T_USER set isActive = true WHERE userID = ?");
+            ps.setInt(1,userID);
+            ps.executeUpdate();
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public static ArrayList<User> getAllUsers(){

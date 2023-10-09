@@ -92,3 +92,4 @@ SELECT * from T_Item;
 SELECT * from T_Order;
 SELECT * from T_PurchaseItems;
 SELECT * FROM T_Item WHERE active = 1;
+#UPDATE T_USER set isActive = false WHERE userID = 1;

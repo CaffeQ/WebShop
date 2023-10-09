@@ -5,14 +5,12 @@ import com.example.webshop.bo.ItemHandler;
 import com.example.webshop.bo.OrderHandler;
 import com.example.webshop.bo.UserHandler;
 
-import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collection;
 
 /**
  * Handles the main routing for the web application.
@@ -36,15 +34,36 @@ public class ControllerServlet extends HttpServlet {
         switch (action){
             case "user":
                 if(UserHandler.isUserAdmin(session)){
-                    Collection<UserInfo> users = UserHandler.getAllUsers();
-                    request.getSession().setAttribute("users",users);
-                    request.getRequestDispatcher("user.jsp").forward(request,response);
+
+                    String userFilter = request.getParameter("userFilter");
+
+                    if(userFilter == null){
+                        userFilter = "all";
+                    }
+
+                    switch (userFilter){
+                        case "all" :
+                            request.getSession().setAttribute("users",UserHandler.getAllUsers());
+                            request.getRequestDispatcher("user.jsp").forward(request,response);
+                            break;
+
+                        case "active" :
+                            request.getSession().setAttribute("users",UserHandler.getAllUsersByStatus(userFilter));
+                            request.getRequestDispatcher("user.jsp").forward(request,response);
+                            break;
+
+                        case "inactive" :
+                            request.getSession().setAttribute("users",UserHandler.getAllUsersByStatus(userFilter));
+                            request.getRequestDispatcher("user.jsp").forward(request,response);
+                            break;
+                    }
                 }
                 else{
                     request.setAttribute("errorMessage","Invalid privilege");
                     request.getRequestDispatcher("error.jsp").forward(request,response);
                 }
                 break;
+
             case "cart":
                 CartHandler.checkCartEmpty(session);
                 CartHandler.getCartList(request);
@@ -131,8 +150,6 @@ public class ControllerServlet extends HttpServlet {
      * @throws ServletException If the request cannot be handled.
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         switch(action){
@@ -154,6 +171,31 @@ public class ControllerServlet extends HttpServlet {
             case "removeItemFromCart":
                 CartHandler.removeItem(request);
                 response.sendRedirect("controller-servlet?action=cart");
+                break;
+
+
+            case "removeUser":
+                if(UserHandler.isUserAdmin(session)){
+
+                    UserHandler.removeUserByUserID(request);
+                    response.sendRedirect("controller-servlet?action=user");
+                }
+                else{
+                    request.setAttribute("errorMessage","Cannot remove user");
+                    response.sendRedirect("error.jsp");
+                }
+                break;
+
+            case "activateUser":
+                if(UserHandler.isUserAdmin(session)){
+
+                    UserHandler.activateUserByUserID(request);
+                    response.sendRedirect("controller-servlet?action=user");
+                }
+                else{
+                    request.setAttribute("errorMessage","Cannot remove user");
+                    response.sendRedirect("error.jsp");
+                }
                 break;
 
 

@@ -28,7 +28,7 @@
     String name = "";
     String role = " Customer";
     if(userInfo != null) {
-        name = userInfo.getName();
+        name = userInfo.getEmail();
         if(userInfo.getRole().equals("warehouse_staff"))
             role = " Warehouse staff";
         else if(userInfo.getRole().equals("admin"))

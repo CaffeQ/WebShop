@@ -1,6 +1,5 @@
 package com.example.webshop.bo;
 
-import com.example.webshop.ui.ItemInfo;
 import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -25,6 +24,17 @@ public class UserHandler {
         public static final String W_STAFF = "warehouse_staff";
     }
 
+    public static boolean removeUserByUserID(HttpServletRequest request){
+        String userEmail = request.getParameter("changeUserStatusByUserName");
+        User user = User.searchUser(userEmail);
+        return User.removeUserByUserID(user.getId());
+    }
+    public static boolean activateUserByUserID(HttpServletRequest request){
+        String userEmail =  request.getParameter("changeUserStatusByUserName");
+        User user = User.searchUser(userEmail);
+        return User.activateUserByUserID(user.getId());
+    }
+
     public static Collection<UserInfo> getAllUsers(){
         ArrayList<User> c = User.getAll();
         ArrayList<UserInfo> users = new ArrayList<>();
@@ -38,7 +48,12 @@ public class UserHandler {
         return users;
     }
     public static Collection<UserInfo> getAllUsersByStatus(String status){
-        ArrayList<User> c = User.getUsersByStatus(status);
+
+        boolean boolStatus = false;
+
+        if(status.equals("active")) boolStatus = true;
+
+        ArrayList<User> c = User.getUsersByStatus(boolStatus);
         ArrayList<UserInfo> users = new ArrayList<>();
         for (User user : c) {
             users.add(new UserInfo(
@@ -92,7 +107,7 @@ public class UserHandler {
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         if(userInfo == null)
             return false;
-        User user = User.searchUser(userInfo.getName());
+        User user = User.searchUser(userInfo.getEmail());
         return user.getRole().equals(userInfo.getRole()) &&
                 user.getToken().equals(userInfo.getToken());
     }
@@ -107,7 +122,7 @@ public class UserHandler {
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         if(userInfo == null)
             return false;
-        User user = User.searchUser(userInfo.getName());
+        User user = User.searchUser(userInfo.getEmail());
         if(user == null)
             return false;
         return user.getRole().equals(Roles.ADMIN) && user.getToken().equals(userInfo.getToken());
@@ -123,7 +138,7 @@ public class UserHandler {
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
         if(userInfo == null)
             return false;
-        User user = User.searchUser(userInfo.getName());
+        User user = User.searchUser(userInfo.getEmail());
         if(user == null)
             return false;
         return user.getRole().equals(Roles.W_STAFF) && user.getToken().equals(userInfo.getToken());

@@ -74,7 +74,7 @@ public class OrderHandler {
         session.removeAttribute("cartList");
         session.removeAttribute("cart");
         UserInfo userInfo = (UserInfo) session.getAttribute("user");
-        return Order.placeOrder(cart,User.searchUser(userInfo.getName()));
+        return Order.placeOrder(cart,User.searchUser(userInfo.getEmail()));
     }
 
     /**

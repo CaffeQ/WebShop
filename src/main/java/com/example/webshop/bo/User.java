@@ -60,8 +60,14 @@ public class User {
     protected static ArrayList<User> getAll(){
         return UserDB.getAllUsers();
     }
-    protected static ArrayList<User> getUsersByStatus(String status){
+    protected static ArrayList<User> getUsersByStatus(boolean status){
         return UserDB.getUsersByStatus(status);
+    }
+    protected static boolean removeUserByUserID(int userID){
+        return UserDB.removeUserByUserID(userID);
+    }
+    protected static boolean activateUserByUserID(int userID){
+        return UserDB.activateUserByUserID(userID);
     }
 
     public int getId() {return id;}

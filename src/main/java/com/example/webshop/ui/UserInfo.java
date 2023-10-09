@@ -24,7 +24,7 @@ public class UserInfo {
     }
 
 
-    public String getName() {
+    public String getEmail() {
         return email;
     }
 

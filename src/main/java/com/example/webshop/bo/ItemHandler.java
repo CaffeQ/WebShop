@@ -100,7 +100,7 @@ public class ItemHandler {
      */
     public static boolean addItem(HttpServletRequest request) throws SQLException {
         UserInfo userInfo = (UserInfo) request.getSession().getAttribute("user");
-        User user = User.searchUser(userInfo.getName());
+        User user = User.searchUser(userInfo.getEmail());
         if(user == null)
             return false;
 
