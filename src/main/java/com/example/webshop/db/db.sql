@@ -13,7 +13,7 @@ CREATE TABLE T_User (
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'customer', 'warehouse_staff') NOT NULL,
     token VARCHAR(255) NOT NULL unique,
-    active BOOLEAN NOT NULL DEFAULT 1
+    isActive BOOLEAN NOT NULL DEFAULT 1
 );
 
 INSERT INTO T_User (email, password, role, token) VALUES

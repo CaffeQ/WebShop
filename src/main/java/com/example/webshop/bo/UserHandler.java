@@ -25,8 +25,20 @@ public class UserHandler {
         public static final String W_STAFF = "warehouse_staff";
     }
 
-    public static Collection<UserInfo> getAllUsers(String orderFilter){
-        Collection<User> c = User.getUsersByStatus(orderFilter);
+    public static Collection<UserInfo> getAllUsers(){
+        ArrayList<User> c = User.getAll();
+        ArrayList<UserInfo> users = new ArrayList<>();
+        for (User user : c) {
+            users.add(new UserInfo(
+                    user.getEmail(),
+                    user.getRole(),
+                    user.getToken()
+            ));
+        }
+        return users;
+    }
+    public static Collection<UserInfo> getAllUsersByStatus(String status){
+        ArrayList<User> c = User.getUsersByStatus(status);
         ArrayList<UserInfo> users = new ArrayList<>();
         for (User user : c) {
             users.add(new UserInfo(

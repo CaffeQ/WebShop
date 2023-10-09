@@ -5,12 +5,14 @@ import com.example.webshop.bo.ItemHandler;
 import com.example.webshop.bo.OrderHandler;
 import com.example.webshop.bo.UserHandler;
 
+import com.example.webshop.ui.UserInfo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 
 /**
  * Handles the main routing for the web application.
@@ -34,6 +36,8 @@ public class ControllerServlet extends HttpServlet {
         switch (action){
             case "user":
                 if(UserHandler.isUserAdmin(session)){
+                    Collection<UserInfo> users = UserHandler.getAllUsers();
+                    request.getSession().setAttribute("users",users);
                     request.getRequestDispatcher("user.jsp").forward(request,response);
                 }
                 else{

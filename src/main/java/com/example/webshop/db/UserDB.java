@@ -33,7 +33,8 @@ public class UserDB extends User {
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getString("role"),
-                        rs.getString("token"));
+                        rs.getString("token"),
+                        rs.getBoolean("isActive"));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -46,17 +47,18 @@ public class UserDB extends User {
         ArrayList<User> users = new ArrayList<>();
         try{
             Connection con = DBManager.getConnection();
-            PreparedStatement ps = con.prepareStatement("SELECT * from T_User WHERE status = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * from T_User WHERE isActive = ?");
             ps.setString(1,status);
             rs = ps.executeQuery();
 
-            if (rs.next()){
+            while (rs.next()){
                 users.add(new UserDB(
                         rs.getInt("userID"),
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getString("role"),
-                        rs.getString("token")));
+                        rs.getString("token"),
+                        rs.getBoolean("isActive")));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -72,13 +74,14 @@ public class UserDB extends User {
             PreparedStatement ps = con.prepareStatement("SELECT * from T_User");
             rs = ps.executeQuery();
 
-            if (rs.next()){
+            while (rs.next()){
                 users.add(new UserDB(
                         rs.getInt("userID"),
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getString("role"),
-                        rs.getString("token")));
+                        rs.getString("token"),
+                        rs.getBoolean("isActive")));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -95,8 +98,8 @@ public class UserDB extends User {
      * @param role The role of the user.
      * @param address The address of the user.
      */
-    public UserDB(int id, String email, String password, String role, String address) {
-        super(id, email, password, role, address);
+    public UserDB(int id, String email, String password, String role, String address, boolean isActive) {
+        super(id, email, password, role, address, isActive);
     }
 
 

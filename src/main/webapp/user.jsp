@@ -13,14 +13,14 @@
     <div class="container">
         <title>Users</title>
         <%
-            ArrayList<UserInfo> users = (ArrayList<UserInfo>) request.getSession().getAttribute("userInfo");
+            ArrayList<UserInfo> users = (ArrayList<UserInfo>) request.getSession().getAttribute("users");
             for (UserInfo user : users) {
         %>
         <div class="product">
             <div class="product-info">
                 <p>
-                    <strong>Mail:</strong> <%= user.getName() %>,
-                    <strong>Role:</strong> <%= user.getRole() %>,
+                    <strong>Mail:</strong> <%= user.getName() %>
+                    <strong>Role:</strong> <%= user.getRole() %>
                     <strong>Token:</strong> <%= user.getToken() %>
                 </p>
             </div>
