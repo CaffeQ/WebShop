@@ -2,6 +2,8 @@ package com.example.webshop.bo;
 
 import com.example.webshop.db.UserDB;
 
+import java.util.Collection;
+
 /**
  * Represents a user in the webshop system.
  *
@@ -38,11 +40,12 @@ public class User {
      * Searches for a User based on their email address.
      *
      * @param email Email address of the user to search for.
-     * @return User User object corresponding to the given email address.
+     * @return User object corresponding to the given email address.
      */
     protected static User searchUser(String email){
         return UserDB.searchUser(email);
     }
+    protected static Collection<User> getUsersByStatus(String orderFilter){return UserDB.getUsersByStatus(orderFilter); }
 
     public int getId() {return id;}
 

@@ -32,6 +32,15 @@ public class ControllerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         switch (action){
+            case "user":
+                if(UserHandler.isUserAdmin(session)){
+                    request.getRequestDispatcher("user.jsp").forward(request,response);
+                }
+                else{
+                    request.setAttribute("errorMessage","Invalid privilege");
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                }
+                break;
             case "cart":
                 CartHandler.checkCartEmpty(session);
                 CartHandler.getCartList(request);
