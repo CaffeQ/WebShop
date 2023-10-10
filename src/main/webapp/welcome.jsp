@@ -35,7 +35,7 @@
             role = "n Admin";
     }
 %>
-<h1><%= "Welcome " + name + " to KTH e-commercial" %></h1>
+<h1><%= "Welcome " + name + " to KTHs E-commerce" %></h1>
 <h1><%= "You are a" + role + "!" %></h1>
 <br/>
 <a href="controller-servlet?action=welcome">Welcome</a>
