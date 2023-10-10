@@ -23,6 +23,13 @@ public class UserHandler {
         public static final String CUSTOMER = "customer";
         public static final String STAFF = "staff";
     }
+
+    /**
+     * Creates user based on name and password but only if
+     * username is unique
+     * @param request
+     * @return
+     */
     public static boolean createUser(HttpServletRequest request){
         String email = request.getParameter("name");
         String password = request.getParameter("password");
@@ -33,17 +40,33 @@ public class UserHandler {
         return User.createUser(email,password);
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     public static boolean removeUserByUserID(HttpServletRequest request){
         String userEmail = request.getParameter("changeUserStatusByUserName");
         User user = User.searchUser(userEmail);
         return User.removeUserByUserID(user.getId());
     }
+
+    /**
+     * Activates user, an activated user can do operations on website
+     * @param request
+     * @return
+     */
     public static boolean activateUserByUserID(HttpServletRequest request){
         String userEmail =  request.getParameter("changeUserStatusByUserName");
         User user = User.searchUser(userEmail);
         return User.activateUserByUserID(user.getId());
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     public static boolean changeUserRole(HttpServletRequest request){
         String userEmail =  request.getParameter("changeUserRoleByEmail");
         String role =  request.getParameter("changeUserRoleToRole");
